@@ -1,0 +1,39 @@
+{
+  "name": "ElDucado-App",
+  "version": "1.0.0",
+  "description": "Invoice and accounting for Residencial El Ducado",
+  "main": "index.html",
+  "window": {
+    "title": "Residencial El Ducado APP",
+    "icon": "icon-96.png",
+    "resizable": true,
+    "fullscreen": false,
+    "width": 800,
+    "height": 600,
+    "single-instance": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaelfeliciano/elducado-app.git"
+  },
+  "dependencies": {
+    "log4js": "^0.6.38",
+    "node-printer": "latest",
+    "shortid": "latest",
+    "unique-temp-dir": "latest",
+    "mongodb": "latest"
+  },
+  "keywords": [
+    "accounting",
+    "invoice",
+    "factura",
+    "contabilidad",
+    "cuentas por cobrar"
+  ],
+  "author": "Rogelio Feliciano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isaelfeliciano/elducado-app/issues"
+  },
+  "homepage": "https://github.com/isaelfeliciano/elducado-app#readme"
+}

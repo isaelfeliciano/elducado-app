@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title style="display: none;">El Ducado APP</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animation.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div id="app">
+<div class="flashmessage center-align-absolute center-text notVisible"></div>
+</div>
+
+
+	
+<div class="no-display modal modal--loading">
+	<div id="jsModalLoading" class="modal__box modal__box--loading center-align-absolute center-text box-radius animated">
+		<i class="fa fa-5x fa-cog fa-spin fa-fw"></i>
+	  	<span>Loading...</span>
+	</div>
+</div>
+
+<header class="jsHideOnPrint">
+	
+</header>
+
+<nav class="center-text">
+	<a href="#add-payment-page">
+		<img class="nav-icon center-align" src="img/icon-money.png">
+		<span>Agregar pago</span>
+	</a>
+
+	<a href="#residents-list-page">
+		<img class="nav-icon center-align" src="img/icon-users.png">
+		<span>Residentes</span>
+	</a>
+
+	<a href="#">
+		<img class="nav-icon center-align" src="img/icon-invoice.png">
+		<span>Facturas</span>
+	</a>
+
+	<a href="#">
+		<img class="nav-icon center-align" src="img/icon-saving-book.png">
+		<span>Registros</span>
+	</a>
+</nav>
+
+<div id="main-page" class="page">
+	<div class="main-page__container">
+		
+	</div>
+</div>
+
+<div id="add-payment-page" class="page">
+	<div class="add-payment-page__box">
+		<form id="form-search" class="no-display center-align center-text">
+			<p>Busca residente por nombre, apellido o codigo</p>
+			<input type="text" name="search-resident" class="center-align box-radius">
+			<button id="btn-search" class="btn center-align center-text box-radius">Buscar</button>
+			
+			<ul id="search-list" class="center-align">
+				<!-- To populate from JS -->
+				<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
+				<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>
+			</ul>
+		</form>
+
+		<form id="form-receipt" class="">
+			<p>Victor Ramirez Minier</p>
+			<span>Residente</span>
+			
+			<label for="date">Fecha</label>
+			<input type="text" name="date" value="">
+
+			<p>#2017-001</p>
+			<span id="jsInvoiceNumber">Factura</span>
+
+			<p>Abril</p>
+			<span id="jsMonth">Para el Mes</span>
+
+			<p>Propietario</p>
+			<span id="jsType">Tipo</span>
+			
+			<p>RD$ 2,000.00</p>
+			<span id="jsAmount">Monto</span>
+			
+			<div id="wrapper-btn-pay-method" class="center-align center-text">
+				<span class="center-text">Metodo de pago</span>
+				<button class="btn js-btn-pay-method btn--selected">Efectivo</button>
+				<button class="btn js-btn-pay-method">Cheque</button>
+				<button class="btn js-btn-pay-method">Deposito</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="residents-list-page" class="page">
+	<div class="residents-list-page__box">
+		<div class="resident-card">
+			<span>Nombre: Alfonso de Jesus</span>
+		</div>
+	</div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery.number.min.js"></script>
+<script src="js/numeral.js"></script>
+<script src="js/lodash.js"></script>
+<script src="app.js"></script>
+</div>
+</body>
+</html>
