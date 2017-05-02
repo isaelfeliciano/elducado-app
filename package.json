@@ -8,7 +8,7 @@
     "icon": "icon-96.png",
     "resizable": true,
     "fullscreen": false,
-    "width": 800,
+    "width": 885,
     "height": 600,
     "single-instance": false
   },

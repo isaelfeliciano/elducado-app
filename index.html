@@ -9,16 +9,25 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<div id="app">
-<div class="flashmessage center-align-absolute center-text notVisible"></div>
-</div>
 
-
+	<div class="flashmessage center-align-absolute center-text box-radius notVisible">
+	</div>
 	
-<div class="no-display modal modal--loading">
-	<div id="jsModalLoading" class="modal__box modal__box--loading center-align-absolute center-text box-radius animated">
-		<i class="fa fa-5x fa-cog fa-spin fa-fw"></i>
-	  	<span>Loading...</span>
+<div id="modal" class="modal-receipt modal-background no-display">
+	<div id="jsModalLoading" class="modal__box modal__confirm-pay center-align-absolute box-radius animated">
+		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+		<h1>Factura</h1>
+		<span id="jsInvoiceNumberModal">#2017-001</span>
+		<p>Para el mes de <span id="jsMonthModal">Enero</span></p>
+		<p>Hoy <span id="jsDateModal">26/4/2017</span></p>
+		<p id="jsResidentModal">Fulano de Tal</p>
+		
+		<span id="jsAmountModal">RD$ 2,000.00</span>
+		<p id="jsPayMethodModal" class="inline"></p>
+		<p id="jsPayMethodNumberModal" class="inline"></p>
+		
+		<button id="btn-print-receipt" class="btn"><i class="fa fa-print"></i> Imprimir</button>
+		<button id="btn-save-receipt" class="btn"><i class="fa fa-save"></i> Solo salvar</button>
 	</div>
 </div>
 
@@ -27,24 +36,24 @@
 </header>
 
 <nav class="center-text">
-	<a href="#add-payment-page">
+	<a href="#add-payment-page" id="jsAddPayment">
 		<img class="nav-icon center-align" src="img/icon-money.png">
-		<span>Agregar pago</span>
+		<!-- <span>Agregar pago</span> -->
 	</a>
 
 	<a href="#residents-list-page">
 		<img class="nav-icon center-align" src="img/icon-users.png">
-		<span>Residentes</span>
+		<!-- <span>Residentes</span> -->
 	</a>
 
 	<a href="#">
 		<img class="nav-icon center-align" src="img/icon-invoice.png">
-		<span>Facturas</span>
+		<!-- <span>Facturas</span> -->
 	</a>
 
 	<a href="#">
 		<img class="nav-icon center-align" src="img/icon-saving-book.png">
-		<span>Registros</span>
+		<!-- <span>Registros</span> -->
 	</a>
 </nav>
 
@@ -56,51 +65,157 @@
 
 <div id="add-payment-page" class="page">
 	<div class="add-payment-page__box">
-		<form id="form-search" class="no-display center-align center-text">
+		<form id="form-search" class="center-align center-text">
 			<p>Busca residente por nombre, apellido o codigo</p>
 			<input type="text" name="search-resident" class="center-align box-radius">
 			<button id="btn-search" class="btn center-align center-text box-radius">Buscar</button>
 			
 			<ul id="search-list" class="center-align">
 				<!-- To populate from JS -->
-				<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
-				<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>
+				<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
+				<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
 			</ul>
 		</form>
 
-		<form id="form-receipt" class="">
-			<p>Victor Ramirez Minier</p>
+		<form id="form-receipt" class="no-display">
+			<button id="btn-close-form-receipt"><i class="fa fa-close fa-3x"></i></button>
 			<span>Residente</span>
+			<p id="jsResident"></p>
 			
-			<label for="date">Fecha</label>
-			<input type="text" name="date" value="">
+			<span class="no-display">Fecha</span>
+			<p class="no-display" id="jsDate"></p>
 
-			<p>#2017-001</p>
-			<span id="jsInvoiceNumber">Factura</span>
+			<span>Factura</span>
+			<p id="jsInvoiceNumber">#</p>
+			<button id="btnChangeInvoice">Siguiente</button>
 
-			<p>Abril</p>
-			<span id="jsMonth">Para el Mes</span>
+			<span>Para el Mes</span>
+			<p id="jsMonth">Abril</p>
 
-			<p>Propietario</p>
-			<span id="jsType">Tipo</span>
+			<span>Tipo</span>
+			<p id="jsType">Propietario</p>
 			
-			<p>RD$ 2,000.00</p>
-			<span id="jsAmount">Monto</span>
+			<span>Monto</span>
+			<p id="jsAmount">RD$ 2,000.00</p>
 			
 			<div id="wrapper-btn-pay-method" class="center-align center-text">
-				<span class="center-text">Metodo de pago</span>
+				<span class="center-text">Seleccione metodo de pago</span>
 				<button class="btn js-btn-pay-method btn--selected">Efectivo</button>
-				<button class="btn js-btn-pay-method">Cheque</button>
-				<button class="btn js-btn-pay-method">Deposito</button>
+				<button class="btn js-btn-pay-method" method="checkNumber">Cheque</button>
+				<button class="btn js-btn-pay-method" method="accountNumber">Deposito</button>
+
+				<input class="center-align invisible" type="number" name="pay-method-input" placeholder="00000" required="required">
 			</div>
+
+			<button id="btn-confirm" class="btn btn--confirm center-align-absolute">Confirmar <i class="fa fa-check"></i></button>
 		</form>
 	</div>
 </div>
 
 <div id="residents-list-page" class="page">
 	<div class="residents-list-page__box">
-		<div class="resident-card">
-			<span>Nombre: Alfonso de Jesus</span>
+		<div class="form-resident-card box-radius">
+			<label for="name">Nombre</label>
+			<input type="text" name="name" value="Test"/>
+			
+			<label for="type">Tipo</label>
+			<input type="text" name="type" value="Test"/>
+			
+			<label for="email">Email</label>
+			<input type="email" name="email" value="Test@gmail.com"/>
+			
+			<label for="address">Direccion</label>
+			<input type="text" name="address" value="Test"/>
+			
+			<span>
+				<label for="tel1" class="block">Tel 1</label>
+				<input type="tel" name="tel1" value="809-555-5555"/>
+			</span>
+			
+			<span>
+				<label for="tel2" class="block">Tel 2</label>
+				<input type="tel" name="tel2" value="809-555-5555"/>
+			</span>
+			
+			<span>
+				<label for="tel3" class="block">Tel 3</label>
+				<input type="tel" name="tel3" value="809-555-5555"/>
+			</span>
+			
+			<label for="cedula">Cedula</label>
+			<input type="number" name="cedula" value="02301492762"/>
+			
+			<span>
+				<label for="carnet-id">Carnet ID</label>
+				<input type="number" name="carnet-id" value="1"/>
+			</span>
+			
+			<span>
+				<label for="stickers">Calcomania</label>
+				<input type="number" name="stickers" value="2"/>
+			</span>
+			
+			<span>
+				<label for="door-control">Controles</label>
+				<input type="number" name="door-control" value="2"/>
+			</span>
+			
+			<label for="reference">Referencia</label>
+			<input type="text" name="reference" value="Test"/>
+			
+			<button class="btn-expand-card"><i class="fa fa-2x fa-chevron-down"></i></button>
+		</div>
+		
+		<div class="form-resident-card box-radius">
+			<label for="name">Nombre</label>
+			<input type="text" name="name" value="Test"/>
+			
+			<label for="type">Tipo</label>
+			<input type="text" name="type" value="Test"/>
+			
+			<label for="email">Email</label>
+			<input type="email" name="email" value="Test@gmail.com"/>
+			
+			<label for="address">Direccion</label>
+			<input type="text" name="address" value="Test"/>
+			
+			<span>
+				<label for="tel1" class="block">Tel 1</label>
+				<input type="tel" name="tel1" value="809-555-5555"/>
+			</span>
+			
+			<span>
+				<label for="tel2" class="block">Tel 2</label>
+				<input type="tel" name="tel2" value="809-555-5555"/>
+			</span>
+			
+			<span>
+				<label for="tel3" class="block">Tel 3</label>
+				<input type="tel" name="tel3" value="809-555-5555"/>
+			</span>
+			
+			<label for="cedula">Cedula</label>
+			<input type="number" name="cedula" value="02301492762"/>
+			
+			<span>
+				<label for="carnet-id">Carnet ID</label>
+				<input type="number" name="carnet-id" value="1"/>
+			</span>
+			
+			<span>
+				<label for="stickers">Calcomania</label>
+				<input type="number" name="stickers" value="2"/>
+			</span>
+			
+			<span>
+				<label for="door-control">Controles</label>
+				<input type="number" name="door-control" value="2"/>
+			</span>
+			
+			<label for="reference">Referencia</label>
+			<input type="text" name="reference" value="Test"/>
+			
+			<button class="btn-expand-card"><i class="fa fa-2x fa-chevron-down"></i></button>
 		</div>
 	</div>
 </div>
@@ -109,6 +224,7 @@
 <script src="js/jquery.number.min.js"></script>
 <script src="js/numeral.js"></script>
 <script src="js/lodash.js"></script>
+<script src="js/moment.js"></script>
 <script src="app.js"></script>
 </div>
 </body>

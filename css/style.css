@@ -2,7 +2,8 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  display: block; }
+  display: block;
+  outline: 0; }
 
 /* >>>>---- HELPERS ----*/
 .center-align, .center-align-absolute {
@@ -37,21 +38,95 @@
 .invisible {
   visibility: hidden; }
 
+.inline {
+  display: inline; }
+
+.inline-block {
+  display: inline-block; }
+
+.block {
+  display: block; }
+
+.right {
+  position: relative;
+  left: 50%; }
+
+.left {
+  position: absolute;
+  left: 0; }
+
 /* ---- HELPERS ----<<<<*/
 /*Flashmessge*/
 .flashmessage {
   position: absolute;
+  left: 65px;
+  /* 100px from nav */
   top: 4em;
   width: 80%;
-  background: #fff;
-  border-top: 0.4em solid #04193F;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
   z-index: 99999; }
+  .flashmessage span {
+    padding: 0.8em;
+    font-size: 1.3em; }
 
-.flashmessage > p {
-  padding: 1em; }
+.flashmessage--success {
+  background-color: #DFF0D8;
+  color: #5CB85C;
+  border: 0.18em solid #5CB85C; }
+
+.flashmessage--danger {
+  background-color: #F2DEDE;
+  color: #c44640;
+  border: 0.18em solid #c44640; }
+
+.flashmessage--info {
+  background-color: #D9EDF7;
+  color: #1F6DB6;
+  border: 0.18em solid #1F6DB6; }
 
 /*Flashmessge*/
+.modal-background {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  z-index: 10; }
+
+.modal__box {
+  width: 60%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  background-color: #FFF;
+  border: 2px solid #019BDF; }
+
+.modal__confirm-pay {
+  padding-left: 1em;
+  font-size: 1.05em; }
+  .modal__confirm-pay button#btn-close-modal {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0.6em;
+    top: 0.5em; }
+  .modal__confirm-pay p, .modal__confirm-pay span {
+    margin: 0.1em 0; }
+  .modal__confirm-pay p > span {
+    display: inline-block; }
+  .modal__confirm-pay span {
+    font-size: 1.2em; }
+  .modal__confirm-pay span#jsAmount {
+    position: relative;
+    left: 60%;
+    top: 15%;
+    font-size: 2em; }
+  .modal__confirm-pay button#btn-print-receipt {
+    position: absolute;
+    bottom: 0.5em; }
+  .modal__confirm-pay button#btn-save-receipt {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.6em; }
+
 body, html {
   width: 100%;
   height: 100%;
@@ -60,6 +135,21 @@ body, html {
   color: #000;
   font-size: 16px;
   font-family: 'calibri', 'ubuntu'; }
+
+.big-font {
+  font-size: 1.2em; }
+
+.bigger-font {
+  font-size: 1.5em; }
+
+.bold {
+  font-weight: bold; }
+
+.bolder {
+  font-weight: bolder; }
+
+.italic {
+  font-style: italic; }
 
 #main-page, #create-page {
   width: 100%;
@@ -92,7 +182,7 @@ header {
   z-index: 10; }
 
 nav {
-  width: 100px;
+  width: 65px;
   background-color: #019BDF;
   height: 100%;
   padding-top: 3.5em;
@@ -108,8 +198,8 @@ nav {
   nav a:hover {
     background-color: #019BDF; }
   nav .nav-icon {
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
     padding: 1px 0 1px 0; }
 
 .btn {
@@ -128,18 +218,24 @@ nav {
 .btn--selected {
   background-color: #E4AB08; }
 
+.btn--confirm {
+  background-color: #5CB85C; }
+  .btn--confirm:hover {
+    background-color: #5CB85C;
+    opacity: 0.8; }
+
 .page {
   width: 100%;
   height: 100%; }
 
-.add-payment-page__box {
-  padding-top: 4em;
-  margin-left: 8em;
+.add-payment-page__box, .residents-list-page__box {
+  padding-top: 5em;
+  margin-left: 4.5em;
   width: 100%;
   height: 100%; }
 
 #form-search {
-  right: 100px;
+  right: 65px;
   position: relative; }
   #form-search p {
     color: #a2a2a2;
@@ -155,19 +251,35 @@ nav {
 
 #form-receipt label, #form-receipt p {
   font-size: 2.7em;
-  color: #172850; }
+  color: #172850;
+  border: none; }
 #form-receipt span {
   font-size: 1.3em;
   color: #a2a2a2; }
+#form-receipt #btn-close-form-receipt {
+  background-color: #fff;
+  border: none;
+  position: relative;
+  left: 85%; }
+#form-receipt #wrapper-btn-pay-method input {
+  color: #172850;
+  border: solid 2px #019BDF;
+  position: relative;
+  top: 0.5em;
+  padding-left: 0.2em; }
 
 #wrapper-btn-pay-method {
   width: 100%;
-  right: 100px;
+  right: 65px;
   /* 100px from nav */
   position: relative; }
   #wrapper-btn-pay-method button {
     display: inline-block;
     width: 6em; }
+
+#btn-confirm {
+  position: relative;
+  margin-top: 1em; }
 
 #search-list {
   width: 60%;
@@ -187,5 +299,69 @@ nav {
     #search-list li a i {
       position: absolute;
       left: 95%; }
+
+.form-resident-card {
+  display: inline-block;
+  overflow: hidden;
+  border: 3px solid #019BDF;
+  width: 25em;
+  height: 16em;
+  vertical-align: top; }
+  .form-resident-card label {
+    margin: 0;
+    margin-left: 0.3em;
+    color: #a2a2a2;
+    padding: 0.2em 0 0 0; }
+  .form-resident-card input {
+    margin: 0;
+    margin-left: 0.3em;
+    color: #172850;
+    padding-bottom: 0.2em;
+    border: none;
+    font-size: 1.15em;
+    width: auto; }
+    .form-resident-card input[type="tel"] {
+      width: 6.5em; }
+    .form-resident-card input:focus {
+      margin: 0; }
+    .form-resident-card input:hover {
+      margin: 0; }
+  .form-resident-card span {
+    display: inline-block;
+    width: 7.5em; }
+  .form-resident-card .btn-expand-card {
+    position: relative;
+    top: -10.8em;
+    border: none;
+    background-color: #fff;
+    width: 100%;
+    background: -webkit-linear-gradient(top, white 0%, #232323 100%); }
+    .form-resident-card .btn-expand-card:active {
+      border: none; }
+    .form-resident-card .btn-expand-card:focus {
+      border: none;
+      outline: 0; }
+  .form-resident-card .btn-expand-card.btn-expand-card--expanded {
+    top: 0; }
+
+.form-resident-card--expanded {
+  height: 25em; }
+
+.receipt-body, .receipt-html {
+  overflow: auto;
+  width: 8.5in;
+  height: 11in; }
+
+.printable-receipt {
+  width: 50%;
+  height: 50%; }
+  .printable-receipt img {
+    width: 25%;
+    height: 25%; }
+  .printable-receipt p {
+    margin: 0;
+    font-size: 1.1em; }
+  .printable-receipt .space-creator {
+    margin: 2em 0; }
 
 /*# sourceMappingURL=style.css.map */

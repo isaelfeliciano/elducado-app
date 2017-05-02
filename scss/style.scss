@@ -3,10 +3,15 @@ $main-color__light: #00B1FF;
 $secondary-color: #016FDF;
 $dark-blue: #172850;
 $success-color: #5CB85C;
+$success-background: #DFF0D8;
+$info-color: #1F6DB6;
+$info-background: #D9EDF7;
 $cancel-color: #D9534F;
-$warning-color: #c44640;
+$danger-color: #c44640;
+$danger-background: #F2DEDE;
 $dark-color: #191C21;
 $crown-color: #E4AB08;
+$label-color: #a2a2a2;
 
 
 *{
@@ -14,6 +19,7 @@ $crown-color: #E4AB08;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	display: block;
+    outline: 0;
 }
 /* >>>>---- HELPERS ----*/
 .center-align, .center-align-absolute{
@@ -50,25 +56,115 @@ $crown-color: #E4AB08;
     visibility: hidden;
 }
 
+.inline {
+	display: inline;
+}
+.inline-block {
+	display: inline-block;
+}
+.block {
+	display: block;
+}
+.right {
+//	float: right;
+	position: relative;
+	left: 50%;
+}
+.left {
+//	float: left;
+	position: absolute;
+	left: 0;
+}
+
+
 
 /* ---- HELPERS ----<<<<*/
 
 /*Flashmessge*/
-.flashmessage{
-  position: absolute;
-  top: 4em;
-  width: 80%;
-  
-  background: #fff;
-  border-top: 0.4em solid #04193F;
-  box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
+.flashmessage {
+  	position: absolute;
+	left: 65px; /* 100px from nav */ 
+  	top: 4em;
+  	width: 80%;
 
-  z-index: 99999;
+//  	box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
+
+  	z-index: 99999;
+	
+	& span {
+		padding: 0.8em;
+		font-size: 1.3em;
+	}
 }
-.flashmessage>p{
-  padding: 1em;
+.flashmessage--success {
+	background-color: $success-background;
+	color: $success-color;
+	border: 0.18em solid $success-color;
+}
+.flashmessage--danger {
+	background-color: $danger-background;
+	color: $danger-color;
+	border: 0.18em solid $danger-color;
+}
+.flashmessage--info {
+	background-color: $info-background;
+	color: $info-color;
+	border: 0.18em solid $info-color;
 }
 /*Flashmessge*/
+
+.modal-background {
+	width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    z-index: 10;
+}
+
+.modal__box {
+    width: 60%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    background-color: #FFF;
+  	border: 2px solid $main-color;
+}
+
+.modal__confirm-pay {
+	padding-left: 1em;
+	& button#btn-close-modal {
+		background: none;
+		border: none;
+		position: absolute;
+		right: 0.6em;
+		top: 0.5em;
+	}
+	& p, span {
+		margin: 0.1em 0;
+	}
+	font-size: 1.05em;
+	& p > span {
+		display: inline-block;
+	}
+	& span {
+		font-size: 1.2em;
+	}
+	& span#jsAmount {
+		position: relative;
+		left: 60%;
+		top: 15%;
+		font-size: 2em;
+	}
+	& button#btn-print-receipt {
+		position: absolute;
+		bottom: 0.5em;
+	}
+	& button#btn-save-receipt {
+		position: absolute;
+		bottom: 0.5em;
+		right: 0.6em;
+	}
+}
 
 body, html {
 	width: 100%;
@@ -79,6 +175,22 @@ body, html {
 	font-size: 16px;
 	font-family: 'calibri', 'ubuntu';
 }
+.big-font {
+	font-size: 1.2em;
+}
+.bigger-font {
+	font-size: 1.5em;
+}
+.bold {
+	font-weight: bold;
+}
+.bolder {
+	font-weight: bolder;
+}
+.italic {
+	font-style: italic;
+}
+
 
 #main-page, #create-page {
 	width: 100%;
@@ -120,7 +232,7 @@ header {
 }
 
 nav {
-    width: 100px;
+    width: 65px;
     background-color: $main-color;
     height: 100%;
     padding-top: 3.5em;
@@ -139,8 +251,8 @@ nav {
         background-color: $main-color
     }
     & .nav-icon {
-        width: 72px;
-        height: 72px;
+        width: 56px;
+        height: 56px;
         padding: 1px 0 1px 0;
     }
 }
@@ -165,23 +277,31 @@ nav {
 	background-color: $crown-color;
 }
 
+.btn--confirm {
+    background-color: $success-color;
+	&:hover {
+		background-color: $success-color;
+		opacity: 0.8;
+	}
+}
+
 .page {
     width: 100%;
     height: 100%;
 }
 
-.add-payment-page__box {
-    padding-top: 4em;
-    margin-left: 8em;
+.add-payment-page__box, .residents-list-page__box {
+    padding-top: 5em;
+    margin-left: 4.5em;
     width: 100%;
     height: 100%;
 }
 
 #form-search {
-    right: 100px;
+    right: 65px;
     position: relative;
 	& p {
-		color: #a2a2a2;
+		color: $label-color;
 		font-size: 1.4em;
 		margin-bottom: 1em;
 		
@@ -198,24 +318,45 @@ nav {
 }
 
 #form-receipt {
-	& label, p {
+	& label, p{
 		font-size: 2.7em;
 		color: $dark-blue;
+        border: none;
 	}
 	& span {
 		font-size: 1.3em;
-		color: #a2a2a2;
+		color: $label-color;
 	}
+	& #btn-close-form-receipt {
+		background-color: #fff;
+		border: none;
+		position: relative;
+		left: 85%;
+	}
+
+    & #wrapper-btn-pay-method input {
+        color: $dark-blue;
+        border: solid 2px $main-color;
+        position: relative;
+        top: 0.5em;
+        padding-left: 0.2em;
+    }
 }
 
 #wrapper-btn-pay-method {
 	width: 100%;
-    right: 100px; /* 100px from nav */
+    right: 65px; /* 100px from nav */
     position: relative;
 	& button {
 		display: inline-block;
 		width: 6em;
 	}
+}
+
+#btn-confirm {
+	position: relative;
+	margin-top: 1em;
+	// right: 1em;
 }
 
 #search-list {
@@ -243,6 +384,90 @@ nav {
 	}
 }
 
+
+.form-resident-card {
+	display: inline-block;
+	overflow: hidden;
+	border: 3px solid $main-color;
+	width: 25em;
+	height: 16em;
+    vertical-align: top;
+	& label {
+		margin: 0;
+        margin-left: 0.3em;
+		color: $label-color;
+		padding: 0.2em 0 0 0;
+	}
+	& input {
+		margin: 0;
+        margin-left: 0.3em;
+		color: $dark-blue;
+		padding-bottom: 0.2em;
+		border: none;
+		font-size: 1.15em;
+		width: auto;
+		
+		&[type="tel"] {
+			width: 6.5em;
+		}
+		
+		&:focus {
+			margin: 0;
+		}
+		&:hover {
+			margin: 0;
+		}
+	}
+	& span {
+		display: inline-block;
+		width: 7.5em;
+	}
+	& .btn-expand-card {
+		position: relative;
+		top: -10.8em;
+		border: none;
+		background-color: #fff;
+		width: 100%;
+        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(35,35,35,1) 100%);
+        &:active {
+            border: none;
+        }
+        &:focus {
+            border: none;
+            outline: 0;
+        }
+	}
+	& .btn-expand-card.btn-expand-card--expanded {
+		top: 0;
+	}
+}
+.form-resident-card--expanded {
+	height: 25em;
+}
+
 #main-page {
     
+}
+
+.receipt-body, .receipt-html {
+	overflow: auto;
+	width: 8.5in;
+	height: 11in;
+}
+
+.printable-receipt {
+	width: 50%;
+	height: 50%;
+	
+	& img {
+		width: 25%;
+		height: 25%;
+	}
+	& p {
+		margin: 0;
+		font-size: 1.1em;
+	}
+	& .space-creator {
+		margin: 2em 0;
+	}
 }
