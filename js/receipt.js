@@ -9,10 +9,10 @@ let amount = tempReceipt.amount;
 let month = tempReceipt.month;
 let payMethod = tempReceipt.payMethod;
 
-if (tempReceipt.checkNumber !== "N/A"){
+if (tempReceipt.checkNumber !== ""){
 	$('#jsPayMethodNumberReceipt').text("#" + tempReceipt.checkNumber);
 }
-if (tempReceipt.accountNumber !== "N/A") {
+if (tempReceipt.accountNumber !== "") {
 	$('#jsPayMethodNumberReceipt').text("Numero de cuenta:" + tempReceipt.accountNumber);
 }
 

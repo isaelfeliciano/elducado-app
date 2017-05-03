@@ -81,11 +81,19 @@ function loadInvoice(residentId, fullName) {
 			flashMessage("No tiene factura pendiente", "flashmessage--success");
 			return;
 		}
+
 		console.log(doc[0].pendingInvoices);
+
+		_.forEach(doc[0].bankAccount, (account, index) => { // Adding accounts to dropdown
+			$('select[name="bankAccount"]').append(`
+				<option value="${account}">${account}</option>
+				`)
+		});
+
 		$('#form-receipt').removeClass('no-display');
 		$('#form-search').addClass('no-display');
 		var pendingInvoices = doc[0].pendingInvoices;
-		_.forEach(pendingInvoices, (item, index) => {
+		_.forEach(pendingInvoices, (item, index) => { 
 			mongoDbObj.invoices.find({"id": item}).toArray((err, doc) => {
 				if (err) {
 					console.log(err);
@@ -95,7 +103,7 @@ function loadInvoice(residentId, fullName) {
 				if (pendingInvoices.length === (index + 1)){
 				console.log(index);
 				console.log(pendingInvoices.length);
-					if (invoicesArray.length === 1) {
+					if (invoicesArray.length === 1) { // For just one invoice
 						_.forEach(invoicesArray, (item, index) => {
 							$('#jsResident').text(`${fullName} (#${residentId})`).val(residentId);
 							$('#jsInvoiceNumber').text(item.id);
@@ -105,7 +113,7 @@ function loadInvoice(residentId, fullName) {
 							$('#jsMonth').text(item.month);
 							$('#jsDate').text(moment().format("DD/MM/YYYY"));
 						});
-					} else {
+					} else { // For more than one invoice
 						let i = 0;
 						$('#jsResident').text(`${fullName} (#${residentId})`).val(residentId);
 						$('#jsInvoiceNumber').text(invoicesArray[i].id);
@@ -143,11 +151,12 @@ function getTempReceipt () {
 		amount: $('#jsAmount').text(),
 		month: $('#jsMonth').text(),
 		residentId: parseInt($('#jsResident').val()),
-		checkNumber: "N/A",
-		accountNumber: "N/A"
+		checkNumber: $('input[name="pay-method-input"]').val(),
+		accountNumber: $('select[name="bankAccount"] option:selected').val()
 	}
 
-	tempReceipt[$('.js-btn-pay-method.btn--selected').attr('method')] = $('input[name="pay-method-input"]').val();
+	// tempReceipt[$('.js-btn-pay-method.btn--selected').attr('method')] = $('input[name="pay-method-input"]').val();
+	// Might be helpful in the future
 	console.log(tempReceipt);
 	return tempReceipt;
 }
@@ -161,7 +170,8 @@ $('#btn-close-form-receipt').on('click', (e) => {
 	e.preventDefault();
 	$('#form-search').removeClass('no-display');
 	$('#form-receipt').addClass('no-display');
-	$('input[name="pay-method-input"]').addClass('invisible').val("");
+	$('input[name="pay-method-input"]').addClass('no-display').val(""); // Reset input
+	$('select[name="bankAccount"]').addClass('no-display').html('<option value=""></option>'); // Reset input
 });
 
 $('#btn-close-modal').on('click', (e) => {
@@ -173,11 +183,17 @@ $('.js-btn-pay-method').on('click', (e) => {
 	e.preventDefault();
 	$('.js-btn-pay-method').removeClass('btn--selected');
 	$(e.currentTarget).addClass('btn--selected');
-	$('input[name="pay-method-input"]').addClass('invisible');
-	if ($(e.currentTarget).text() !== "Efectivo") {
-		$('input[name="pay-method-input"]').removeClass('invisible').focus();
+	$('input[name="pay-method-input"]').addClass('no-display');
+	$('select[name="bankAccount"]').addClass('no-display');
+	let currentSelect = $(e.currentTarget).text();
+	if (currentSelect === "Cheque") {
+		$('input[name="pay-method-input"]').removeClass('no-display').focus();
+	}
+	if (currentSelect === "Transferencia") {
+		$('select[name="bankAccount"]').removeClass('no-display')
 	}
 });
+
 
 $('#jsAddPayment').on('click', (e) => {
 	e.preventDefault();
@@ -191,10 +207,19 @@ $('#btn-confirm').on('click', (e) => {
 		flashMessage('Seleccione un metodo de pago', 'flashmessage--danger');
 		return;
 	}
-	if ($('input[name="pay-method-input"]').val().length === 0) {
-		flashMessage('Complete el campo vacio', 'flashmessage--danger');
-		$('input[name="pay-method-input"]').focus();
-		return;
+
+	if ($('.js-btn-pay-method.btn--selected').text() === "Cheque") {
+		if ($('input[name="pay-method-input"]').val().length === 0) {
+			flashMessage('Complete el campo vacio', 'flashmessage--danger');
+			$('input[name="pay-method-input"]').focus();
+			return;
+		}
+	}
+	if ($('.js-btn-pay-method.btn--selected').text() === "Transferencia") {
+		if ($('select[name="bankAccount"] option:selected').val() === ""){
+			flashMessage('Seleccione un numero de cuenta', 'flashmessage--danger');
+			return;
+		}
 	}
 	let tempReceipt = getTempReceipt();
 	let invoiceID = tempReceipt.invoiceID;
@@ -203,10 +228,10 @@ $('#btn-confirm').on('click', (e) => {
 	let amount = tempReceipt.amount;
 	let month = tempReceipt.month;
 	let payMethod = tempReceipt.payMethod;
-	if (tempReceipt.checkNumber !== "N/A"){
+	if (tempReceipt.checkNumber !== ""){
 		$('#jsPayMethodNumberModal').text(tempReceipt.checkNumber);
 	}
-	if (tempReceipt.accountNumber !== "N/A") {
+	if (tempReceipt.accountNumber !== "") {
 		$('#jsPayMethodNumberModal').text(tempReceipt.accountNumber);
 	}
 

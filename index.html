@@ -59,7 +59,7 @@
 
 <div id="main-page" class="page">
 	<div class="main-page__container">
-		
+	
 	</div>
 </div>
 
@@ -102,12 +102,14 @@
 				<span class="center-text">Seleccione metodo de pago</span>
 				<button class="btn js-btn-pay-method btn--selected">Efectivo</button>
 				<button class="btn js-btn-pay-method" method="checkNumber">Cheque</button>
-				<button class="btn js-btn-pay-method" method="accountNumber">Deposito</button>
+				<button class="btn js-btn-pay-method" method="accountNumber">Transferencia</button>
 
-				<input class="center-align invisible" type="number" name="pay-method-input" placeholder="00000" required="required">
+				<input class="center-align no-display" type="number" name="pay-method-input" placeholder="00000">
+
+				<select class="center-align no-display" name="bankAccount"> <option value=""></option> </select>
 			</div>
 
-			<button id="btn-confirm" class="btn btn--confirm center-align-absolute">Confirmar <i class="fa fa-check"></i></button>
+			<button id="btn-confirm" class="btn btn--confirm">Confirmar <i class="fa fa-check"></i></button>
 		</form>
 	</div>
 </div>
