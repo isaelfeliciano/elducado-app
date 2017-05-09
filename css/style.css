@@ -99,6 +99,19 @@
   background-color: #FFF;
   border: 2px solid #019BDF; }
 
+button#btn-close-modal {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0.6em;
+  top: 0.5em; }
+  button#btn-close-modal:hover {
+    opacity: 0.8;
+    color: #D9534F; }
+  button#btn-close-modal:active {
+    opacity: 0.5;
+    color: #D9534F; }
+
 .modal__confirm-pay {
   padding-left: 1em;
   font-size: 1.05em; }
@@ -127,6 +140,28 @@
     bottom: 0.5em;
     right: 0.6em; }
 
+.modal__select-batch {
+  color: #172850; }
+  .modal__select-batch p {
+    margin-top: 1rem;
+    font-size: 2rem;
+    padding-bottom: 2rem; }
+  .modal__select-batch label {
+    font-size: 1.5rem;
+    margin-top: 0.5rem; }
+  .modal__select-batch select {
+    font-size: 1.5rem; }
+
+.modal__generate-invoices {
+  color: #172850; }
+  .modal__generate-invoices p {
+    margin-top: 3rem;
+    font-size: 2rem;
+    padding-bottom: 2rem; }
+  .modal__generate-invoices select {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem; }
+
 body, html {
   width: 100%;
   height: 100%;
@@ -134,7 +169,7 @@ body, html {
   overflow: hidden;
   color: #000;
   font-size: 16px;
-  font-family: 'calibri', 'ubuntu'; }
+  font-family: 'Ubuntu Condensed', sans-serif, 'calibri', 'ubuntu'; }
 
 .big-font {
   font-size: 1.2em; }
@@ -183,9 +218,27 @@ header {
   top: 0;
   position: absolute;
   z-index: 10; }
+  header img {
+    max-width: 35px;
+    position: absolute;
+    right: 1rem;
+    top: 0; }
+  header button {
+    border: none;
+    background-color: #172850;
+    color: #FFF;
+    position: absolute;
+    left: 1rem;
+    top: 0.8rem; }
+  header p {
+    position: relative;
+    top: 1rem;
+    color: #FFF;
+    font-size: 1.4rem;
+    font-weight: bold; }
 
 nav {
-  width: 65px;
+  width: 80px;
   background-color: #019BDF;
   height: 100%;
   padding-top: 3.5em;
@@ -194,12 +247,18 @@ nav {
   z-index: 9; }
   nav a {
     margin-top: 2em;
-    padding: 0.2em 0.2em 0.2em 0;
-    border-left: 2px solid #191C21; }
+    padding: 0.2em 0.2em 0.2em 0; }
+  nav span {
+    color: #fff;
+    font-size: 0.9rem; }
   nav .icon-selected {
     background-color: #019BDF; }
+    nav .icon-selected span {
+      color: #E4AB08; }
   nav a:hover {
     background-color: #019BDF; }
+    nav a:hover span {
+      color: #E4AB08; }
   nav .nav-icon {
     width: 56px;
     height: 56px;
@@ -210,13 +269,21 @@ nav {
   border-radius: 5px;
   color: #FFF;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   width: 7.5em; }
   .btn:hover {
     background-color: #E4AB08; }
   .btn:active {
     background-color: #E4AB08;
     opacity: 0.8; }
+  .btn i {
+    position: relative;
+    float: left; }
+
+.btn__big {
+  height: 9rem;
+  width: 7rem;
+  font-size: 1.2rem; }
 
 .btn--selected {
   background-color: #E4AB08; }
@@ -231,9 +298,8 @@ nav {
   width: 100%;
   height: 100%; }
 
-.add-payment-page__box, .residents-list-page__box {
+.add-payment-page__box, .residents-list-page__box, .invoices-page__box {
   padding-top: 5em;
-  margin-left: 4.5em;
   width: 100%;
   height: 100%; }
 
@@ -252,25 +318,32 @@ nav {
   #form-search button {
     margin-top: 0.8em; }
 
-#form-receipt label, #form-receipt p {
-  font-size: 2.7em;
-  color: #172850;
-  border: none; }
-#form-receipt span {
-  font-size: 1.3em;
-  color: #a2a2a2; }
-#form-receipt #btn-close-form-receipt {
-  background-color: #fff;
-  border: none;
-  position: relative;
-  left: 85%; }
-#form-receipt #wrapper-btn-pay-method input, #form-receipt select {
-  color: #172850;
-  border: solid 2px #019BDF;
-  position: relative;
-  width: 13em;
-  top: 0.5em;
-  padding-left: 0.2em; }
+#form-receipt {
+  margin-left: 7rem; }
+  #form-receipt label, #form-receipt p {
+    font-size: 2.4em;
+    color: #172850;
+    border: none; }
+  #form-receipt span {
+    font-size: 1.1em;
+    color: #a2a2a2; }
+  #form-receipt #btn-close-form-receipt {
+    background-color: #fff;
+    border: none;
+    position: relative;
+    left: 85%; }
+    #form-receipt #btn-close-form-receipt:hover {
+      color: #D9534F; }
+    #form-receipt #btn-close-form-receipt:active {
+      opacity: 0.5;
+      color: #D9534F; }
+  #form-receipt #wrapper-btn-pay-method input, #form-receipt select {
+    color: #172850;
+    border: solid 2px #019BDF;
+    position: relative;
+    width: 13em;
+    top: 0.5em;
+    padding-left: 0.2em; }
 
 #wrapper-btn-pay-method {
   width: 100%;
@@ -297,64 +370,84 @@ nav {
     padding: 0.1em; }
     #search-list li a:hover {
       color: #FFF;
-      background-color: #019BDF; }
+      background-color: #019BDF;
+      cursor: default; }
     #search-list li a:active {
       background-color: #00B1FF; }
     #search-list li a i {
       position: absolute;
       left: 95%; }
 
+.residents-list-page__box input {
+  width: 45%;
+  font-size: 1.7em;
+  border: 2px solid #E4AB08;
+  padding: 0.2em; }
+.residents-list-page__box button {
+  margin: 0.5em auto; }
+
 .form-resident-card {
-  display: inline-block;
-  overflow: hidden;
   border: 3px solid #019BDF;
-  width: 25em;
-  height: 16em;
-  vertical-align: top; }
+  width: 80%;
+  height: 23rem;
+  padding: 0.5rem;
+  overflow-y: overlay;
+  position: relative; }
+  .form-resident-card #btn-close-modal {
+    top: -0.9rem;
+    right: 0; }
   .form-resident-card label {
     margin: 0;
     margin-left: 0.3em;
     color: #a2a2a2;
     padding: 0.2em 0 0 0; }
-  .form-resident-card input {
+  .form-resident-card input, .form-resident-card select {
     margin: 0;
     margin-left: 0.3em;
     color: #172850;
     padding-bottom: 0.2em;
-    border: none;
+    border: 1px #fff solid;
     font-size: 1.15em;
-    width: auto; }
-    .form-resident-card input[type="tel"] {
-      width: 6.5em; }
-    .form-resident-card input:focus {
-      margin: 0; }
-    .form-resident-card input:hover {
-      margin: 0; }
+    width: auto;
+    background-color: #E6EAED;
+    border-radius: 5px; }
+    .form-resident-card input[type="tel"], .form-resident-card select[type="tel"] {
+      width: 10.5em; }
+    .form-resident-card input:focus, .form-resident-card select:focus {
+      background-color: #172850;
+      color: #fff; }
+    .form-resident-card input:hover, .form-resident-card select:hover {
+      border: 1px black solid; }
   .form-resident-card span {
     display: inline-block;
-    width: 7.5em; }
-  .form-resident-card .btn-expand-card {
-    position: relative;
-    top: -10.8em;
-    border: none;
-    background-color: #fff;
-    width: 100%;
-    background: -webkit-linear-gradient(top, white 0%, #232323 100%); }
-    .form-resident-card .btn-expand-card:active {
-      border: none; }
-    .form-resident-card .btn-expand-card:focus {
-      border: none;
-      outline: 0; }
-  .form-resident-card .btn-expand-card.btn-expand-card--expanded {
-    top: 0; }
+    width: 12em; }
+  .form-resident-card .wrapper {
+    display: inline-block; }
+  .form-resident-card span.short-input {
+    width: 5rem;
+    margin-right: 1rem; }
+    .form-resident-card span.short-input input {
+      width: 6rem; }
+  .form-resident-card input.bank-account {
+    width: 10.65rem; }
 
 .form-resident-card--expanded {
   height: 25em; }
 
-.receipt-body, .receipt-html {
+.receipt-body, .receipt-html, .invoice-body, .invoice-html {
   overflow: auto;
   width: 8.5in;
   height: 11in; }
+
+.invoice-html {
+  overflow: auto;
+  width: 8.5in;
+  height: auto; }
+
+.invoice-body {
+  overflow: auto;
+  height: auto;
+  width: auto; }
 
 .printable-receipt {
   width: 50%;
@@ -367,5 +460,115 @@ nav {
     font-size: 1.1em; }
   .printable-receipt .space-creator {
     margin: 2em 0; }
+
+.invoice-page {
+  width: 8.5in;
+  height: 11in;
+  position: relative; }
+  .invoice-page img {
+    max-width: 10%;
+    position: relative;
+    float: right; }
+  .invoice-page .owner-details {
+    height: 15%;
+    margin-bottom: 1em; }
+    .invoice-page .owner-details p span {
+      font-size: 1rem; }
+  .invoice-page .resident-details {
+    height: 7em;
+    vertical-align: top; }
+  .invoice-page .invoice-details {
+    height: 7em;
+    vertical-align: top;
+    line-height: 2em;
+    position: absolute;
+    left: 50%; }
+  .invoice-page .invoice-details__data {
+    height: 7em;
+    vertical-align: top;
+    text-align: right;
+    line-height: 2em;
+    float: right; }
+
+.bigger-text {
+  font-size: 3em; }
+
+.big-text {
+  font-size: 1.5em; }
+
+table.invoice {
+  margin-top: 2rem; }
+  table.invoice .table-head {
+    padding: 0.5em 0;
+    border-top: solid 2px #019BDF;
+    border-bottom: solid 2px #019BDF;
+    color: #172850; }
+  table.invoice th {
+    font-weight: bold; }
+  table.invoice .data {
+    padding: 0.1em 0; }
+  table.invoice th, table.invoice td {
+    display: inline-block; }
+  table.invoice .qty {
+    width: 5em;
+    text-align: center; }
+  table.invoice .description {
+    width: 20em; }
+  table.invoice th.description {
+    text-align: center; }
+  table.invoice .amount, table.invoice .total {
+    width: 10em;
+    text-align: right; }
+  table.invoice .data__total {
+    margin-top: 1em; }
+    table.invoice .data__total .amount, table.invoice .data__total .total {
+      font-weight: bold; }
+
+table.footer {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%; }
+  table.footer td {
+    display: inline-block; }
+  table.footer td p:nth-child(1) {
+    font-weight: bold;
+    font-size: 1.2rem; }
+  table.footer td p {
+    text-align: right; }
+  table.footer .frase {
+    width: 8rem;
+    vertical-align: top;
+    position: relative;
+    top: 3.7rem; }
+  table.footer .vertical-line {
+    border-right: solid 2px #019BDF;
+    height: 10rem;
+    margin: 0 0.5rem; }
+
+.invoices-page__box button {
+  margin: 1em auto; }
+.invoices-page__box input {
+  width: 45%;
+  font-size: 1.7em;
+  border: 2px solid #E4AB08;
+  padding: 0.2em; }
+.invoices-page__box section {
+  width: 80%;
+  height: 10rem;
+  position: relative;
+  top: 4rem; }
+  .invoices-page__box section .btn__big {
+    margin: auto 1rem;
+    display: inline-block;
+    position: relative; }
+    .invoices-page__box section .btn__big i {
+      float: none;
+      position: absolute;
+      top: 0.5rem;
+      text-align: center; }
+    .invoices-page__box section .btn__big p {
+      position: absolute;
+      bottom: 0.1rem;
+      font-size: 1.1rem; }
 
 /*# sourceMappingURL=style.css.map */

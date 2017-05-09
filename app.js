@@ -3,7 +3,16 @@
 var MongoClient = require('mongodb').MongoClient;
 var mongoDbObj;
 var assert = require('assert');
-var ls = localStorage;
+
+
+moment.locale('es-do');
+
+Storage.prototype.setObj = function(key, obj) {
+	return this.setItem(key, JSON.stringify(obj));
+}
+Storage.prototype.getObj = function(key) {
+	return JSON.parse(this.getItem(key));
+}
 
 
 MongoClient.connect('mongodb://127.0.0.1:27017/elducadodb', function(err, db) {
@@ -13,8 +22,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017/elducadodb', function(err, db) {
 		console.log("Connected to DB"); // LOG THIS
 		mongoDbObj = {db: db,
 			residents: db.collection("residents"),
-			invoices: db.collection("invoices")
+			invoices: db.collection("invoices"),
+			configs: db.collection("configs")
 		}
+
+		mongoDbObj.configs.find({}).toArray((err, doc) => {
+			if (err) {
+				return console.log(err);
+			}
+			localStorage.setObj('configs', doc[0]);
+		});
 	}
 });
 
@@ -22,7 +39,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/elducadodb', function(err, db) {
 function flashMessage(msg, type){
 	if(hideFlashMessage)
 		clearTimeout(hideFlashMessage);
-	$('.flashmessage').removeClass('notVisible', 'flashmessage--success', 'flashmessage--danger').addClass(type)
+	$('.flashmessage').removeClass('notVisible', 'flashmessage--success', 'flashmessage--danger', 'flashmessage--info').addClass(type)
 	.html('<span>'+msg+'</span>');
 	var hideFlashMessage = setTimeout(function(){
 		$('.flashmessage').addClass('notVisible').
@@ -31,10 +48,12 @@ function flashMessage(msg, type){
 }
 // Flash Message
 
+
+
 $("#btn-search").on("click", function(e) {
 	$('#search-list').html('');
 	e.preventDefault();
-	var queryString;
+	let queryString;
 	let searchInput = $('input[name="search-resident"]').val();
 	if (isNaN(parseInt(searchInput))) {
 		queryString = {$text: {$search: searchInput}};
@@ -46,7 +65,6 @@ $("#btn-search").on("click", function(e) {
 			console.log(err); // LOG THIS
 			return;
 		} else {
-			console.log(doc);
 			if(doc.length === 1) {
 				loadInvoice(doc[0].id, doc[0].fullName);
 				return;
@@ -94,7 +112,7 @@ function loadInvoice(residentId, fullName) {
 		$('#form-search').addClass('no-display');
 		var pendingInvoices = doc[0].pendingInvoices;
 		_.forEach(pendingInvoices, (item, index) => { 
-			mongoDbObj.invoices.find({"id": item}).toArray((err, doc) => {
+			mongoDbObj.invoices.find({id: item}).toArray((err, doc) => {
 				if (err) {
 					console.log(err);
 					return
@@ -105,9 +123,10 @@ function loadInvoice(residentId, fullName) {
 				console.log(pendingInvoices.length);
 					if (invoicesArray.length === 1) { // For just one invoice
 						_.forEach(invoicesArray, (item, index) => {
+							console.log(invoicesArray);
 							$('#jsResident').text(`${fullName} (#${residentId})`).val(residentId);
 							$('#jsInvoiceNumber').text(item.id);
-							$('#jsType').text(item.tipo);
+							$('#jsType').text(item.category);
 							let amount = numeral(item.amount).format("0,0.00");
 							$('#jsAmount').text(`RD$ ${amount}`);
 							$('#jsMonth').text(item.month);
@@ -115,9 +134,10 @@ function loadInvoice(residentId, fullName) {
 						});
 					} else { // For more than one invoice
 						let i = 0;
+						console.log(invoicesArray);
 						$('#jsResident').text(`${fullName} (#${residentId})`).val(residentId);
 						$('#jsInvoiceNumber').text(invoicesArray[i].id);
-						$('#jsType').text(invoicesArray[i].tipo);
+						$('#jsType').text(invoicesArray[i].category);
 						let amount = numeral(invoicesArray[i].amount).format("0,0.00");
 						$('#jsAmount').text(`RD$ ${amount}`);
 						$('#jsMonth').text(invoicesArray[i].month);
@@ -177,6 +197,15 @@ $('#btn-close-form-receipt').on('click', (e) => {
 $('#btn-close-modal').on('click', (e) => {
 	e.preventDefault();
 	$('#modal').addClass('no-display');
+});
+
+btnClick('.modal__select-batch #btn-close-modal', (e) => {
+	$('.modal__select-batch').addClass('no-display');
+	$(`select[name="batch-month"] option[value=""]`).attr('selected', 'selected');
+});
+
+btnClick('.modal__generate-invoices #btn-close-modal', (e) => {
+	$('.modal__generate-invoices').addClass('no-display');
 });
 
 $('.js-btn-pay-method').on('click', (e) => {
@@ -328,14 +357,101 @@ $('#btn-print-receipt').on('click', (e) => {
 	saveReceipt(true);
 });
 
-$('.btn-expand-card').on('click', (e) => {
-	e.preventDefault();
-	$(e.currentTarget).parent('.form-resident-card').toggleClass('form-resident-card--expanded');
-	$(e.currentTarget).toggleClass('btn-expand-card--expanded');
-
-	if ($('.btn-expand-card--expanded i').hasClass('fa-chevron-down')) {
-		$('.btn-expand-card--expanded i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
-	} else {
-		$('.btn-expand-card i.fa-chevron-up').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+btnClick('#searchResident', (e) => {
+	let queryString;
+	let searchInput = $('input[name="search-resident-list"]').val();
+	if (isNaN(parseInt(searchInput))) {
+		queryString = {$text: {$search: searchInput}};
+	} else { // Is a number
+		queryString = {"id": parseInt(searchInput)};
 	}
+	mongoDbObj.residents.find(queryString).toArray(function(err, doc) {
+		if (err) {
+			console.log(err); // LOG THIS
+			return;
+		} else {
+			console.log(doc.length);
+			if(doc.length === 0){
+				flashMessage("No hay resultados", 'flashmessage--info');
+				return;
+			}
+			if(doc.length === 1) {
+				loadResidentCard(doc[0]);
+				return;
+			}
+			_.forEach(doc, function(item, index) {
+				$('#search-list-resident-card').append(
+					`<li><a class="jsListItem" residentId="${item.id}" fullName="${item.fullName}">${item.id} | ${item.fullName}<i class="fa fa-chevron-right"></i></a></li>`
+				);
+				$('.jsListItem').on('click', (e) => {
+					e.preventDefault();
+					let residentId = $(e.target).attr('residentId');
+					let fullName = $(e.target).attr('fullName');
+					loadInvoice(residentId, fullName);
+				});
+			});
+		}
+	});
 });
+
+function loadResidentCard(resident) {
+	console.log(resident);
+	$('.form-resident-card').removeClass('no-display');
+	/*let firstname = $('input[name="firstname"]').val();
+	let lastname = $('input[name="lastname"]').val();
+	let category = $('input[name="category"]').val();
+	let email = $('input[name="email"]').val();
+	let address = $('input[name="address"]').val();
+	let tel1 = $('input[name="tel1"]').val();
+	let tel2 = $('input[name="tel2"]').val();
+	let tel3 = $('input[name="tel3"]').val();
+	let cedula = $('input[name="cedula"]').val();
+	let carnetId = $('input[name="carnet-id"]').val();
+	let stickers = $('input[name="stickers"]').val();
+	let doorControl = $('input[name="door-control"]').val();
+	let reference = $('input[name="reference"]').val();
+	let bank1 = $('input[name="bank1"]').val();
+	let bank2 = $('input[name="bank2"]').val();
+	let bank3 = $('input[name="bank3"]').val();*/
+
+	$('input[name="firstname"]').val(resident.firstName);
+	$('input[name="lastname"]').val(resident.lastName);
+	$(`select[name="category"] option[value="${resident.category}"]`).attr('selected', 'selected');
+	$('input[name="email"]').val(resident.email);
+	$('input[name="address"]').val(resident.address);
+	$('input[name="tel1"]').val(resident.phone);
+	$('input[name="tel2"]').val(resident.workPhone);
+	$('input[name="tel3"]').val(resident.cellPhone);
+	$('input[name="cedula"]').val(resident.personID);
+	$('input[name="carnet-id"]').val(resident.carnetID);
+	$('input[name="stickers"]').val(resident.sticker);
+	$('input[name="door-control"]').val(resident.doorControls);
+	$('input[name="reference"]').val(resident.alternateName);
+	$('input[name="bank1"]').val(resident.bankAccount[0]);
+	$('input[name="bank2"]').val(resident.bankAccount[1]);
+	$('input[name="bank3"]').val(resident.bankAccount[2]);
+}
+
+btnClick('.form-resident-card #btn-close-modal', (e) => {
+	$('.form-resident-card').addClass('no-display');
+	clearResidentCardFields();
+});
+
+function clearResidentCardFields() {
+	$('input[name="firstname"]').val(resident.firstName);
+	$('input[name="lastname"]').val(resident.lastName);
+	$('select[name="category"] option[value=""]').attr('selected', 'selected');
+	$('input[name="email"]').val(resident.email);
+	$('input[name="address"]').val(resident.address);
+	$('input[name="tel1"]').val(resident.phone);
+	$('input[name="tel2"]').val(resident.workPhone);
+	$('input[name="tel3"]').val(resident.cellPhone);
+	$('input[name="cedula"]').val(resident.personID);
+	$('input[name="carnet-id"]').val(resident.carnetID);
+	$('input[name="stickers"]').val(resident.sticker);
+	$('input[name="door-control"]').val(resident.doorControls);
+	$('input[name="reference"]').val(resident.alternateName);
+	$('input[name="bank1"]').val(resident.bankAccount[0]);
+	$('input[name="bank2"]').val(resident.bankAccount[1]);
+	$('input[name="bank3"]').val(resident.bankAccount[2]);
+}

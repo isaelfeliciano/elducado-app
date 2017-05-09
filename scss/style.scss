@@ -12,6 +12,11 @@ $danger-background: #F2DEDE;
 $dark-color: #191C21;
 $crown-color: #E4AB08;
 $label-color: #a2a2a2;
+$input-background: #E6EAED;
+
+
+// @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+
 
 
 *{
@@ -129,6 +134,21 @@ $label-color: #a2a2a2;
     background-color: #FFF;
   	border: 2px solid $main-color;
 }
+button#btn-close-modal {
+	background: none;
+	border: none;
+	position: absolute;
+	right: 0.6em;
+	top: 0.5em;
+	&:hover {
+		opacity: 0.8;
+        color: $cancel-color;
+	}
+	&:active {
+		opacity: 0.5;
+        color: $cancel-color;
+	}
+}
 
 .modal__confirm-pay {
 	padding-left: 1em;
@@ -166,6 +186,35 @@ $label-color: #a2a2a2;
 	}
 }
 
+.modal__select-batch {
+	color: $dark-blue;
+	& p {
+		margin-top: 1rem;
+		font-size: 2rem;
+		padding-bottom: 2rem;
+	}
+	& label {
+		font-size: 1.5rem;
+		margin-top: 0.5rem;
+	}
+	& select {
+		font-size: 1.5rem;
+	}
+}
+
+.modal__generate-invoices {
+    color: $dark-blue;
+    & p {
+        margin-top: 3rem;
+        font-size: 2rem;
+        padding-bottom: 2rem;
+    }
+    & select {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
 body, html {
 	width: 100%;
 	height: 100%;
@@ -173,7 +222,7 @@ body, html {
 	overflow: hidden;
 	color: #000;
 	font-size: 16px;
-	font-family: 'calibri', 'ubuntu';
+	font-family: 'Ubuntu Condensed', sans-serif, 'calibri', 'ubuntu';
 }
 .big-font {
 	font-size: 1.2em;
@@ -232,10 +281,31 @@ header {
     top: 0;
     position: absolute;
     z-index: 10;
+    & img {
+        max-width: 35px;
+        position: absolute;
+        right: 1rem;
+        top: 0;
+    }
+    & button {
+        border: none;
+        background-color: $dark-blue;
+        color: #FFF;
+        position: absolute;
+        left: 1rem;
+        top: 0.8rem    
+    }
+    & p {
+        position: relative;
+        top: 1rem;
+        color: #FFF;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
 }
 
 nav {
-    width: 65px;
+    width: 80px;
     background-color: $main-color;
     height: 100%;
     padding-top: 3.5em;
@@ -245,13 +315,22 @@ nav {
     & a {
         margin-top: 2em;
         padding: 0.2em 0.2em 0.2em 0;
-        border-left: 2px solid $dark-color;
+    }
+    & span {
+        color: #fff;
+        font-size: 0.9rem;
     }
     & .icon-selected {
         background-color: $main-color;
+        & span {
+            color: $crown-color;
+        }
     }
     & a:hover {
-        background-color: $main-color
+        background-color: $main-color;
+        & span {
+            color: $crown-color;
+        }
     }
     & .nav-icon {
         width: 56px;
@@ -265,7 +344,7 @@ nav {
 	border-radius: 5px;
 	color: #FFF;
 	border: none;
-	font-size: 1.5em;
+	font-size: 1.5rem;
 	width: 7.5em;
 	&:hover {
 		background-color: $crown-color;
@@ -274,6 +353,17 @@ nav {
 		background-color: $crown-color;
 		opacity: 0.8;
 	}
+
+    & i {
+        position: relative;
+        float: left;
+    }
+}
+
+.btn__big {
+    height: 9rem;
+    width: 7rem;
+    font-size: 1.2rem;
 }
 
 .btn--selected {
@@ -293,12 +383,13 @@ nav {
     height: 100%;
 }
 
-.add-payment-page__box, .residents-list-page__box {
+.add-payment-page__box, .residents-list-page__box, .invoices-page__box {
     padding-top: 5em;
-    margin-left: 4.5em;
+    // margin-left: 4.5em;
     width: 100%;
     height: 100%;
 }
+
 
 #form-search {
     right: 65px;
@@ -321,13 +412,14 @@ nav {
 }
 
 #form-receipt {
+    margin-left: 7rem;
 	& label, p{
-		font-size: 2.7em;
+		font-size: 2.4em;
 		color: $dark-blue;
         border: none;
 	}
 	& span {
-		font-size: 1.3em;
+		font-size: 1.1em;
 		color: $label-color;
 	}
 	& #btn-close-form-receipt {
@@ -335,6 +427,13 @@ nav {
 		border: none;
 		position: relative;
 		left: 85%;
+        &:hover {
+            color: $cancel-color;
+        }
+        &:active {
+            opacity: 0.5;
+            color: $cancel-color;
+        }
 	}
 
     & #wrapper-btn-pay-method input, select {
@@ -379,6 +478,7 @@ nav {
 		&:hover {
 			color: #FFF;
 			background-color: $main-color;
+            cursor: default;
 		}
 		&:active {
 			background-color: $main-color__light;
@@ -390,62 +490,79 @@ nav {
 	}
 }
 
+.residents-list-page__box {
+	& input {
+		width: 45%;
+        font-size: 1.7em;
+        border: 2px solid $crown-color;
+        padding: 0.2em;
+	}
+	& button {
+		margin: 0.5em auto;
+	}
+}
 
 .form-resident-card {
-	display: inline-block;
-	overflow: hidden;
 	border: 3px solid $main-color;
-	width: 25em;
-	height: 16em;
-    vertical-align: top;
+	width: 80%;
+    height: 23rem;
+    padding: 0.5rem;
+    overflow-y: overlay;
+    // overflow-wrap: normal;
+    position: relative;
+    & #btn-close-modal {
+        top: -0.9rem;
+        right: 0;
+    }
 	& label {
 		margin: 0;
         margin-left: 0.3em;
 		color: $label-color;
 		padding: 0.2em 0 0 0;
 	}
-	& input {
+	& input, select {
 		margin: 0;
         margin-left: 0.3em;
 		color: $dark-blue;
 		padding-bottom: 0.2em;
-		border: none;
+		border: 1px #fff solid;
 		font-size: 1.15em;
 		width: auto;
+        background-color: $input-background;
+        border-radius: 5px;
 		
 		&[type="tel"] {
-			width: 6.5em;
+			width: 10.5em;
 		}
 		
 		&:focus {
-			margin: 0;
+			// margin: 0;
+			background-color: $dark-blue;
+			color: #fff;
 		}
 		&:hover {
-			margin: 0;
+			// margin: 0;
+			// color: $crown-color;
+            border: 1px black solid;
 		}
 	}
 	& span {
 		display: inline-block;
-		width: 7.5em;
+		width: 12em;
 	}
-	& .btn-expand-card {
-		position: relative;
-		top: -10.8em;
-		border: none;
-		background-color: #fff;
-		width: 100%;
-        background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(35,35,35,1) 100%);
-        &:active {
-            border: none;
+	& .wrapper {
+		display: inline-block;
+	}
+    span.short-input {
+        width: 5rem;
+        margin-right: 1rem;
+        & input {
+            width: 6rem;
         }
-        &:focus {
-            border: none;
-            outline: 0;
-        }
-	}
-	& .btn-expand-card.btn-expand-card--expanded {
-		top: 0;
-	}
+    }
+    & input.bank-account {
+        width: 10.65rem;
+    }
 }
 .form-resident-card--expanded {
 	height: 25em;
@@ -455,10 +572,21 @@ nav {
     
 }
 
-.receipt-body, .receipt-html {
+.receipt-body, .receipt-html, .invoice-body, .invoice-html {
 	overflow: auto;
 	width: 8.5in;
 	height: 11in;
+}
+
+.invoice-html {
+	overflow: auto;
+	width: 8.5in;
+	height: auto;
+}
+.invoice-body {
+	overflow: auto;
+	height: auto;
+	width: auto;
 }
 
 .printable-receipt {
@@ -476,4 +604,153 @@ nav {
 	& .space-creator {
 		margin: 2em 0;
 	}
+}
+
+.invoice-page {
+	$height: 7em;
+	width: 8.5in;
+	height: 11in;
+	position: relative;
+	& img {
+		max-width: 10%;
+		position: relative;
+		float: right;
+	}
+	& .owner-details {
+		height: 15%;
+		margin-bottom: 1em;
+
+        & p span {
+            font-size: 1rem;
+        }
+	}
+	& .resident-details {
+		height: $height;
+		vertical-align: top;
+	}
+	& .invoice-details {
+		height: $height;
+		vertical-align: top;
+		line-height: 2em;
+		position: absolute;
+		left: 50%;
+	}
+	& .invoice-details__data {
+		height: $height;
+		vertical-align: top;
+		text-align: right;
+		line-height: 2em;
+		float: right;
+	}
+}
+.bigger-text {
+	font-size: 3em;
+}
+.big-text {
+	font-size: 1.5em;
+}
+table.invoice {
+	margin-top: 2rem;
+	& .table-head {
+		padding: 0.5em 0;
+		border-top: solid 2px $main-color;
+		border-bottom: solid 2px $main-color;
+		color: $dark-blue;
+	}
+	& th {
+		font-weight: bold;
+	}
+	& .data {
+		padding: 0.1em 0;
+	}
+	& th, td {
+		display: inline-block;
+	}
+	& .qty {
+		width: 5em;
+		text-align: center;
+	}
+	& td.qty {
+		
+	}
+	& .description {
+		width: 20em;
+	}
+	& th.description {
+		text-align: center;
+	}
+	& .amount, .total {
+		width: 10em;
+		text-align: right;
+	}
+	& .data__total {
+		margin-top: 1em;
+		& .amount, .total {
+			font-weight: bold;
+		}
+	}
+}
+
+table.footer {
+	position: absolute;
+	bottom: 1rem;
+	width: 100%;
+	& td {
+		display: inline-block;
+	}
+	& td p:nth-child(1){
+		font-weight: bold;
+		font-size: 1.2rem;
+	}
+	& td p {
+		text-align: right;
+	}
+	& .frase {
+		width: 8rem;
+		vertical-align: top;
+		position: relative;
+		top: 3.7rem;
+	}
+	& .vertical-line {
+		border-right: solid 2px $main-color;
+		height: 10rem;
+		margin: 0 0.5rem ;
+	}
+}
+
+.invoices-page__box {
+    & button {
+        margin: 1em auto;
+        // width: 10em;
+    }
+
+    & input {
+        width: 45%;
+        font-size: 1.7em;
+        border: 2px solid $crown-color;
+        padding: 0.2em;
+    }
+
+    & section {
+        width: 80%;
+        height: 10rem;
+        position: relative;
+        top: 4rem;
+        & .btn__big {
+            margin: auto 1rem;
+            display: inline-block;
+            position: relative;
+            & i {
+                float: none;
+                position: absolute;
+                top: 0.5rem;
+                text-align: center;
+            }
+            & p {
+                position: absolute;
+                bottom: 0.1rem;
+                font-size: 1.1rem;
+            }
+        }
+    }
 }

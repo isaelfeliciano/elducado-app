@@ -6,7 +6,7 @@
   "window": {
     "title": "Residencial El Ducado APP",
     "icon": "icon-96.png",
-    "resizable": true,
+    "resizable": false,
     "fullscreen": false,
     "width": 885,
     "height": 600,

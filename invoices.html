@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="invoice-html">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title style="display: none;">Factura</title>
+	
+</head>
+<body class="invoice-body">
+
+<script src="js/lodash.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/numeral.js"></script>
+<!-- <script src="js/invoices.js"></script> -->
+<script type="text/javascript" class="no-display">
+
+Storage.prototype.setObj = function(key, obj) {
+	return this.setItem(key, JSON.stringify(obj));
+}
+Storage.prototype.getObj = function(key) {
+	return JSON.parse(this.getItem(key));
+}
+
+var tempArray = localStorage.getObj('tempInvoices').tempArray;
+_.forEach(tempArray, (item, index) => {
+	item.invoice = item.pendingInvoices[0];
+	let dataString = getDataString(item);
+	let configs = localStorage.getObj('configs');
+	invoiceTotal = getInvoiceTotal(item);
+	let invoiceStatus = "";
+	if (item.invoice.status === "Pagada") invoiceStatus = "PAGADA";
+	console.log(dataString);
+	$('.invoice-body').append(`
+		<div class="invoice-page">
+			<div class="owner-details">
+				<img src="img/logo-elducado-bw.png">
+
+				<p class="bigger-text bold">FACTURA <span>${invoiceStatus}</span></p>
+
+				<p>Junta de Vecinos</p>
+				<p>Residencial El Ducado</p>
+				<p>Santo Domingo, D.N</p>
+			</div>
+
+			<div class="resident-details inline-block">
+				<p class="big-text bold">RESIDENTE</p>
+				<p id="jsResidentInvoice">${item.fullName} (#${item.id})</p>
+				<p id="jsAddressInvoice">${item.address}</p>
+				<p>Residencial El Ducado</p>
+				<p>Santo Domingo, D.N</p>
+			</div>
+
+			<div class="invoice-details inline-block">
+				<p class="big-text bold">FACTURA:</p>
+				<p class="big-text bold">FACTURA MES DE:</p>
+				<p class="big-text bold">PAGAR ANTES DE:</p>
+			</div>
+			
+			<div class="invoice-details__data inline-block">
+				<span id="jsInvoiceNumberInvoice">${item.invoice.id}</span>
+				<span id="jsDateInvoice">${item.invoice.month.toUpperCase()}</span>
+				<span id="jsDueDateInvoice">${item.invoice.dueDate}</span>
+			</div>
+
+			<table class="invoice">
+				<tr class="table-head">
+					<th class="qty">CANTIDAD</th>
+					<th class="description">DESCRIPCIÓN</th>
+					<th class="amount">MONTO</th>
+					<th class="total">TOTAL</th>
+				</tr>
+				${dataString}
+				<tr class="data__total">
+					<td class="qty"></td>
+					<td class="description"></td>
+					<td class="amount">TOTAL</td>
+					<td class="total">RD$ ${numeral(invoiceTotal).format("0,0.00")}</td>
+				</tr>
+			</table>
+			
+			<table class="footer">
+				<tr class="center-text">
+					<td>
+						<p>Formas de Pago</p>
+						<br>
+						<p>Pagos en Efectivo</p>
+						<p>Caseta de Pago (Garita)</p>
+						<br>
+						<p>Deposito o Transferencia</p>
+						<p>Cuenta No. ${configs.bankAccountNumber} (${configs.bank})</p>
+						<br>
+						<p>Enviar Notificaciones de pagos al email</p>
+						<p>${configs.email}</p>
+					</td>
+					<td class="vertical-line"></td>
+					<td class="frase">${configs.frase}</td>
+				</tr>
+			</table>
+		</div>
+	`);
+	if (tempArray.length === (index + 1)) {
+		window.print();
+	}
+});
+
+function getDataString (item) {
+	let dataString = "";
+	_.forEach(item.pendingInvoices, (item, index) => {
+		dataString = dataString + `<tr class="data">
+			<td class="qty">1</td>
+			<td class="description">${item.description}</td>
+			<td class="amount">RD$ ${numeral(item.amount).format("0,0.00")}</td>
+			<td class="total">RD$ ${numeral(item.amount).format("0,0.00")}</td>
+		</tr>`;
+		return dataString;
+	});
+	return dataString;
+}
+
+function getInvoiceTotal (item) {
+	let invoiceTotal = 0;
+	_.forEach(item.pendingInvoices, (item, index) => {
+		invoiceTotal = invoiceTotal + item.amount;
+		return invoiceTotal;
+	});
+	return invoiceTotal;
+}
+
+$('.invoice-body').on('mouseover', (e) => {
+	e.preventDefault();
+	localStorage.setObj('tempInvoices', {tempArray: []});
+	setTimeout(function() {
+		window.close(true);
+	}, 500);
+});
+</script>
+</body>
+</html>

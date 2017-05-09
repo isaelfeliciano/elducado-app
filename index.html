@@ -31,29 +31,77 @@
 	</div>
 </div>
 
-<header class="jsHideOnPrint">
-	
+<div id="modal" class="modal__select-batch modal-background no-display">
+	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
+		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+		<p class="center-text">Seleccione el mes</p>
+		<label for="batch-month" class="center-text">Mes</label>
+		<select name="batch-month" class="center-align">
+			<option value=""></option>
+			<option value="1">Enero</option>
+			<option value="2">Febrero</option>
+			<option value="3">Marzo</option>
+			<option value="4">Abril</option>
+			<option value="5">Mayo</option>
+			<option value="6">Junio</option>
+			<option value="7">Julio</option>
+			<option value="8">Agosto</option>
+			<option value="9">Septiembre</option>
+			<option value="10">Octubre</option>
+			<option value="11">Noviembre</option>
+			<option value="12">Diciembre</option>
+		</select>
+
+		<label for="batch-year" class="center-text">Año</label>
+		<select name="batch-year" class="center-align">
+			<option value="2017">2017</option>
+			<option value="2018">2018</option>
+			<option value="2019">2019</option>
+			<option value="2020">2020</option>
+		</select>
+		
+		<br>
+		<button id="searchInvoiceBatch" class="btn center-align">Buscar batch</button>
+	</div>
+</div>
+
+<div id="modal" class="modal__generate-invoices modal-background no-display">
+	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
+		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+		<p class="center-text">Generar facturas para el mes de:</p>
+		
+		<select name="invoice-month" class="center-align">
+		</select>
+
+		<button id="createInvoices" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+	</div>
+</div>
+
+<header class="center-text jsHideOnPrint">
+	<button><i class="fa fa-bars fa-2x"></i></button>
+	<p>El Ducado APP</p>
+	<img src="img/logo-elducado.png">
 </header>
 
 <nav class="center-text">
 	<a href="#add-payment-page" id="jsAddPayment">
 		<img class="nav-icon center-align" src="img/icon-money.png">
-		<!-- <span>Agregar pago</span> -->
+		<span>Agregar pago</span>
 	</a>
 
 	<a href="#residents-list-page">
 		<img class="nav-icon center-align" src="img/icon-users.png">
-		<!-- <span>Residentes</span> -->
+		<span>Residentes</span>
 	</a>
 
-	<a href="#">
+	<a href="#invoices-page">
 		<img class="nav-icon center-align" src="img/icon-invoice.png">
-		<!-- <span>Facturas</span> -->
+		<span>Facturas</span>
 	</a>
 
 	<a href="#">
 		<img class="nav-icon center-align" src="img/icon-saving-book.png">
-		<!-- <span>Registros</span> -->
+		<span>Registros</span>
 	</a>
 </nav>
 
@@ -68,7 +116,7 @@
 		<form id="form-search" class="center-align center-text">
 			<p>Busca residente por nombre, apellido o codigo</p>
 			<input type="text" name="search-resident" class="center-align box-radius">
-			<button id="btn-search" class="btn center-align center-text box-radius">Buscar</button>
+			<button id="btn-search" class="btn center-align center-text"><i class="fa fa-search"></i> Buscar</button>
 			
 			<ul id="search-list" class="center-align">
 				<!-- To populate from JS -->
@@ -90,7 +138,7 @@
 			<button id="btnChangeInvoice">Siguiente</button>
 
 			<span>Para el Mes</span>
-			<p id="jsMonth">Abril</p>
+			<p id="jsMonth">Mes</p>
 
 			<span>Tipo</span>
 			<p id="jsType">Propietario</p>
@@ -116,118 +164,132 @@
 
 <div id="residents-list-page" class="page">
 	<div class="residents-list-page__box">
-		<div class="form-resident-card box-radius">
-			<label for="name">Nombre</label>
-			<input type="text" name="name" value="Test"/>
+		<input name="search-resident-list" class="center-align box-radius">
+		<button id="searchResident" class="btn center-align"><i class="fa fa-search"></i> Buscar</button>
+
+		<ul id="search-list-resident-card" class="center-align">
+			<!-- To populate from JS -->
+			<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
+			<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
+		</ul>
+		<div class="form-resident-card box-radius center-align no-display">
+			<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+			<div class="wrapper">
+			<label for="firstname">Nombre</label>
+			<input type="text" name="firstname" value=""/>
+			</div>
 			
-			<label for="type">Tipo</label>
-			<input type="text" name="type" value="Test"/>
-			
+			<div class="wrapper">
+			<label for="lastname">Apellido</label>
+			<input type="text" name="lastname" value=""/>
+			</div>
+				
+			<div class="wrapper">
+			<label for="type">Categoria</label>
+			<select name="category">
+				<option value=""></option>
+				<option value="Propietario">Propietario</option>
+				<option value="Alquilado">Alquilado</option>
+				<option value="Solar">Solar</option>
+			</select>
+			</div>	
+				
+			<div class="wrapper">
 			<label for="email">Email</label>
-			<input type="email" name="email" value="Test@gmail.com"/>
+			<input type="email" name="email" value=""/>
+			</div>
 			
+			<div class="wrapper">
 			<label for="address">Direccion</label>
-			<input type="text" name="address" value="Test"/>
+			<input type="text" name="address" value=""/>
+			</div>
 			
+			<div class="block">
 			<span>
 				<label for="tel1" class="block">Tel 1</label>
-				<input type="tel" name="tel1" value="809-555-5555"/>
+				<input type="tel" name="tel1" value=""/>
 			</span>
 			
 			<span>
 				<label for="tel2" class="block">Tel 2</label>
-				<input type="tel" name="tel2" value="809-555-5555"/>
+				<input type="tel" name="tel2" value=""/>
 			</span>
 			
 			<span>
 				<label for="tel3" class="block">Tel 3</label>
-				<input type="tel" name="tel3" value="809-555-5555"/>
+				<input type="tel" name="tel3" value=""/>
 			</span>
+			</div>
 			
 			<label for="cedula">Cedula</label>
-			<input type="number" name="cedula" value="02301492762"/>
+			<input type="text" name="cedula" value=""/>
 			
-			<span>
+			<span class="short-input">
 				<label for="carnet-id">Carnet ID</label>
-				<input type="number" name="carnet-id" value="1"/>
+				<input type="number" name="carnet-id" value=""/>
 			</span>
 			
-			<span>
+			<span class="short-input">
 				<label for="stickers">Calcomania</label>
-				<input type="number" name="stickers" value="2"/>
+				<input type="number" name="stickers" value=""/>
 			</span>
 			
-			<span>
+			<span class="short-input">
 				<label for="door-control">Controles</label>
-				<input type="number" name="door-control" value="2"/>
+				<input type="number" name="door-control" value=""/>
 			</span>
 			
+			<div class="inline-block">
 			<label for="reference">Referencia</label>
-			<input type="text" name="reference" value="Test"/>
-			
-			<button class="btn-expand-card"><i class="fa fa-2x fa-chevron-down"></i></button>
+			<input type="text" name="reference" value=""/>
+			</div>
+				
+			<div class="inline-block">
+			<label for="bank1">Cuenta Banco 1</label>
+			<input type="text" name="bank1" value="" class="bank-account"/>
+			</div>
+					
+			<div class="inline-block">
+			<label for="bank2">Cuenta Banco 2</label>
+			<input type="text" name="bank2" value="" class="bank-account"/>
+			</div>
+						
+			<div class="inline-block">
+			<label for="bank3">Cuenta Banco 3</label>
+			<input type="text" name="bank3" value="" class="bank-account" />
+			</div>
 		</div>
 		
-		<div class="form-resident-card box-radius">
-			<label for="name">Nombre</label>
-			<input type="text" name="name" value="Test"/>
-			
-			<label for="type">Tipo</label>
-			<input type="text" name="type" value="Test"/>
-			
-			<label for="email">Email</label>
-			<input type="email" name="email" value="Test@gmail.com"/>
-			
-			<label for="address">Direccion</label>
-			<input type="text" name="address" value="Test"/>
-			
-			<span>
-				<label for="tel1" class="block">Tel 1</label>
-				<input type="tel" name="tel1" value="809-555-5555"/>
-			</span>
-			
-			<span>
-				<label for="tel2" class="block">Tel 2</label>
-				<input type="tel" name="tel2" value="809-555-5555"/>
-			</span>
-			
-			<span>
-				<label for="tel3" class="block">Tel 3</label>
-				<input type="tel" name="tel3" value="809-555-5555"/>
-			</span>
-			
-			<label for="cedula">Cedula</label>
-			<input type="number" name="cedula" value="02301492762"/>
-			
-			<span>
-				<label for="carnet-id">Carnet ID</label>
-				<input type="number" name="carnet-id" value="1"/>
-			</span>
-			
-			<span>
-				<label for="stickers">Calcomania</label>
-				<input type="number" name="stickers" value="2"/>
-			</span>
-			
-			<span>
-				<label for="door-control">Controles</label>
-				<input type="number" name="door-control" value="2"/>
-			</span>
-			
-			<label for="reference">Referencia</label>
-			<input type="text" name="reference" value="Test"/>
-			
-			<button class="btn-expand-card"><i class="fa fa-2x fa-chevron-down"></i></button>
-		</div>
+		<button class="btn"><i class="fa fa-save"></i> Salvar</button>
 	</div>
 </div>
+
+<div id="invoices-page" class="page">
+	<div class="invoices-page__box">
+		<input type="number" name="search-invoice" placeholder="00000" class="center-align box-radius">
+		<button id="btn-search-invoice" class="btn center-align"><i class="fa fa-search"></i> Buscar</button>
+
+		<section class="center-align center-text">
+			<button id="generateInvoices" class="btn btn__big center-align"><i class="fa fa-files-o fa-3x center-align-absolute"></i> <p>Crear Facturas (Batch)</p></button>
+
+			<button id="generateInvoices" class="btn btn__big center-align"><i class="fa fa-file-o fa-3x center-align-absolute"></i> <p>Crear Factura</p></button>
+
+			<button id="printInBatch" class="btn btn__big center-align"><i class="fa fa-print fa-3x center-align-absolute"></i> <p>Imprimir Batch</p></button>
+		</section>
+
+	</div>
+</div>
+
+
 
 <script src="js/jquery.js"></script>
 <script src="js/jquery.number.min.js"></script>
 <script src="js/numeral.js"></script>
 <script src="js/lodash.js"></script>
 <script src="js/moment.js"></script>
+<script src="js/locale.js"></script>
 <script src="app.js"></script>
+<script src="js/invoices.js"></script>
 </div>
 </body>
 </html>
