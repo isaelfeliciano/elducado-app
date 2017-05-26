@@ -1,0 +1,18 @@
+/* 1 */
+{
+    "_id" : ObjectId("590aa6e46a0e642ffa51cf0b"),
+    "id" : 1,
+    "monthPrefix" : 9,
+    "yearPrefix" : 2017,
+    "invoiceSequence" : 466,
+    "categoryPrices" : {
+        "propietario" : 2000,
+        "alquilado" : 1000,
+        "solar" : 1000
+    },
+    "email" : "jv.elducado@gmail.com",
+    "frase" : "Mientras más hacemos por nuestro residencial, más se valora tu propiedad",
+    "bank" : "Banco Popular",
+    "bankAccountNumber" : 745317289,
+    "nextResidentNumber" : 78
+}

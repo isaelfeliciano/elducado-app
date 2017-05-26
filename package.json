@@ -5,12 +5,12 @@
   "main": "index.html",
   "window": {
     "title": "Residencial El Ducado APP",
-    "icon": "icon-96.png",
+    "icon": "logo-elducado.png",
     "resizable": false,
     "fullscreen": false,
     "width": 885,
-    "height": 600,
-    "single-instance": false
+    "height": 700,
+    "single-instance": true
   },
   "repository": {
     "type": "git",

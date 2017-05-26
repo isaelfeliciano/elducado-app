@@ -1,0 +1,2077 @@
+/* 1 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502685"),
+    "id" : 1,
+    "lastName" : "Bencosme",
+    "firstName" : "Alfonso de Jesus",
+    "fullName" : "Alfonso de Jesus Bencosme",
+    "note" : "",
+    "personID" : "001-0230563-8",
+    "address" : "C/Perimetral A #11",
+    "phone" : "809-564-3014",
+    "workPhone" : "809-532-1428 Ext.237",
+    "cellPhone" : "829-903-2857",
+    "email" : "alfonso.bencosme@hotmail.com",
+    "carnetID" : 0,
+    "sticker" : 3,
+    "doorControls" : 2,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017392", 
+        "72017318"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502686"),
+    "id" : 2,
+    "lastName" : "Morales",
+    "firstName" : "Alvaro",
+    "fullName" : "Alvaro Morales",
+    "note" : "",
+    "personID" : "001-0059110-6",
+    "address" : "C/Perimetral C  #3",
+    "phone" : "809-548-1034",
+    "workPhone" : "809-539-6000",
+    "cellPhone" : "809-980-8961",
+    "email" : "abogado.morales@gmail.com",
+    "carnetID" : 1,
+    "sticker" : 4,
+    "doorControls" : 3,
+    "alternateName" : "Cathia Mercado",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017393", 
+        "72017319"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502687"),
+    "id" : 3,
+    "lastName" : "Fernandez",
+    "firstName" : "Demetrio Aquiles",
+    "fullName" : "Demetrio Aquiles Fernandez",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle F Rotonda",
+    "phone" : "809-561-4434",
+    "workPhone" : "",
+    "cellPhone" : "829-748-6300",
+    "email" : "difauni.srl@gmail.com",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017394", 
+        "72017320"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : [],
+    "payedInvoices" : [ 
+        "62017246"
+    ]
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502688"),
+    "id" : 4,
+    "lastName" : "Espaillat",
+    "firstName" : "Armando",
+    "fullName" : "Armando Espaillat",
+    "note" : "4 casas",
+    "personID" : "",
+    "address" : "C/Perimetral C  #13(Cul de Sac J)",
+    "phone" : "809-369-7622",
+    "workPhone" : "829-645-4200",
+    "cellPhone" : "",
+    "email" : "joeaespaillat@gmail.com",
+    "carnetID" : 1,
+    "sticker" : 2,
+    "doorControls" : 1,
+    "alternateName" : "Mercedes Espaillat",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017395", 
+        "72017321", 
+        "62017247"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502689"),
+    "id" : 5,
+    "lastName" : "Calderon",
+    "firstName" : "",
+    "fullName" : "Calderon",
+    "note" : "",
+    "personID" : "",
+    "address" : "Rotonda",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017396", 
+        "72017322", 
+        "62017248"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250268a"),
+    "id" : 6,
+    "lastName" : "Suriel",
+    "firstName" : "Caonabo",
+    "fullName" : "Caonabo Suriel",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C #17",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017397", 
+        "72017323", 
+        "62017249"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250268b"),
+    "id" : 7,
+    "lastName" : "Nuñez",
+    "firstName" : "Maria Teresa",
+    "fullName" : "Maria Teresa Nuñez",
+    "note" : "Propietaria- Carmen Gomez",
+    "personID" : "001-0372728-5",
+    "address" : "Calle F, Esq. D #1",
+    "phone" : "849-785-4083",
+    "workPhone" : "",
+    "cellPhone" : "849-785-4083",
+    "email" : "maritery10@hotmail.com",
+    "carnetID" : null,
+    "sticker" : 4,
+    "doorControls" : 2,
+    "alternateName" : "",
+    "category" : "Alquilado",
+    "pendingInvoices" : [ 
+        "82017398", 
+        "72017324", 
+        "62017250"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 8 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250268c"),
+    "id" : 8,
+    "lastName" : "Cabrera",
+    "firstName" : "Claudio",
+    "fullName" : "Claudio Cabrera",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle D  #17",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017399", 
+        "72017325", 
+        "62017251"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 9 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250268d"),
+    "id" : 9,
+    "lastName" : "Feliz Alcantara",
+    "firstName" : "Francisco",
+    "fullName" : "Francisco Feliz Alcantara",
+    "note" : "",
+    "personID" : "001-1261446-6",
+    "address" : "Calle E #14 ",
+    "phone" : "809-564-3559",
+    "workPhone" : "",
+    "cellPhone" : "809-850-1450",
+    "email" : "",
+    "carnetID" : 0,
+    "sticker" : 2,
+    "doorControls" : 2,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017400", 
+        "72017326", 
+        "62017252"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 10 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250268e"),
+    "id" : 10,
+    "lastName" : "De Jesus",
+    "firstName" : "David",
+    "fullName" : "David De Jesus",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral A",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017401", 
+        "72017327", 
+        "62017253"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 11 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250268f"),
+    "id" : 11,
+    "lastName" : "Lopez",
+    "firstName" : "Lolly",
+    "fullName" : "Lolly Lopez",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle E (Al lado del Coronel Alcantara)",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017402", 
+        "72017328", 
+        "62017254"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 12 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502690"),
+    "id" : 12,
+    "lastName" : "Matias",
+    "firstName" : "Dora",
+    "fullName" : "Dora Matias",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle F (Rotonda)",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017403", 
+        "72017329", 
+        "62017255"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 13 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502691"),
+    "id" : 13,
+    "lastName" : "Susana Ovalle",
+    "firstName" : "Doroteo (Teo)",
+    "fullName" : "Doroteo (Teo) Susana Ovalle",
+    "note" : "",
+    "personID" : "001-0080988-8",
+    "address" : "C/Perimetral C  Esq. A #1",
+    "phone" : "809-564-1689",
+    "workPhone" : "809-564-9999",
+    "cellPhone" : "809-284-3495",
+    "email" : "",
+    "carnetID" : 2,
+    "sticker" : 7,
+    "doorControls" : 2,
+    "alternateName" : "Luisa Maria Reyes Guzman",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017404", 
+        "72017330", 
+        "62017256"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 14 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502692"),
+    "id" : 14,
+    "lastName" : "Baez",
+    "firstName" : "Elayne",
+    "fullName" : "Elayne Baez",
+    "note" : "",
+    "personID" : "001-0131211-4",
+    "address" : "C/Perimetral # C Esq. D",
+    "phone" : "809-561-6412",
+    "workPhone" : "809-223-3214",
+    "cellPhone" : "809-223-3214",
+    "email" : "horacio_al@hotmail.com",
+    "carnetID" : 2,
+    "sticker" : 4,
+    "doorControls" : 4,
+    "alternateName" : "Horacio Alvarez (Esposo)",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017405", 
+        "72017331", 
+        "62017257"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 15 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502693"),
+    "id" : 15,
+    "lastName" : "Rodriguez ",
+    "firstName" : "Elisa",
+    "fullName" : "Elisa Rodriguez",
+    "note" : "Propietaria-Elba Mora",
+    "personID" : "",
+    "address" : "Calle D #10-B Esq. E ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "2 Casas",
+    "category" : "Alquilado",
+    "pendingInvoices" : [ 
+        "82017406", 
+        "72017332", 
+        "62017258"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 16 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502694"),
+    "id" : 16,
+    "lastName" : "Ortega Fonder",
+    "firstName" : "Elpidio",
+    "fullName" : "Elpidio Ortega Fonder",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C",
+    "phone" : "809-372-1331",
+    "workPhone" : "",
+    "cellPhone" : "809-350-7545",
+    "email" : "e.ortegafonder@hotmail.com",
+    "carnetID" : 3,
+    "sticker" : 4,
+    "doorControls" : 1,
+    "alternateName" : "Yosiris German",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017407", 
+        "72017333", 
+        "62017259"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 17 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502695"),
+    "id" : 17,
+    "lastName" : "Lied Guerrero",
+    "firstName" : "Erickson",
+    "fullName" : "Erickson Lied Guerrero",
+    "note" : "",
+    "personID" : "001-1168771-1",
+    "address" : "C/Perimetral A #1",
+    "phone" : "809-372-4327",
+    "workPhone" : "",
+    "cellPhone" : "809-299-0225",
+    "email" : "erickson.lied@gmail.com",
+    "carnetID" : 2,
+    "sticker" : 5,
+    "doorControls" : 2,
+    "alternateName" : "Juliana Paulino Nuñez (Esposa)",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017408", 
+        "72017334", 
+        "62017260"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 18 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502696"),
+    "id" : 18,
+    "lastName" : "Vidal Ciprian",
+    "firstName" : "Manuel Antonio",
+    "fullName" : "Manuel Antonio Vidal Ciprian",
+    "note" : "",
+    "personID" : "001-0070292-7",
+    "address" : "Calle  E #6",
+    "phone" : "809-560-5700",
+    "workPhone" : "",
+    "cellPhone" : "809-880-9323",
+    "email" : "ing.manuelvidal@hotmail.com",
+    "carnetID" : 1,
+    "sticker" : 3,
+    "doorControls" : 3,
+    "alternateName" : "Lumilla Bolonotto Vidal",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017409", 
+        "72017335", 
+        "62017261"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 19 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502697"),
+    "id" : 19,
+    "lastName" : "Lugo Peña",
+    "firstName" : "Mayobanex",
+    "fullName" : "Mayobanex Lugo Peña",
+    "note" : "4 casas",
+    "personID" : "001-0147595-2",
+    "address" : "C/Perimetral C  #16",
+    "phone" : "809-372-1990",
+    "workPhone" : "809-531-1600",
+    "cellPhone" : "809-796-8151",
+    "email" : "mayobanexlugo@gmail.com",
+    "carnetID" : 2,
+    "sticker" : 4,
+    "doorControls" : 0,
+    "alternateName" : "Fatima Nuñez Guzman",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017410", 
+        "72017336", 
+        "62017262"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 20 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502698"),
+    "id" : 20,
+    "lastName" : "Galan",
+    "firstName" : "Felipe",
+    "fullName" : "Felipe Galan",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral B  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017411", 
+        "72017337", 
+        "62017263"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 21 */
+{
+    "_id" : ObjectId("5916abbb836b137d82502699"),
+    "id" : 21,
+    "lastName" : "Gutierrez Polanco",
+    "firstName" : "Miguel",
+    "fullName" : "Miguel Gutierrez Polanco",
+    "note" : "Propietario-Jose Alfredo Martinez",
+    "personID" : "001-1659633-9",
+    "address" : "Calle D  #7",
+    "phone" : "809-636-1412",
+    "workPhone" : "809-906-8020",
+    "cellPhone" : "809-780-2553",
+    "email" : "miguelgutierrezpolanco@gmail.com",
+    "carnetID" : 1,
+    "sticker" : 1,
+    "doorControls" : 1,
+    "alternateName" : "Yacaira Suero Adames",
+    "category" : "Alquilado",
+    "pendingInvoices" : [ 
+        "82017412", 
+        "72017338", 
+        "62017264"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 22 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250269a"),
+    "id" : 22,
+    "lastName" : "Acosta",
+    "firstName" : "Fresa",
+    "fullName" : "Fresa Acosta",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017413", 
+        "72017339", 
+        "62017265"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 23 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250269b"),
+    "id" : 23,
+    "lastName" : "De La Rosa Peñalo",
+    "firstName" : "Eusebio",
+    "fullName" : "Eusebio De La Rosa Peñalo",
+    "note" : "",
+    "personID" : "001-1175176-4",
+    "address" : "Calle F #21 (Rotonda)",
+    "phone" : "809-622-0139",
+    "workPhone" : "809-754-7756",
+    "cellPhone" : "809-899-8762",
+    "email" : "vervinsbido75@hotmail.com",
+    "carnetID" : 4,
+    "sticker" : 6,
+    "doorControls" : 5,
+    "alternateName" : "Romita Bido de la Rosa",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017414", 
+        "72017340", 
+        "62017266"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 24 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250269c"),
+    "id" : 24,
+    "lastName" : "Gomez",
+    "firstName" : "Hoisex",
+    "fullName" : "Hoisex Gomez",
+    "note" : "",
+    "personID" : "002-0089792-4",
+    "address" : "C/Perimetral C  #43",
+    "phone" : "809-564-1787",
+    "workPhone" : "809-684-6265",
+    "cellPhone" : "809-913-1622",
+    "email" : "hoisexgomez@hotmail.com",
+    "carnetID" : 4,
+    "sticker" : 8,
+    "doorControls" : 3,
+    "alternateName" : "Virgilio Pacheco Garabito",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017415", 
+        "72017341", 
+        "62017267"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 25 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250269d"),
+    "id" : 25,
+    "lastName" : "Colon",
+    "firstName" : "Humberto E.",
+    "fullName" : "Humberto E. Colon",
+    "note" : "",
+    "personID" : "001-0146711-6",
+    "address" : "C/Perimetral A #13",
+    "phone" : "809-561-8675",
+    "workPhone" : "809-378-1120",
+    "cellPhone" : "809-224-2014",
+    "email" : "humbertocolon12@hotmail.com",
+    "carnetID" : 3,
+    "sticker" : 4,
+    "doorControls" : 4,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017416", 
+        "72017342", 
+        "62017268"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 26 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250269e"),
+    "id" : 26,
+    "lastName" : "Ciccone",
+    "firstName" : "Igor",
+    "fullName" : "Igor Ciccone",
+    "note" : "",
+    "personID" : "001-0790476-5",
+    "address" : "C/Perimetral C  #13",
+    "phone" : "809-564-1501",
+    "workPhone" : "809-544-1431",
+    "cellPhone" : "809-697-4467",
+    "email" : "i7ir@yahoo.com",
+    "carnetID" : 5,
+    "sticker" : 3,
+    "doorControls" : 3,
+    "alternateName" : "Carmenchu Estrella de Ciccone",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017417", 
+        "72017343", 
+        "62017269"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 27 */
+{
+    "_id" : ObjectId("5916abbb836b137d8250269f"),
+    "id" : 27,
+    "lastName" : "Vargas Martinez",
+    "firstName" : "Jaime",
+    "fullName" : "Jaime Vargas Martinez",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle F (Rotonda)",
+    "phone" : "809-910-6140",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Dolly Martinez",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017418", 
+        "72017344", 
+        "62017270"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 28 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a0"),
+    "id" : 28,
+    "lastName" : "Sra. Alodia",
+    "firstName" : "",
+    "fullName" : "Sra. Alodia",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle E",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Jenny Mejia Antigua Inquilina",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017419", 
+        "72017345", 
+        "62017271"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 29 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a1"),
+    "id" : 29,
+    "lastName" : "Moya",
+    "firstName" : "Jose",
+    "fullName" : "Jose Moya",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017420", 
+        "72017346", 
+        "62017272"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 30 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a2"),
+    "id" : 30,
+    "lastName" : "Aquino",
+    "firstName" : "Josefina",
+    "fullName" : "Josefina Aquino",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017421", 
+        "72017347", 
+        "62017273"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 31 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a3"),
+    "id" : 31,
+    "lastName" : "Osorio",
+    "firstName" : "Josefina",
+    "fullName" : "Josefina Osorio",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle E",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017422", 
+        "72017348", 
+        "62017274"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 32 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a4"),
+    "id" : 32,
+    "lastName" : "Lopez Cesse",
+    "firstName" : "Juan",
+    "fullName" : "Juan Lopez Cesse",
+    "note" : "",
+    "personID" : "001-1193008-7",
+    "address" : "Calle D  Esq. Perimetral C",
+    "phone" : "809-564-2460",
+    "workPhone" : "",
+    "cellPhone" : "829-383-8919",
+    "email" : "josefinamartinez69@hotmail.com",
+    "carnetID" : 2,
+    "sticker" : 4,
+    "doorControls" : 4,
+    "alternateName" : "Josefina Martinez",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017423", 
+        "72017349", 
+        "62017275"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 33 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a5"),
+    "id" : 33,
+    "lastName" : "Vanderhorst",
+    "firstName" : "Lucas",
+    "fullName" : "Lucas Vanderhorst",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017424", 
+        "72017350", 
+        "62017276"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 34 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a6"),
+    "id" : 34,
+    "lastName" : "Nuñez",
+    "firstName" : "Lucy",
+    "fullName" : "Lucy Nuñez",
+    "note" : "4 casas",
+    "personID" : "402-24905553-5",
+    "address" : "C/Perimetral C# 52",
+    "phone" : "809-807-1338",
+    "workPhone" : "",
+    "cellPhone" : "829-986-5583",
+    "email" : "chappinos@hotmail.com",
+    "carnetID" : 2,
+    "sticker" : 2,
+    "doorControls" : 2,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017425", 
+        "72017351", 
+        "62017277"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 35 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a7"),
+    "id" : 35,
+    "lastName" : "Arias",
+    "firstName" : "Manuel",
+    "fullName" : "Manuel Arias",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  #6",
+    "phone" : "809-372-1302",
+    "workPhone" : "809-364-1601",
+    "cellPhone" : "809-707-7990",
+    "email" : "arq.manuel.arias@gmail.com",
+    "carnetID" : 4,
+    "sticker" : 8,
+    "doorControls" : 3,
+    "alternateName" : "Catalina Mancebo",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017426", 
+        "72017352", 
+        "62017278"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 36 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a8"),
+    "id" : 36,
+    "lastName" : "Bueno Bueno",
+    "firstName" : "Iris Maria",
+    "fullName" : "Iris Maria Bueno Bueno",
+    "note" : "4 casas",
+    "personID" : "001-0120357-8",
+    "address" : "C/Perimetral C  #16",
+    "phone" : "809-564-5088",
+    "workPhone" : "",
+    "cellPhone" : "809-802-4412",
+    "email" : "irisbueno1763@hotmail.com",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Esposa del Fallecido - Marino Nuñez",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017427", 
+        "72017353", 
+        "62017279"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 37 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026a9"),
+    "id" : 37,
+    "lastName" : "Dominguez",
+    "firstName" : "Rafael",
+    "fullName" : "Rafael Dominguez",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Maritza Martinez",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017428", 
+        "72017354", 
+        "62017280"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 38 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026aa"),
+    "id" : 38,
+    "lastName" : "Garcia",
+    "firstName" : "Mayra",
+    "fullName" : "Mayra Garcia",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle F (Rotonda)",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Al lado de Edward Martinez",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017429", 
+        "72017355", 
+        "62017281"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 39 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026ab"),
+    "id" : 39,
+    "lastName" : "Abreu Diaz",
+    "firstName" : "Miguel",
+    "fullName" : "Miguel Abreu Diaz",
+    "note" : "",
+    "personID" : "001-09291732",
+    "address" : "Calle F #33 (Rotonda)",
+    "phone" : "809-564-0406",
+    "workPhone" : "809-732-8787",
+    "cellPhone" : "809-978-8246",
+    "email" : "",
+    "carnetID" : 2,
+    "sticker" : 6,
+    "doorControls" : 4,
+    "alternateName" : "Josefina Soler",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017430", 
+        "72017356", 
+        "62017282"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 40 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026ac"),
+    "id" : 40,
+    "lastName" : "Liria",
+    "firstName" : "Miguel",
+    "fullName" : "Miguel Liria",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral B Esq. Calle E",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017431", 
+        "72017357", 
+        "62017283"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 41 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026ad"),
+    "id" : 41,
+    "lastName" : "Mendez",
+    "firstName" : "Moises",
+    "fullName" : "Moises Mendez",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017432", 
+        "72017358", 
+        "62017284"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 42 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026ae"),
+    "id" : 42,
+    "lastName" : "Fernandez",
+    "firstName" : "Nancy",
+    "fullName" : "Nancy Fernandez",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017433", 
+        "72017359", 
+        "62017285"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 43 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026af"),
+    "id" : 43,
+    "lastName" : "Santos",
+    "firstName" : "Natividad",
+    "fullName" : "Natividad Santos",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle D  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017434", 
+        "72017360", 
+        "62017286"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 44 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b0"),
+    "id" : 44,
+    "lastName" : "Rosario Guerrero",
+    "firstName" : "Nelson",
+    "fullName" : "Nelson Rosario Guerrero",
+    "note" : "",
+    "personID" : "001-1185517-7",
+    "address" : "Cul De Sac E #27",
+    "phone" : "809-390-8876",
+    "workPhone" : "829-380-0398",
+    "cellPhone" : "809-564-9004",
+    "email" : "candida-esmel@hotmail.com",
+    "carnetID" : 6,
+    "sticker" : 6,
+    "doorControls" : 2,
+    "alternateName" : "Candida Alvarez de Rosario",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017435", 
+        "72017361", 
+        "62017287"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 45 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b1"),
+    "id" : 45,
+    "lastName" : "Martinez",
+    "firstName" : "Jose",
+    "fullName" : "Jose Martinez",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C #9",
+    "phone" : "809-974-8677",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Daniela Margotto",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017436", 
+        "72017362", 
+        "62017288"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 46 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b2"),
+    "id" : 46,
+    "lastName" : "Rondon",
+    "firstName" : "Nolberto",
+    "fullName" : "Nolberto Rondon",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle E",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017437", 
+        "72017363", 
+        "62017289"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 47 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b3"),
+    "id" : 47,
+    "lastName" : "Ventura Gonzalez",
+    "firstName" : "Omar Antonio",
+    "fullName" : "Omar Antonio Ventura Gonzalez",
+    "note" : "",
+    "personID" : "001-0324776-3",
+    "address" : "Rotonda",
+    "phone" : "809-561-7280",
+    "workPhone" : "",
+    "cellPhone" : "849-720-5036",
+    "email" : "omarventura56@hotmail.com",
+    "carnetID" : 1,
+    "sticker" : 4,
+    "doorControls" : null,
+    "alternateName" : "Lourdes Carolina Garcia Naziro",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017438", 
+        "72017364", 
+        "62017290"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 48 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b4"),
+    "id" : 48,
+    "lastName" : "Chalas",
+    "firstName" : "Oscar",
+    "fullName" : "Oscar Chalas",
+    "note" : "",
+    "personID" : "",
+    "address" : "Rotonda",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017439", 
+        "72017365", 
+        "62017291"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 49 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b5"),
+    "id" : 49,
+    "lastName" : "Moronta",
+    "firstName" : "Rafael",
+    "fullName" : "Rafael Moronta",
+    "note" : "",
+    "personID" : "001-0786620-4",
+    "address" : "C/Perimetral C  ",
+    "phone" : "809-560-3061",
+    "workPhone" : "809-372-7880",
+    "cellPhone" : "809-855-8211",
+    "email" : "rmoronta@hotmail.com",
+    "carnetID" : 2,
+    "sticker" : 2,
+    "doorControls" : 2,
+    "alternateName" : "Damary Calderon",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017440", 
+        "72017366", 
+        "62017292"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 50 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b6"),
+    "id" : 50,
+    "lastName" : "Rodriguez ",
+    "firstName" : "Ramon",
+    "fullName" : "Ramon Rodriguez",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle E #6-A",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017441", 
+        "72017367", 
+        "62017293"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 51 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b7"),
+    "id" : 51,
+    "lastName" : "Velasquez",
+    "firstName" : "Rand",
+    "fullName" : "Rand Velasquez",
+    "note" : "",
+    "personID" : "001-0052242-4",
+    "address" : "C/Perimetral A #3",
+    "phone" : "809-564-1296",
+    "workPhone" : "829-961-5226",
+    "cellPhone" : "809-227-7002",
+    "email" : "rvelasquez@randmontacargas.com",
+    "carnetID" : 4,
+    "sticker" : 5,
+    "doorControls" : 5,
+    "alternateName" : "Maria Isabel de Velasquez",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017442", 
+        "72017368", 
+        "62017294"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 52 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b8"),
+    "id" : 52,
+    "lastName" : "Diaz Abreu",
+    "firstName" : "Ruben",
+    "fullName" : "Ruben Diaz Abreu",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle E",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017443", 
+        "72017369", 
+        "62017295"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 53 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026b9"),
+    "id" : 53,
+    "lastName" : "Rodriguez ",
+    "firstName" : "Ruth",
+    "fullName" : "Ruth Rodriguez",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle D  #8",
+    "phone" : "809-564-5003",
+    "workPhone" : "",
+    "cellPhone" : "809-858-2136",
+    "email" : "ruthrodriguezh@gmail.com",
+    "carnetID" : null,
+    "sticker" : 3,
+    "doorControls" : 2,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017444", 
+        "72017370", 
+        "62017296"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 54 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026ba"),
+    "id" : 54,
+    "lastName" : "Cruz",
+    "firstName" : "Santiago",
+    "fullName" : "Santiago Cruz",
+    "note" : "",
+    "personID" : "001-0000978-6",
+    "address" : "C/Perimetral B  #52",
+    "phone" : "809-561-1732",
+    "workPhone" : "",
+    "cellPhone" : "809-799-2073",
+    "email" : "santiagocruzj@hotmail.com",
+    "carnetID" : 1,
+    "sticker" : 2,
+    "doorControls" : null,
+    "alternateName" : "Johan Cruz- johancruz2710@gmail.com",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017445", 
+        "72017371", 
+        "62017297"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 55 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026bb"),
+    "id" : 55,
+    "lastName" : "Nivar",
+    "firstName" : "Socrates",
+    "fullName" : "Socrates Nivar",
+    "note" : "",
+    "personID" : "001-0467233-2",
+    "address" : "C/Perimetral C  ",
+    "phone" : "809-560-4678",
+    "workPhone" : "809-567-4300",
+    "cellPhone" : "809-899-5577",
+    "email" : "socratesnivar16@gmail.com",
+    "carnetID" : 1,
+    "sticker" : 4,
+    "doorControls" : 0,
+    "alternateName" : "Georgina Espinal Almonte ",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017446", 
+        "72017372", 
+        "62017298"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 56 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026bc"),
+    "id" : 56,
+    "lastName" : "Roa",
+    "firstName" : "Tirso",
+    "fullName" : "Tirso Roa",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017447", 
+        "72017373", 
+        "62017299"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 57 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026bd"),
+    "id" : 57,
+    "lastName" : "Ortega Rincon",
+    "firstName" : "Luis",
+    "fullName" : "Luis Ortega Rincon",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  #53",
+    "phone" : "809-372-4749",
+    "workPhone" : "809-703-4496",
+    "cellPhone" : "829-940-0957",
+    "email" : "incidovp@gmail.com",
+    "carnetID" : 1,
+    "sticker" : 1,
+    "doorControls" : 1,
+    "alternateName" : "Lidia Venecia Pineda ",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017448", 
+        "72017374", 
+        "62017300"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 58 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026be"),
+    "id" : 58,
+    "lastName" : "Ramirez Minier",
+    "firstName" : "Victor",
+    "fullName" : "Victor Ramirez Minier",
+    "note" : "",
+    "personID" : "002-",
+    "address" : "C/Perimetral A #27",
+    "phone" : "809-564-1262",
+    "workPhone" : "",
+    "cellPhone" : "829-986-3640",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017449", 
+        "72017375"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : [],
+    "payedInvoices" : [ 
+        "62017301"
+    ]
+}
+
+/* 59 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026bf"),
+    "id" : 59,
+    "lastName" : "Perdomo",
+    "firstName" : "Vinicio",
+    "fullName" : "Vinicio Perdomo",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral B  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017450", 
+        "72017376", 
+        "62017302"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 60 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c0"),
+    "id" : 60,
+    "lastName" : "Guzman",
+    "firstName" : "Yohanna",
+    "fullName" : "Yohanna Guzman",
+    "note" : "",
+    "personID" : "001-1167938-7",
+    "address" : "Calle E #7",
+    "phone" : "809-560-7729",
+    "workPhone" : "809-475-6255",
+    "cellPhone" : "809-714-5852",
+    "email" : "yohannaguzman@gmail.com",
+    "carnetID" : 3,
+    "sticker" : 4,
+    "doorControls" : 4,
+    "alternateName" : "General Mendez (COE)",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017451", 
+        "72017377", 
+        "62017303"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 61 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c1"),
+    "id" : 61,
+    "lastName" : "De Jesus",
+    "firstName" : "Silvia",
+    "fullName" : "Silvia De Jesus",
+    "note" : "",
+    "personID" : "",
+    "address" : "Cul de Sac",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Propietario - Sr. Terrero",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017452", 
+        "72017378", 
+        "62017304"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 62 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c2"),
+    "id" : 62,
+    "lastName" : "Osorio",
+    "firstName" : "Gabriel",
+    "fullName" : "Gabriel Osorio",
+    "note" : "A pagar 50% (Construccion)",
+    "personID" : "",
+    "address" : "C/Perimetral C  ",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "En construccion",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017453", 
+        "72017379", 
+        "62017305"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 63 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c3"),
+    "id" : 63,
+    "lastName" : "Nuñez",
+    "firstName" : "Leandro",
+    "fullName" : "Leandro Nuñez",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C  (Solares)",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017454", 
+        "72017380", 
+        "62017306"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 64 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c4"),
+    "id" : 64,
+    "lastName" : "Silva",
+    "firstName" : "Mario",
+    "fullName" : "Mario Silva",
+    "note" : "",
+    "personID" : "001-1395624-7",
+    "address" : "C/Perimetral B, Esq. E",
+    "phone" : "809-620-3558",
+    "workPhone" : "809-221-8472",
+    "cellPhone" : "809-330-7855",
+    "email" : "marioalf10@hotmail.com",
+    "carnetID" : 2,
+    "sticker" : 2,
+    "doorControls" : 2,
+    "alternateName" : "Marisol Acosta",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017455", 
+        "72017381", 
+        "62017307"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 65 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c5"),
+    "id" : 65,
+    "lastName" : "Amarante",
+    "firstName" : "Edward",
+    "fullName" : "Edward Amarante",
+    "note" : "A pagar 50% (Construccion)",
+    "personID" : "",
+    "address" : "C/Perimetral A Esq. C",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Nueva Construction",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017456", 
+        "72017382", 
+        "62017308"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 66 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c6"),
+    "id" : 66,
+    "lastName" : "Mendez ",
+    "firstName" : "Edgar",
+    "fullName" : "Edgar Mendez",
+    "note" : "",
+    "personID" : "001-0069361-3",
+    "address" : "C/Perimetral C #16",
+    "phone" : "0",
+    "workPhone" : "809-722-3544",
+    "cellPhone" : "809-965-6207",
+    "email" : "emendez@claro.net.do",
+    "carnetID" : 2,
+    "sticker" : 2,
+    "doorControls" : null,
+    "alternateName" : "Lucy Nuñez (Esposa)",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017457", 
+        "72017383", 
+        "62017309"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 67 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c7"),
+    "id" : 67,
+    "lastName" : "Contreras Nuñez",
+    "firstName" : "Ramon Alfonso",
+    "fullName" : "Ramon Alfonso Contreras Nuñez",
+    "note" : "Propietaria-Elba Mora",
+    "personID" : "001-0166104-9",
+    "address" : "Calle D #10-A Esq. E",
+    "phone" : "809-372-7490",
+    "workPhone" : "N/D",
+    "cellPhone" : "809-519-7490",
+    "email" : "ramoncontrerasn@hotmail.com",
+    "carnetID" : 1,
+    "sticker" : 1,
+    "doorControls" : 1,
+    "alternateName" : "",
+    "category" : "Alquilado",
+    "pendingInvoices" : [ 
+        "82017458", 
+        "72017384", 
+        "62017310"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 68 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c8"),
+    "id" : 68,
+    "lastName" : "Paez",
+    "firstName" : "Alexandra",
+    "fullName" : "Alexandra Paez",
+    "note" : "",
+    "personID" : "",
+    "address" : "C/Perimetral C #12 (Cul a Sac)",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Alquila - Casa Sr. Terrero",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017459", 
+        "72017385", 
+        "62017311"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 69 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026c9"),
+    "id" : 69,
+    "lastName" : "Ortega",
+    "firstName" : "Omar",
+    "fullName" : "Omar Ortega",
+    "note" : "Propietario- Avelino Cruz",
+    "personID" : "402-24905553-5",
+    "address" : "C/Perimetral B # 52",
+    "phone" : "809-807-1338",
+    "workPhone" : "",
+    "cellPhone" : "829-986-5583",
+    "email" : "chappinos@hotmail.com",
+    "carnetID" : "2",
+    "sticker" : "2",
+    "doorControls" : "2",
+    "alternateName" : "Alquilado-Propietario Avelino Cruz",
+    "category" : "Alquilado",
+    "pendingInvoices" : [ 
+        "82017460", 
+        "72017386", 
+        "62017312"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : [ 
+        "", 
+        "", 
+        ""
+    ]
+}
+
+/* 70 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026ca"),
+    "id" : 70,
+    "lastName" : "Reyes",
+    "firstName" : "Marino",
+    "fullName" : "Marino Reyes",
+    "note" : "",
+    "personID" : "",
+    "address" : "Una de las cuatro casas (frente al Mello)",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017461", 
+        "72017387", 
+        "62017313"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 71 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026cb"),
+    "id" : 71,
+    "lastName" : "Gomez",
+    "firstName" : "Carmen",
+    "fullName" : "Carmen Gomez",
+    "note" : "Propietaria  ",
+    "personID" : "",
+    "address" : "Calle D #10 Esq. F",
+    "phone" : "",
+    "workPhone" : "809-910-6140",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017462", 
+        "72017388", 
+        "62017314"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 72 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026cc"),
+    "id" : 72,
+    "lastName" : "Familia",
+    "firstName" : "Miguel (Mello)",
+    "fullName" : "Miguel (Mello) Familia",
+    "note" : "Mensajero",
+    "personID" : "",
+    "address" : "C/Perimetral C #9",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017463", 
+        "72017389", 
+        "62017315"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 73 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026cd"),
+    "id" : 73,
+    "lastName" : "Mercedes",
+    "firstName" : "Enmanuel",
+    "fullName" : "Enmanuel Mercedes",
+    "note" : "",
+    "personID" : "",
+    "address" : "Calle F #2 ",
+    "phone" : "809-603-8983",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "Solainy Peña",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017464", 
+        "72017390", 
+        "62017316"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}
+
+/* 74 */
+{
+    "_id" : ObjectId("5916abbb836b137d825026ce"),
+    "id" : 74,
+    "lastName" : "Rodriguez ",
+    "firstName" : "Russell",
+    "fullName" : "Russell Rodriguez",
+    "note" : "",
+    "personID" : "",
+    "address" : "Cul de Sac J #11",
+    "phone" : "",
+    "workPhone" : "",
+    "cellPhone" : "",
+    "email" : "",
+    "carnetID" : null,
+    "sticker" : null,
+    "doorControls" : null,
+    "alternateName" : "",
+    "category" : "Propietario",
+    "pendingInvoices" : [ 
+        "82017465", 
+        "72017391", 
+        "62017317"
+    ],
+    "payedInvoces" : [],
+    "bankAccount" : []
+}

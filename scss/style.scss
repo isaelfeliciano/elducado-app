@@ -12,7 +12,7 @@ $danger-background: #F2DEDE;
 $dark-color: #191C21;
 $crown-color: #E4AB08;
 $label-color: #a2a2a2;
-$input-background: #E6EAED;
+$input-background: #DCDCDC;
 
 
 // @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
@@ -81,6 +81,12 @@ $input-background: #E6EAED;
 	left: 0;
 }
 
+.bigger-text {
+    font-size: 3em;
+}
+.big-text {
+    font-size: 1.5em;
+}
 
 
 /* ---- HELPERS ----<<<<*/
@@ -118,6 +124,19 @@ $input-background: #E6EAED;
 }
 /*Flashmessge*/
 
+.splash-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: $dark-blue;
+    z-index: 20;
+    & img {
+        max-width: 300px;
+        position: relative;
+        top: 10%;
+    }
+}
+
 .modal-background {
 	width: 100%;
     height: 100%;
@@ -134,7 +153,7 @@ $input-background: #E6EAED;
     background-color: #FFF;
   	border: 2px solid $main-color;
 }
-button#btn-close-modal {
+button#btn-close-modal, .btn-delete-resident {
 	background: none;
 	border: none;
 	position: absolute;
@@ -212,6 +231,21 @@ button#btn-close-modal {
     & select {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
+    }
+}
+
+.modal__delete-resident {
+    & p {
+        margin-top: 1rem;
+        font-size: 1.4rem;
+    }
+    & button#confirm-delete {
+        margin: 1rem auto;
+        background-color: $danger-color;
+        &:hover {
+            background-color: $danger-color;
+            opacity: 0.8;
+        }
     }
 }
 
@@ -293,7 +327,11 @@ header {
         color: #FFF;
         position: absolute;
         left: 1rem;
-        top: 0.8rem    
+        top: 0.8rem;
+        z-index: 15;
+        &:hover {
+            color: $crown-color;
+        }    
     }
     & p {
         position: relative;
@@ -302,7 +340,31 @@ header {
         font-size: 1.4rem;
         font-weight: bold;
     }
+    & .menu {
+        position: absolute;
+        background-color: #fff;
+//        border: 1px solid $crown-color;
+        width: 17rem;
+        height: 12.2rem;
+        top: 2.5rem;
+        left: 1.2rem;
+//		padding: 0.5rem;
+		box-shadow: 5px 5px 18px -6px #000000;
+		& li {
+			font-size: 1.1rem;
+		}
+        & a {
+            padding: 1rem 1rem;
+            text-align: left;
+//			border-bottom: 1px solid grey;
+            &:hover {
+                background-color: $main-color;
+                color: #fff;
+            }
+        }
+    }
 }
+
 
 nav {
     width: 80px;
@@ -320,23 +382,78 @@ nav {
         color: #fff;
         font-size: 0.9rem;
     }
-    & .icon-selected {
+   /* & .icon-selected {
         background-color: $main-color;
         & span {
             color: $crown-color;
         }
-    }
-    & a:hover {
+    }*/
+   /* & a:hover {
         background-color: $main-color;
         & span {
             color: $crown-color;
         }
-    }
-    & .nav-icon {
-        width: 56px;
-        height: 56px;
-        padding: 1px 0 1px 0;
-    }
+    }*/
+	& a[href="#add-payment-page"]::before {
+		height: 56px;
+		content: "";
+		display: block;
+		background-image: url(../img/icon-money.png);
+		background-size: 56px;
+		background-repeat: no-repeat;
+		background-position-x: 50%;
+	}
+	& a[href="#add-payment-page"]:hover::before {
+		background-image: url(../img/icon-money-o.png);
+	}
+	& a[href="#add-payment-page"].icon-selected::before {
+		background-image: url(../img/icon-money-o.png);
+	}
+	& a[href="#residents-list-page"]::before {
+		height: 56px;
+		content: "";
+		display: block;
+		background-image: url(../img/icon-users.png);
+		background-size: 56px;
+		background-repeat: no-repeat;
+		background-position-x: 50%;
+	}
+	& a[href="#residents-list-page"]:hover::before {
+		background-image: url(../img/icon-users-o.png);
+	}
+	& a[href="#residents-list-page"].icon-selected::before {
+		background-image: url(../img/icon-users-o.png);
+	}
+	& a[href="#invoices-page"]::before {
+		height: 56px;
+		content: "";
+		display: block;
+		background-image: url(../img/icon-invoice.png);
+		background-size: 56px;
+		background-repeat: no-repeat;
+		background-position-x: 50%;
+	}
+	& a[href="#invoices-page"]:hover::before {
+		background-image: url(../img/icon-invoice-o.png);
+	}
+	& a[href="#invoices-page"].icon-selected::before {
+		background-image: url(../img/icon-invoice-o.png);
+	}
+	& a[href="#records-page"]::before {
+		height: 56px;
+		content: "";
+		display: block;
+		background-image: url(../img/icon-saving-book.png);
+		background-size: 56px;
+		background-repeat: no-repeat;
+		background-position-x: 50%;
+	}
+	& a[href="#records-page"]:hover::before {
+		background-image: url(../img/icon-saving-book-o.png);
+	}
+	& a[href="#records-page"].icon-selected::before {
+		background-image: url(../img/icon-saving-book-o.png);
+	}
 }
 
 .btn {
@@ -392,7 +509,7 @@ nav {
 
 
 #form-search {
-    right: 65px;
+    // right: 65px;
     position: relative;
 	& p {
 		color: $label-color;
@@ -413,6 +530,7 @@ nav {
 
 #form-receipt {
     margin-left: 7rem;
+    position: relative;
 	& label, p{
 		font-size: 2.4em;
 		color: $dark-blue;
@@ -459,12 +577,12 @@ nav {
 #btn-confirm {
 	position: absolute;
     right: 1em;
-    bottom: 1em;
+    bottom: -6em;
 	// margin-top: 1em;
 	// right: 1em;
 }
 
-#search-list {
+#search-list, #search-list-resident-card {
 	width: 60%;
 	position: relative;
 	margin-top: 2em;
@@ -491,6 +609,7 @@ nav {
 }
 
 .residents-list-page__box {
+    position: relative;
 	& input {
 		width: 45%;
         font-size: 1.7em;
@@ -500,19 +619,31 @@ nav {
 	& button {
 		margin: 0.5em auto;
 	}
+    & #search-list-resident-id {
+        width: auto;
+        display: block;
+    }
+    & #btn-close-modal {
+        top: 4rem;
+        right: 0;
+    }
+    & .btn-delete-resident {
+        top: initial;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 .form-resident-card {
-	border: 3px solid $main-color;
-	width: 80%;
-    height: 23rem;
+    width: 84%;
+    height: 33rem;
     padding: 0.5rem;
-    overflow-y: overlay;
+    overflow-y: auto;
     // overflow-wrap: normal;
     position: relative;
-    & #btn-close-modal {
-        top: -0.9rem;
-        right: 0;
+    left: 1.5rem;
+    & .input-group {
+        margin: 0 auto 1rem auto;
     }
 	& label {
 		margin: 0;
@@ -522,7 +653,6 @@ nav {
 	}
 	& input, select {
 		margin: 0;
-        margin-left: 0.3em;
 		color: $dark-blue;
 		padding-bottom: 0.2em;
 		border: 1px #fff solid;
@@ -569,7 +699,11 @@ nav {
 }
 
 #main-page {
-    
+    & img {
+        max-width: 300px;
+        top: 4rem;
+        position: relative;
+    }
 }
 
 .receipt-body, .receipt-html, .invoice-body, .invoice-html {
@@ -607,22 +741,40 @@ nav {
 }
 
 .invoice-page {
+//	border: 1px solid yellow;
 	$height: 7em;
 	width: 8.5in;
 	height: 11in;
 	position: relative;
+	display: block;
 	& img {
-		max-width: 10%;
+		max-width: 35%;
 		position: relative;
-		float: right;
+		top: 0;
 	}
-	& .owner-details {
-		height: 15%;
+	& .invoice-header {
+		height: 9.5rem;
 		margin-bottom: 1em;
 
+		& p#invoice-text-header {
+			position: absolute;
+			top: 2.9rem;
+			right: 0;
+		}
         & p span {
             font-size: 1rem;
         }
+	}
+	& .frase-text {
+		width: 100%;
+		height: 4rem;
+		border: 3px solid $main-color;
+		margin: 1rem auto;
+		padding: 0.5rem;
+		text-align: center;
+		& p {
+			margin: 0.3rem auto;
+		}
 	}
 	& .resident-details {
 		height: $height;
@@ -634,6 +786,9 @@ nav {
 		line-height: 2em;
 		position: absolute;
 		left: 50%;
+        & p {
+            font-size: 1.1rem;
+        }
 	}
 	& .invoice-details__data {
 		height: $height;
@@ -643,12 +798,7 @@ nav {
 		float: right;
 	}
 }
-.bigger-text {
-	font-size: 3em;
-}
-.big-text {
-	font-size: 1.5em;
-}
+
 table.invoice {
 	margin-top: 2rem;
 	& .table-head {
@@ -694,27 +844,12 @@ table.invoice {
 table.footer {
 	position: absolute;
 	bottom: 1rem;
-	width: 100%;
+	width: 60%;
+	border: 2px solid black;
 	& td {
-		display: inline-block;
-	}
-	& td p:nth-child(1){
-		font-weight: bold;
-		font-size: 1.2rem;
-	}
-	& td p {
-		text-align: right;
-	}
-	& .frase {
-		width: 8rem;
-		vertical-align: top;
-		position: relative;
-		top: 3.7rem;
-	}
-	& .vertical-line {
-		border-right: solid 2px $main-color;
-		height: 10rem;
-		margin: 0 0.5rem ;
+		border: 2px solid black;
+		text-align: center;
+		padding: 0.4rem 0;
 	}
 }
 
@@ -752,5 +887,104 @@ table.footer {
                 font-size: 1.1rem;
             }
         }
+    }
+}
+
+
+.input-group {
+	& label {
+		display: inline-block;
+	}
+}
+
+.configs-page-box {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding-top: 5rem;
+	padding-left: 80px;
+	& .configs-form {
+		top: 2rem;
+		position: relative;
+		left: 3rem;
+	}
+	& label {
+		margin: 0;
+        margin-left: 0.3em;
+		color: $label-color;
+		padding: 0.2em 0 0 0;
+		display: inline-block;
+		margin-top: 1.5rem;
+	}
+	& input, textarea {
+		margin: 0;
+		color: $dark-blue;
+		padding-bottom: 0.2em;
+        padding-left: 0.5rem;
+		border: 1px #fff solid;
+		font-size: 1.15em;
+		width: auto;
+        background-color: $input-background;
+        border-radius: 5px;
+		&:focus {
+			// margin: 0;
+			background-color: $dark-blue;
+			color: #fff;
+		}
+		&:hover {
+			// margin: 0;
+			// color: $crown-color;
+            border: 1px black solid;
+		}
+	}
+	& .config-category {
+		width: 10rem;
+	}
+	& label input[name="config-email"] {
+		width: 41.9rem;
+	}
+	& label input[name="config-bank"], label input[name="config-bank-account"] {
+		width: 20.7rem;
+	}
+	& label input[name="config-frase"] {
+		width: 41.9rem;
+		height: 4rem;
+	}
+	& textarea {
+		width: 41.9rem;
+		height: 4rem;
+		font-size: 1.1rem;
+	}
+	& button {
+		position: absolute;
+		bottom: 2rem;
+	}
+}
+
+.inner-box {
+    & label {
+        margin: 0;
+        margin-bottom: 1rem;
+        margin-left: 0.3em;
+        color: $label-color;
+        padding: 0.2em 0 0 0;
+    }
+    & input, select {
+        margin: 0;
+        color: $dark-blue;
+        padding-bottom: 0.2em;
+        border: 1px #fff solid;
+        font-size: 1.15em;
+        width: auto;
+        background-color: $input-background;
+        border-radius: 5px;
+    }
+    & select {
+        margin: auto;
+        margin-bottom: 1rem;
+    }
+    &.choose-batch-type button {
+        margin: 1rem auto;
+        width: 20rem;
     }
 }

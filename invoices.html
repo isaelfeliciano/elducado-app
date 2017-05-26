@@ -9,6 +9,7 @@
 </head>
 <body class="invoice-body">
 
+	
 <script src="js/lodash.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/numeral.js"></script>
@@ -22,6 +23,7 @@ Storage.prototype.getObj = function(key) {
 	return JSON.parse(this.getItem(key));
 }
 
+$('.invoice-body').html("");
 var tempArray = localStorage.getObj('tempInvoices').tempArray;
 _.forEach(tempArray, (item, index) => {
 	item.invoice = item.pendingInvoices[0];
@@ -33,18 +35,20 @@ _.forEach(tempArray, (item, index) => {
 	console.log(dataString);
 	$('.invoice-body').append(`
 		<div class="invoice-page">
-			<div class="owner-details">
-				<img src="img/logo-elducado-bw.png">
+			<div class="invoice-header">
+				<img src="img/logo-elducado-nuevo-bw.png">
 
-				<p class="bigger-text bold">FACTURA <span>${invoiceStatus}</span></p>
+				<p id="invoice-text-header" class="bigger-text bold">FACTURA <span>${invoiceStatus}</span></p>
 
-				<p>Junta de Vecinos</p>
-				<p>Residencial El Ducado</p>
-				<p>Santo Domingo, D.N</p>
 			</div>
 
+			<div class="frase-text">
+				<p class="bold">Frase del Mes:</p>
+				<p>${configs.frase}</p>
+			</div>
+	
 			<div class="resident-details inline-block">
-				<p class="big-text bold">RESIDENTE</p>
+				<p class="big-text bold">RESIDENTE:</p>
 				<p id="jsResidentInvoice">${item.fullName} (#${item.id})</p>
 				<p id="jsAddressInvoice">${item.address}</p>
 				<p>Residencial El Ducado</p>
@@ -52,9 +56,9 @@ _.forEach(tempArray, (item, index) => {
 			</div>
 
 			<div class="invoice-details inline-block">
-				<p class="big-text bold">FACTURA:</p>
-				<p class="big-text bold">FACTURA MES DE:</p>
-				<p class="big-text bold">PAGAR ANTES DE:</p>
+				<p>FACTURA:</p>
+				<p>FACTURA MES DE:</p>
+				<p>PAGAR ANTES DE:</p>
 			</div>
 			
 			<div class="invoice-details__data inline-block">
@@ -82,19 +86,20 @@ _.forEach(tempArray, (item, index) => {
 			<table class="footer">
 				<tr class="center-text">
 					<td>
-						<p>Formas de Pago</p>
-						<br>
-						<p>Pagos en Efectivo</p>
-						<p>Caseta de Pago (Garita)</p>
-						<br>
+						<p class="bold">Formas de Pago</p>
+					</td>
+					<td>
+						<p>Pagos en Efectivo - Perimetrar A #27, El Ducado - Ademas tendremos un Operativo de Cobro la ultima semana del mes</p>
+					</td>
+					<td>
 						<p>Deposito o Transferencia</p>
-						<p>Cuenta No. ${configs.bankAccountNumber} (${configs.bank})</p>
-						<br>
-						<p>Enviar Notificaciones de pagos al email</p>
+						<p class="bold">Cuenta No. ${configs.bankAccountNumber}</p>
+						<p>(${configs.bank})</p>
+					</td>
+					<td>
+						<p>Enviar Notificaciones de pagos por email</p>
 						<p>${configs.email}</p>
 					</td>
-					<td class="vertical-line"></td>
-					<td class="frase">${configs.frase}</td>
 				</tr>
 			</table>
 		</div>
@@ -118,10 +123,12 @@ function getDataString (item) {
 	return dataString;
 }
 
-function getInvoiceTotal (item) {
-	let invoiceTotal = 0;
-	_.forEach(item.pendingInvoices, (item, index) => {
-		invoiceTotal = invoiceTotal + item.amount;
+function getInvoiceTotal (resident) {
+	var invoiceTotal = 0;
+	_.forEach(resident.pendingInvoices, (item, index) => {
+		if(item.amount !== null){
+			invoiceTotal += parseInt(item.amount);
+		}
 		return invoiceTotal;
 	});
 	return invoiceTotal;

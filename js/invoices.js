@@ -25,6 +25,7 @@ btnClick('#generateInvoices', (e) => {
 
 btnClick('#printInBatch', (e) => {
 	// $('.modal__select-batch').removeClass('no-display');
+	localStorage.setObj('tempInvoices', {tempArray: []});
 	$('#searchInvoiceBatch').trigger('click');
 });
 
@@ -42,10 +43,47 @@ btnClick('#btn-search-invoice', (e) => {
 			resident.pendingInvoices = [doc[0]]; // Ambiguo
 			let tempArray = localStorage.getObj('tempInvoices').tempArray;
 			tempArray.push(resident);
-			localStorage.setObj('tempInvoices', {tempArray: tempArray});
-			window.open('./invoices.html');
-		})
+			$('.modal__search-invoice .resident').text(resident.fullName);
+			$('.modal__search-invoice .month').text(resident.invoice.month);
+			$('.modal__search-invoice .status').text(resident.invoice.status);
+			$('.modal__search-invoice .amount').text(resident.invoice.amount);
+			$('.modal__search-invoice').removeClass('no-display');
+			let option = $('#modal__select-search-invoice option:selected').val();
+			$('#modal__select-search-invoice').on('change', (e) => {
+				option = $('#modal__select-search-invoice option:selected').val();
+			});
+			$('#modal__btn-search-invoice-continue').one("click", (e) => {
+				e.preventDefault();
+				$('#modal__search-invoice').addClass('no-display');
+				switch (option) {
+					case "":
+						return;
+						break;
+					case "print":
+						localStorage.setObj('tempInvoices', {tempArray: tempArray});
+						window.open('./invoices.html');
+						$('.modal__search-invoice').addClass('no-display');
+						break;
+					case "delete":
+						mongoDbObj.invoices.deleteOne({id: resident.invoice.id}, (err, result) => {
+							if (err) return console.log(err);
+							resident.pendingInvoices.shift(resident.invoice.id);
+							mongoDbObj.residents.updateOne({id: resident.id}, {$set: {pendingInvoices: resident.pendingInvoices}}, (err, result) => {
+								if (err) return console.log(err);
+								flashMessage('Factura borrada', 'flashmessage--info');
+								$('.modal__search-invoice').addClass('no-display');
+								console.log(result);
+							});
+						});
+						break;
+				}
+			});
+		});
 	});
+});
+
+btnClick('.modal__search-invoice #btn-close-modal', (e) => {
+	$('.modal__search-invoice').addClass('no-display');
 });
 
 btnClick('#searchInvoiceBatch', (e) => {
@@ -224,7 +262,12 @@ function populateSelect(configs) {
 	}
 }
 
-btnClick('#createInvoices', (e) => {
+btnClick('#generateNormalInvoicesBatch', (e) => {
+	noDisplay('.inner-box');
+	yesDisplay('.generate-normal-invoices');
+});
+
+btnClick('#generateNormalInvoicesBatchActual', (e) => {
 	configs.selectedMonth = $(`select[name="invoice-month"] option:selected`).val();
 	let selectedMonth = configs.selectedMonth;
 	let year = configs.yearPrefix;
@@ -249,14 +292,60 @@ btnClick('#createInvoices', (e) => {
 			let invoiceNumber = configs.selectedMonth + year + configs.invoiceSequence;
 			configs.invoiceSequence++;
 			let id = item.id;
-			let category = (item.category).toLowerCase();
+			let category = item.category;
 			let amount = configs.categoryPrices[category];
 			updateConfigs({invoiceSequence: configs.invoiceSequence})
 			.then(updatePendingInvoice(invoiceNumber, id))
 			.then(createInvoice(invoiceNumber, id, category, amount))
 			.then((result) => {
 				console.log(result);
-				flashMessage('Facturas creadas', 'flashmessage--success')
+				flashMessage('Facturas creadas', 'flashmessage--success');
+				$('.modal__select-batch #btn-close-modal').trigger('click');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+
+			if (doc.length === (index + 1 )) {
+				if (parseInt(configs.selectedMonth) === 12) {
+					updateConfigs({monthPrefix: 1, yearPrefix: configs.yearPrefix + 1});
+					return;
+				}
+				updateConfigs({monthPrefix: parseInt(configs.selectedMonth) + 1});
+			}
+		});
+	});
+});
+
+btnClick('#generateExtraordinaryInvoicesBatch', (e) => {
+	noDisplay('.inner-box');
+	yesDisplay('.generate-extraordinary-invoices');
+});
+
+btnClick('#generateExtraordinaryInvoicesBatchActual', (e) => {
+	let year = configs.yearPrefix;
+	
+	mongoDbObj.residents.find().toArray((err, doc) => {
+		if (err) {
+			console.log(err);
+			return
+		}
+		if (doc.length === 0) return flashMessage('Estas facturas ya existen', 'flashmessage--info');
+		console.log(doc);
+		_.forEach(doc, (item, index) => {
+			let invoiceNumber = `${year}${configs.invoiceSequence}`;
+			configs.invoiceSequence++;
+			let id = item.id;
+			let category = item.category;
+			let description = getInputVal('extraordinary-description');
+			let amount = getInputVal('extraordinary-amount');
+			updateConfigs({invoiceSequence: configs.invoiceSequence})
+			.then(updatePendingInvoice(invoiceNumber, id))
+			.then(createInvoiceExtraordinary(invoiceNumber, id, category, description, amount))
+			.then((result) => {
+				console.log(result);
+				$('.modal__generate-invoices #btn-close-modal').trigger('click');
+				flashMessage('Facturas creadas', 'flashmessage--success');
 			})
 			.catch((err) => {
 				console.log(err);
@@ -274,6 +363,7 @@ btnClick('#createInvoices', (e) => {
 });
 
 function updateConfigs(data) { // Updating invoiceSequence
+	console.log("updateConfigs");
 	return new Promise((resolve, reject) => {
 		mongoDbObj.configs.update({}, {$set: data}, (err, result) => {
 			if (err) {
@@ -309,6 +399,30 @@ function createInvoice(invoiceNumber, id, category, amount) {
 		amount: amount,
 		dueDate: moment().month(configs.selectedMonth -1).endOf('month').format('DD/MMMM/YYYY'),
 		description: `Mantenimiento de el Residencial (${month})`
+	}
+
+	mongoDbObj.invoices.insertOne(data, (err, result) => {
+		if (err) {
+			return Promise.reject(err);
+		} else {
+			return Promise.resolve(result);
+		}
+	})
+}
+
+function createInvoiceExtraordinary(invoiceNumber, id, category, description, amount) {
+	console.log("createInvoiceExtraordinary");
+	let month = moment().format('MMMM');
+	let data = {
+		id: invoiceNumber,
+		dateRealeased: moment().format('DD/MM/YYYY'),
+		month: month,
+		status: "Sin pagar",
+		residentId: id,
+		category: category,
+		amount: amount,
+		dueDate: moment().endOf('month').format('DD/MMMM/YYYY'),
+		description: description
 	}
 
 	mongoDbObj.invoices.insertOne(data, (err, result) => {

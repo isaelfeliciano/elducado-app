@@ -1,0 +1,3089 @@
+/* 1 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f25"),
+    "id" : "62017246",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Pagada",
+    "residentId" : 3,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)",
+    "datePayed" : "13/05/2017",
+    "payMethod" : "Efectivo",
+    "checkNumber" : "",
+    "accountNumber" : "",
+    "resident" : "Demetrio Aquiles Fernandez (#3)"
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f27"),
+    "id" : "62017248",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 5,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f28"),
+    "id" : "62017249",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 6,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f26"),
+    "id" : "62017247",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 4,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f29"),
+    "id" : "62017250",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 7,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f2a"),
+    "id" : "62017251",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 8,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f2b"),
+    "id" : "62017252",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 9,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 8 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f2c"),
+    "id" : "62017253",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 10,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 9 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f2d"),
+    "id" : "62017254",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 11,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 10 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f2e"),
+    "id" : "62017255",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 12,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 11 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f2f"),
+    "id" : "62017256",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 13,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 12 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f30"),
+    "id" : "62017257",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 14,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 13 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f31"),
+    "id" : "62017258",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 15,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 14 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f32"),
+    "id" : "62017259",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 16,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 15 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f33"),
+    "id" : "62017260",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 17,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 16 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f34"),
+    "id" : "62017261",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 18,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 17 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f35"),
+    "id" : "62017262",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 19,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 18 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f36"),
+    "id" : "62017263",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 20,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 19 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f37"),
+    "id" : "62017264",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 21,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 20 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f38"),
+    "id" : "62017265",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 22,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 21 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f39"),
+    "id" : "62017266",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 23,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 22 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f3a"),
+    "id" : "62017267",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 24,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 23 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f3b"),
+    "id" : "62017268",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 25,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 24 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f3c"),
+    "id" : "62017269",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 26,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 25 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f3d"),
+    "id" : "62017270",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 27,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 26 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f3e"),
+    "id" : "62017271",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 28,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 27 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f3f"),
+    "id" : "62017272",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 29,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 28 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f40"),
+    "id" : "62017273",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 30,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 29 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f41"),
+    "id" : "62017274",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 31,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 30 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f42"),
+    "id" : "62017275",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 32,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 31 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f43"),
+    "id" : "62017276",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 33,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 32 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f44"),
+    "id" : "62017277",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 34,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 33 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f45"),
+    "id" : "62017278",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 35,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 34 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f46"),
+    "id" : "62017279",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 36,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 35 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f47"),
+    "id" : "62017280",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 37,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 36 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f48"),
+    "id" : "62017281",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 38,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 37 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f49"),
+    "id" : "62017282",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 39,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 38 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f4a"),
+    "id" : "62017283",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 40,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 39 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f4b"),
+    "id" : "62017284",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 41,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 40 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f4c"),
+    "id" : "62017285",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 42,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 41 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f4d"),
+    "id" : "62017286",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 43,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 42 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f4e"),
+    "id" : "62017287",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 44,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 43 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f4f"),
+    "id" : "62017288",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 45,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 44 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f50"),
+    "id" : "62017289",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 46,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 45 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f51"),
+    "id" : "62017290",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 47,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 46 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f52"),
+    "id" : "62017291",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 48,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 47 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f53"),
+    "id" : "62017292",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 49,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 48 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f54"),
+    "id" : "62017293",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 50,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 49 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f55"),
+    "id" : "62017294",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 51,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 50 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f56"),
+    "id" : "62017295",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 52,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 51 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f57"),
+    "id" : "62017296",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 53,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 52 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f58"),
+    "id" : "62017297",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 54,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 53 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f59"),
+    "id" : "62017298",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 55,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 54 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f5a"),
+    "id" : "62017299",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 56,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 55 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f5b"),
+    "id" : "62017300",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 57,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 56 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f5c"),
+    "id" : "62017301",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Pagada",
+    "residentId" : 58,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)",
+    "datePayed" : "13/05/2017",
+    "payMethod" : "Efectivo",
+    "checkNumber" : "",
+    "accountNumber" : "",
+    "resident" : "Victor Ramirez Minier (#58)"
+}
+
+/* 57 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f5d"),
+    "id" : "62017302",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 59,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 58 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f5e"),
+    "id" : "62017303",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 60,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 59 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f5f"),
+    "id" : "62017304",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 61,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 60 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f60"),
+    "id" : "62017305",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 62,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 61 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f61"),
+    "id" : "62017306",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 63,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 62 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f62"),
+    "id" : "62017307",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 64,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 63 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f63"),
+    "id" : "62017308",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 65,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 64 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f64"),
+    "id" : "62017309",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 66,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 65 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f65"),
+    "id" : "62017310",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 67,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 66 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f66"),
+    "id" : "62017311",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 68,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 67 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f67"),
+    "id" : "62017312",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 69,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 68 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f68"),
+    "id" : "62017313",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 70,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 69 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f69"),
+    "id" : "62017314",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 71,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 70 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f6a"),
+    "id" : "62017315",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 72,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 71 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f6b"),
+    "id" : "62017316",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 73,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 72 */
+{
+    "_id" : ObjectId("5916b075c137c5210c557f6c"),
+    "id" : "62017317",
+    "dateRealeased" : "13/05/2017",
+    "month" : "junio",
+    "status" : "Sin pagar",
+    "residentId" : 74,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "30/junio/2017",
+    "description" : "Mantenimiento de el Residencial (junio)"
+}
+
+/* 73 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26a5"),
+    "id" : "72017318",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 1,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 74 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26a6"),
+    "id" : "72017319",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 2,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 75 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26a7"),
+    "id" : "72017320",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 3,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 76 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26a8"),
+    "id" : "72017321",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 4,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 77 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26a9"),
+    "id" : "72017322",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 5,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 78 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26aa"),
+    "id" : "72017323",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 6,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 79 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26ab"),
+    "id" : "72017324",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 7,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 80 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26ac"),
+    "id" : "72017325",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 8,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 81 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26ad"),
+    "id" : "72017326",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 9,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 82 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26ae"),
+    "id" : "72017327",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 10,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 83 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26af"),
+    "id" : "72017328",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 11,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 84 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b0"),
+    "id" : "72017329",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 12,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 85 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b1"),
+    "id" : "72017330",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 13,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 86 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b2"),
+    "id" : "72017331",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 14,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 87 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b3"),
+    "id" : "72017332",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 15,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 88 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b4"),
+    "id" : "72017333",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 16,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 89 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b5"),
+    "id" : "72017334",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 17,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 90 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b6"),
+    "id" : "72017335",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 18,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 91 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b7"),
+    "id" : "72017336",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 19,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 92 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b8"),
+    "id" : "72017337",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 20,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 93 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26b9"),
+    "id" : "72017338",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 21,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 94 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26ba"),
+    "id" : "72017339",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 22,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 95 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26bb"),
+    "id" : "72017340",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 23,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 96 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26bc"),
+    "id" : "72017341",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 24,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 97 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26bd"),
+    "id" : "72017342",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 25,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 98 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26be"),
+    "id" : "72017343",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 26,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 99 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26bf"),
+    "id" : "72017344",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 27,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 100 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c0"),
+    "id" : "72017345",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 28,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 101 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c1"),
+    "id" : "72017346",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 29,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 102 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c2"),
+    "id" : "72017347",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 30,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 103 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c3"),
+    "id" : "72017348",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 31,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 104 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c4"),
+    "id" : "72017349",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 32,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 105 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c5"),
+    "id" : "72017350",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 33,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 106 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c6"),
+    "id" : "72017351",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 34,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 107 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c7"),
+    "id" : "72017352",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 35,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 108 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c8"),
+    "id" : "72017353",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 36,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 109 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26c9"),
+    "id" : "72017354",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 37,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 110 */
+{
+    "_id" : ObjectId("59171c297d20f61788ce26ca"),
+    "id" : "72017355",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 38,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 111 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26cb"),
+    "id" : "72017356",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 39,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 112 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26cc"),
+    "id" : "72017357",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 40,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 113 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26cd"),
+    "id" : "72017358",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 41,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 114 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26ce"),
+    "id" : "72017359",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 42,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 115 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26cf"),
+    "id" : "72017360",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 43,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 116 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d0"),
+    "id" : "72017361",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 44,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 117 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d1"),
+    "id" : "72017362",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 45,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 118 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d2"),
+    "id" : "72017363",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 46,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 119 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d3"),
+    "id" : "72017364",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 47,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 120 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d4"),
+    "id" : "72017365",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 48,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 121 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d5"),
+    "id" : "72017366",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 49,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 122 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d6"),
+    "id" : "72017367",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 50,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 123 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d7"),
+    "id" : "72017368",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 51,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 124 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d8"),
+    "id" : "72017369",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 52,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 125 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26d9"),
+    "id" : "72017370",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 53,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 126 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26da"),
+    "id" : "72017371",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 54,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 127 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26db"),
+    "id" : "72017372",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 55,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 128 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26dc"),
+    "id" : "72017373",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 56,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 129 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26dd"),
+    "id" : "72017374",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 57,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 130 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26de"),
+    "id" : "72017375",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 58,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 131 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26df"),
+    "id" : "72017376",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 59,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 132 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e0"),
+    "id" : "72017377",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 60,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 133 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e1"),
+    "id" : "72017378",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 61,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 134 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e2"),
+    "id" : "72017379",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 62,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 135 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e3"),
+    "id" : "72017380",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 63,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 136 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e4"),
+    "id" : "72017381",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 64,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 137 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e5"),
+    "id" : "72017382",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 65,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 138 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e6"),
+    "id" : "72017383",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 66,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 139 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e7"),
+    "id" : "72017384",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 67,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 140 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e8"),
+    "id" : "72017385",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 68,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 141 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26e9"),
+    "id" : "72017386",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 69,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 142 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26ea"),
+    "id" : "72017387",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 70,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 143 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26eb"),
+    "id" : "72017388",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 71,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 144 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26ec"),
+    "id" : "72017389",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 72,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 145 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26ed"),
+    "id" : "72017390",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 73,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 146 */
+{
+    "_id" : ObjectId("59171c2a7d20f61788ce26ee"),
+    "id" : "72017391",
+    "dateRealeased" : "13/05/2017",
+    "month" : "julio",
+    "status" : "Sin pagar",
+    "residentId" : 74,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/julio/2017",
+    "description" : "Mantenimiento de el Residencial (julio)"
+}
+
+/* 147 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c76"),
+    "id" : "82017392",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 1,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 148 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c78"),
+    "id" : "82017394",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 3,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 149 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c79"),
+    "id" : "82017395",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 4,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 150 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c77"),
+    "id" : "82017393",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 2,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 151 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c7a"),
+    "id" : "82017396",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 5,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 152 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c7b"),
+    "id" : "82017397",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 6,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 153 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c7c"),
+    "id" : "82017398",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 7,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 154 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c7d"),
+    "id" : "82017399",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 8,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 155 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c7e"),
+    "id" : "82017400",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 9,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 156 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c7f"),
+    "id" : "82017401",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 10,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 157 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c80"),
+    "id" : "82017402",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 11,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 158 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c81"),
+    "id" : "82017403",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 12,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 159 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c82"),
+    "id" : "82017404",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 13,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 160 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c83"),
+    "id" : "82017405",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 14,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 161 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c84"),
+    "id" : "82017406",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 15,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 162 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c85"),
+    "id" : "82017407",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 16,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 163 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c86"),
+    "id" : "82017408",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 17,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 164 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c87"),
+    "id" : "82017409",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 18,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 165 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c88"),
+    "id" : "82017410",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 19,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 166 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c89"),
+    "id" : "82017411",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 20,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 167 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c8a"),
+    "id" : "82017412",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 21,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 168 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c8b"),
+    "id" : "82017413",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 22,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 169 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c8c"),
+    "id" : "82017414",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 23,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 170 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c8d"),
+    "id" : "82017415",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 24,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 171 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c8e"),
+    "id" : "82017416",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 25,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 172 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c8f"),
+    "id" : "82017417",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 26,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 173 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c90"),
+    "id" : "82017418",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 27,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 174 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c92"),
+    "id" : "82017420",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 29,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 175 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c91"),
+    "id" : "82017419",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 28,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 176 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c94"),
+    "id" : "82017422",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 31,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 177 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c96"),
+    "id" : "82017424",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 33,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 178 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c93"),
+    "id" : "82017421",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 30,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 179 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c95"),
+    "id" : "82017423",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 32,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 180 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c97"),
+    "id" : "82017425",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 34,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 181 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c98"),
+    "id" : "82017426",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 35,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 182 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c99"),
+    "id" : "82017427",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 36,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 183 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c9a"),
+    "id" : "82017428",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 37,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 184 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c9b"),
+    "id" : "82017429",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 38,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 185 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c9c"),
+    "id" : "82017430",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 39,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 186 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c9d"),
+    "id" : "82017431",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 40,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 187 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c9e"),
+    "id" : "82017432",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 41,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 188 */
+{
+    "_id" : ObjectId("591b48a78442781d04653c9f"),
+    "id" : "82017433",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 42,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 189 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca0"),
+    "id" : "82017434",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 43,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 190 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca1"),
+    "id" : "82017435",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 44,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 191 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca2"),
+    "id" : "82017436",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 45,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 192 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca3"),
+    "id" : "82017437",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 46,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 193 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca4"),
+    "id" : "82017438",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 47,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 194 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca6"),
+    "id" : "82017440",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 49,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 195 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca9"),
+    "id" : "82017443",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 52,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 196 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cab"),
+    "id" : "82017445",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 54,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 197 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca8"),
+    "id" : "82017442",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 51,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 198 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca5"),
+    "id" : "82017439",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 48,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 199 */
+{
+    "_id" : ObjectId("591b48a78442781d04653ca7"),
+    "id" : "82017441",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 50,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 200 */
+{
+    "_id" : ObjectId("591b48a78442781d04653caa"),
+    "id" : "82017444",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 53,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 201 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cac"),
+    "id" : "82017446",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 55,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 202 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cad"),
+    "id" : "82017447",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 56,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 203 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cae"),
+    "id" : "82017448",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 57,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 204 */
+{
+    "_id" : ObjectId("591b48a78442781d04653caf"),
+    "id" : "82017449",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 58,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 205 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb0"),
+    "id" : "82017450",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 59,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 206 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb1"),
+    "id" : "82017451",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 60,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 207 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb2"),
+    "id" : "82017452",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 61,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 208 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb3"),
+    "id" : "82017453",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 62,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 209 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb4"),
+    "id" : "82017454",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 63,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 210 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb5"),
+    "id" : "82017455",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 64,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 211 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb6"),
+    "id" : "82017456",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 65,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 212 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb7"),
+    "id" : "82017457",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 66,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 213 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb8"),
+    "id" : "82017458",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 67,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 214 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cb9"),
+    "id" : "82017459",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 68,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 215 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cba"),
+    "id" : "82017460",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 69,
+    "category" : "alquilado",
+    "amount" : 1000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 216 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cbb"),
+    "id" : "82017461",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 70,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 217 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cbc"),
+    "id" : "82017462",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 71,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 218 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cbd"),
+    "id" : "82017463",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 72,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 219 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cbe"),
+    "id" : "82017464",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 73,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}
+
+/* 220 */
+{
+    "_id" : ObjectId("591b48a78442781d04653cbf"),
+    "id" : "82017465",
+    "dateRealeased" : "16/05/2017",
+    "month" : "agosto",
+    "status" : "Sin pagar",
+    "residentId" : 74,
+    "category" : "propietario",
+    "amount" : 2000,
+    "dueDate" : "31/agosto/2017",
+    "description" : "Mantenimiento de el Residencial (agosto)"
+}

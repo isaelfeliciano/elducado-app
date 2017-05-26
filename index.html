@@ -6,15 +6,21 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/animation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
 	<div class="flashmessage center-align-absolute center-text box-radius notVisible">
 	</div>
-	
+
+<div class="splash-screen animated no-display">
+	<img src="img/logo-elducado.png" class="center-align">
+</div>
+
+<!-- MODAL RECEIPT -->	
 <div id="modal" class="modal-receipt modal-background no-display">
-	<div id="jsModalLoading" class="modal__box modal__confirm-pay center-align-absolute box-radius animated">
+	<div id="jsModalLoading" class="modal__box modal__confirm-pay center-align-absolute box-radius animated fadeInUp">
 		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
 		<h1>Factura</h1>
 		<span id="jsInvoiceNumberModal">#2017-001</span>
@@ -30,7 +36,9 @@
 		<button id="btn-save-receipt" class="btn"><i class="fa fa-save"></i> Solo salvar</button>
 	</div>
 </div>
+<!-- MODAL RECEIPT -->
 
+<!-- MODAL PRINT INVOICES IN BATCH (NOT USING) -->
 <div id="modal" class="modal__select-batch modal-background no-display">
 	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
 		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
@@ -64,50 +72,108 @@
 		<button id="searchInvoiceBatch" class="btn center-align">Buscar batch</button>
 	</div>
 </div>
+<!-- MODAL PRINT INVOICES IN BATCH -->
 
+<!-- MODAL GENERATE INVOICES IN BATCH -->
 <div id="modal" class="modal__generate-invoices modal-background no-display">
-	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
+	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
 		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		<p class="center-text">Generar facturas para el mes de:</p>
 		
-		<select name="invoice-month" class="center-align">
-		</select>
+		<div class="inner-box choose-batch-type">
+			<p class="center-text">Seleccione el tipo de Batch</p>
 
-		<button id="createInvoices" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+			<button id="generateNormalInvoicesBatch" class="btn center-align"><i class="fa fa-file-text-o"></i> Facturas Normales</button>
+			<button id="generateExtraordinaryInvoicesBatch" class="btn center-align"><i class="fa fa-file-excel-o"></i> Facturas Extraordinarias</button>
+		</div>
+
+		<div class="inner-box generate-normal-invoices no-display animated fadeInDown">
+			<p class="center-text">Generar facturas para el mes de:</p>
+			
+			<select name="invoice-month" class="center-align">
+			</select>
+
+			<button id="generateNormalInvoicesBatchActual" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+		</div>
+
+		<div class="inner-box generate-extraordinary-invoices no-display animated fadeInDown">
+			<p class="center-text">Detalles de Factura Extraordinaria</p>
+
+			<label for="extraordinary-description">Descripcion <input type="text" name="extraordinary-description"></label>
+			<label for="extraordinary-amount">Monto <input type="number" name="extraordinary-amount"></label>
+
+			<button id="generateExtraordinaryInvoicesBatchActual" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+		</div>
 	</div>
 </div>
+<!-- MODAL GENERATE INVOICES IN BATCH -->
+
+<!-- MODAL SEARCH INVOICE -->
+<div id="modal" class="modal__search-invoice modal-background no-display">
+	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
+		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+		<p>Residente: <span class="resident"></span></p>
+		<p>Mes: <span class="month"></span></p>
+		<p>Status: <span class="status"></span></p>
+		<p>Monto: <span class="amount"></span></p>
+		
+		<select id="modal__select-search-invoice" class="center-align">
+			<option value="print">Imprimir</option>
+			<option value="delete">Eliminar</option>
+		</select>
+
+		<button id="modal__btn-search-invoice-continue" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+	</div>
+</div>
+<!-- MODAL SEARCH INVOICE -->
+
+<!-- MODAL DELETE RESIDENT -->
+<div id="modal" class="modal__delete-resident modal-background no-display">
+	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
+		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+		<p class="center-text">Esta seguro? eliminar residente:</p>
+		<p id="resident" class="center-text"></p>
+		
+		<button id="confirm-delete" class="btn center-align"><i class="fa fa-trash-o"></i> Eliminar</button>
+	</div>
+</div>
+<!-- MODAL DELETE RESIDENT -->
 
 <header class="center-text jsHideOnPrint">
-	<button><i class="fa fa-bars fa-2x"></i></button>
+	<button class="btn-menu"><i class="fa fa-bars fa-2x"></i></button>
 	<p>El Ducado APP</p>
 	<img src="img/logo-elducado.png">
+	<div class="menu no-display">
+		<ul>
+			<li><a href="#main-page"><i class="fa fa-home"></i> Inicio</a></li>
+			<li><a href="#configs-page"><i class="fa fa-pencil-square-o"></i> Editar Configuraciones</a></li>
+			<li><a class="close-application" href="#"><i class="fa fa-close"></i> Cerrar Aplicacion</a></li>
+			<li><a class="" href="#"><i class="fa fa-info"></i> About</a></li>
+		</ul>
+	</div>
 </header>
+
 
 <nav class="center-text">
 	<a href="#add-payment-page" id="jsAddPayment">
-		<img class="nav-icon center-align" src="img/icon-money.png">
 		<span>Agregar pago</span>
 	</a>
 
 	<a href="#residents-list-page">
-		<img class="nav-icon center-align" src="img/icon-users.png">
 		<span>Residentes</span>
 	</a>
 
 	<a href="#invoices-page">
-		<img class="nav-icon center-align" src="img/icon-invoice.png">
 		<span>Facturas</span>
 	</a>
 
-	<a href="#">
-		<img class="nav-icon center-align" src="img/icon-saving-book.png">
+	<a href="#records-page">
 		<span>Registros</span>
 	</a>
 </nav>
 
 <div id="main-page" class="page">
-	<div class="main-page__container">
-	
+	<div class="main-page__container center-align">
+		<img src="img/logo-elducado.png" class="center-align">
 	</div>
 </div>
 
@@ -135,12 +201,12 @@
 
 			<span>Factura</span>
 			<p id="jsInvoiceNumber">#</p>
-			<button id="btnChangeInvoice">Siguiente</button>
+			<button id="btnChangeInvoice" class="no-display"><i class="fa fa-chevron-right"></i></button>
 
 			<span>Para el Mes</span>
 			<p id="jsMonth">Mes</p>
 
-			<span>Tipo</span>
+			<span>Categoria</span>
 			<p id="jsType">Propietario</p>
 			
 			<span>Monto</span>
@@ -166,101 +232,90 @@
 	<div class="residents-list-page__box">
 		<input name="search-resident-list" class="center-align box-radius">
 		<button id="searchResident" class="btn center-align"><i class="fa fa-search"></i> Buscar</button>
+		<button id="createResident" class="btn center-align"><i class="fa fa-user-plus"></i> Crear</button>
 
 		<ul id="search-list-resident-card" class="center-align">
 			<!-- To populate from JS -->
 			<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
 			<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
 		</ul>
+
+		<button id="btn-close-modal" class="no-display"><i class="fa fa-close fa-3x"></i></button>
 		<div class="form-resident-card box-radius center-align no-display">
-			<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-			<div class="wrapper">
-			<label for="firstname">Nombre</label>
-			<input type="text" name="firstname" value=""/>
-			</div>
+			<span id="search-list-resident-id"></span>
 			
-			<div class="wrapper">
-			<label for="lastname">Apellido</label>
-			<input type="text" name="lastname" value=""/>
-			</div>
-				
-			<div class="wrapper">
-			<label for="type">Categoria</label>
-			<select name="category">
-				<option value=""></option>
-				<option value="Propietario">Propietario</option>
-				<option value="Alquilado">Alquilado</option>
-				<option value="Solar">Solar</option>
+			<p class="inline">Categoria</p>
+			<select name="category" class="inline">
+				<option value="empty"></option>
+				<option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="D">D</option>
 			</select>
-			</div>	
+
+			<label for="address">Direccion<input type="text" name="address" value=""/></label>
+			<br>
+
+			<p>RESIDENTES</p>
+			<p>(1)</p>
+			<div class="input-group">
+				<label for="firstName">Nombre: <input type="text" name="firstName"></label>
+
+				<label for="lastName">Apellido: <input type="text" name="lastName"></label>
+
+				<label for="personID">Cedula: <input type="text" name="personID"></label>
+
+				<label for="phone">Telefono: <input type="text" name="phone"></label>
+
+				<label for="cellPhone">Celular: <input type="text" name="cellPhone"></label>
+
+				<label for="email">Correo: <input type="email" name="email"></label>
+			</div>
+
+			<p>(2)</p>
+			<div class="input-group">
+				<label for="firstName2">Nombre: <input type="text" name="firstName2"></label>
+
+				<label for="lastName2">Apellido: <input type="text" name="lastName2"></label>
+
+				<label for="personID2">Cedula: <input type="text" name="personID2"></label>
+
+				<label for="cellPhone2">Celular: <input type="text" name="cellPhone2"></label>
+			</div>
+
+			<p>PROPIETARIO</p>
+			<div class="input-group">
+				<label for="firstNameOwner">Nombre: <input type="text" name="firstNameOwner"></label>
+
+				<label for="lastNameOwner">Apellido: <input type="text" name="lastNameOwner"></label>
+
+				<label for="personIDOwner">Cedula: <input type="text" name="personIDOwner"></label>
+
+				<label for="cellPhoneOwner">Celular: <input type="text" name="cellPhoneOwner"></label>
+			</div>
+
+			<p>CUENTAS BANCARIAS</p>
+			<div class="input-group">
+				<label for="bankName1">Banco: <input type="text" name="bankName1"></label>
+
+				<label for="bankName2">Banco: <input type="text" name="bankName2"></label>
+
+				<label for="bankName3">Banco: <input type="text" name="bankName3"></label>
 				
-			<div class="wrapper">
-			<label for="email">Email</label>
-			<input type="email" name="email" value=""/>
+				<label for="bank1">Numero de Cuenta: <input type="text" name="bank1"></label>
+
+				<label for="bank2">Numero de Cuenta: <input type="text" name="bank2"></label>
+
+				<label for="bank3">Numero de Cuenta: <input type="text" name="bank3"></label>
 			</div>
+
+			<p class="lastPayment">Ultimo Pago Realizado</p>
 			
-			<div class="wrapper">
-			<label for="address">Direccion</label>
-			<input type="text" name="address" value=""/>
-			</div>
-			
-			<div class="block">
-			<span>
-				<label for="tel1" class="block">Tel 1</label>
-				<input type="tel" name="tel1" value=""/>
-			</span>
-			
-			<span>
-				<label for="tel2" class="block">Tel 2</label>
-				<input type="tel" name="tel2" value=""/>
-			</span>
-			
-			<span>
-				<label for="tel3" class="block">Tel 3</label>
-				<input type="tel" name="tel3" value=""/>
-			</span>
-			</div>
-			
-			<label for="cedula">Cedula</label>
-			<input type="text" name="cedula" value=""/>
-			
-			<span class="short-input">
-				<label for="carnet-id">Carnet ID</label>
-				<input type="number" name="carnet-id" value=""/>
-			</span>
-			
-			<span class="short-input">
-				<label for="stickers">Calcomania</label>
-				<input type="number" name="stickers" value=""/>
-			</span>
-			
-			<span class="short-input">
-				<label for="door-control">Controles</label>
-				<input type="number" name="door-control" value=""/>
-			</span>
-			
-			<div class="inline-block">
-			<label for="reference">Referencia</label>
-			<input type="text" name="reference" value=""/>
-			</div>
-				
-			<div class="inline-block">
-			<label for="bank1">Cuenta Banco 1</label>
-			<input type="text" name="bank1" value="" class="bank-account"/>
-			</div>
-					
-			<div class="inline-block">
-			<label for="bank2">Cuenta Banco 2</label>
-			<input type="text" name="bank2" value="" class="bank-account"/>
-			</div>
-						
-			<div class="inline-block">
-			<label for="bank3">Cuenta Banco 3</label>
-			<input type="text" name="bank3" value="" class="bank-account" />
-			</div>
 		</div>
-		
-		<button class="btn"><i class="fa fa-save"></i> Salvar</button>
+			
+		<button class="btn-delete-resident no-display"><i class="fa fa-trash-o fa-3x"></i></button>
+
+		<button id=save-resident class="btn no-display"><i class="fa fa-save"></i> Salvar</button>
 	</div>
 </div>
 
@@ -277,6 +332,32 @@
 			<button id="printInBatch" class="btn btn__big center-align"><i class="fa fa-print fa-3x center-align-absolute"></i> <p>Imprimir Batch</p></button>
 		</section>
 
+	</div>
+</div>
+
+<!-- CONFIGS PAGE -->
+<div id="configs-page" class="page">
+	<div class="configs-page-box">
+		<h1 class="center-text">Editar Configuraciones</h1>
+
+		<div class="configs-form">
+		<label for="category-a">Categoria A <input class="config-category" type="number" name="category-a"></label>
+
+		<label for="category-b">Categoria B<input class="config-category" type="number" name="category-b"></label>
+
+		<label for="category-c" >Categoria C<input class="config-category" type="number" name="category-c"></label>
+
+		<label for="category-d" >Categoria D<input class="config-category" type="number" name="category-d"></label>
+
+		<label for="config-email">Email <input type="text" name="config-email"></label>
+
+		<label for="config-bank">Banco <input type="text" name="config-bank"></label>
+
+		<label for="config-bank-account">Numero de Cuenta <input type="text" name="config-bank-account"></label>
+
+			<label for="config-frase">Frase <textarea name="config-frase" class="box-radius"></textarea></label>
+		</div>
+		<button id="btn-configs-save" class="btn center-align-absolute"><i class="fa fa-save"></i> Salvar</button>
 	</div>
 </div>
 

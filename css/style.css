@@ -55,6 +55,12 @@
   position: absolute;
   left: 0; }
 
+.bigger-text {
+  font-size: 3em; }
+
+.big-text {
+  font-size: 1.5em; }
+
 /* ---- HELPERS ----<<<<*/
 /*Flashmessge*/
 .flashmessage {
@@ -84,6 +90,17 @@
   border: 0.18em solid #1F6DB6; }
 
 /*Flashmessge*/
+.splash-screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #172850;
+  z-index: 20; }
+  .splash-screen img {
+    max-width: 300px;
+    position: relative;
+    top: 10%; }
+
 .modal-background {
   width: 100%;
   height: 100%;
@@ -99,16 +116,16 @@
   background-color: #FFF;
   border: 2px solid #019BDF; }
 
-button#btn-close-modal {
+button#btn-close-modal, .btn-delete-resident {
   background: none;
   border: none;
   position: absolute;
   right: 0.6em;
   top: 0.5em; }
-  button#btn-close-modal:hover {
+  button#btn-close-modal:hover, .btn-delete-resident:hover {
     opacity: 0.8;
     color: #D9534F; }
-  button#btn-close-modal:active {
+  button#btn-close-modal:active, .btn-delete-resident:active {
     opacity: 0.5;
     color: #D9534F; }
 
@@ -161,6 +178,16 @@ button#btn-close-modal {
   .modal__generate-invoices select {
     font-size: 1.5rem;
     margin-bottom: 1.5rem; }
+
+.modal__delete-resident p {
+  margin-top: 1rem;
+  font-size: 1.4rem; }
+.modal__delete-resident button#confirm-delete {
+  margin: 1rem auto;
+  background-color: #c44640; }
+  .modal__delete-resident button#confirm-delete:hover {
+    background-color: #c44640;
+    opacity: 0.8; }
 
 body, html {
   width: 100%;
@@ -229,13 +256,32 @@ header {
     color: #FFF;
     position: absolute;
     left: 1rem;
-    top: 0.8rem; }
+    top: 0.8rem;
+    z-index: 15; }
+    header button:hover {
+      color: #E4AB08; }
   header p {
     position: relative;
     top: 1rem;
     color: #FFF;
     font-size: 1.4rem;
     font-weight: bold; }
+  header .menu {
+    position: absolute;
+    background-color: #fff;
+    width: 17rem;
+    height: 12.2rem;
+    top: 2.5rem;
+    left: 1.2rem;
+    box-shadow: 5px 5px 18px -6px #000000; }
+    header .menu li {
+      font-size: 1.1rem; }
+    header .menu a {
+      padding: 1rem 1rem;
+      text-align: left; }
+      header .menu a:hover {
+        background-color: #019BDF;
+        color: #fff; }
 
 nav {
   width: 80px;
@@ -244,25 +290,73 @@ nav {
   padding-top: 3.5em;
   position: absolute;
   left: 0;
-  z-index: 9; }
+  z-index: 9;
+  /* & .icon-selected {
+       background-color: $main-color;
+       & span {
+           color: $crown-color;
+       }
+   }*/
+  /* & a:hover {
+       background-color: $main-color;
+       & span {
+           color: $crown-color;
+       }
+   }*/ }
   nav a {
     margin-top: 2em;
     padding: 0.2em 0.2em 0.2em 0; }
   nav span {
     color: #fff;
     font-size: 0.9rem; }
-  nav .icon-selected {
-    background-color: #019BDF; }
-    nav .icon-selected span {
-      color: #E4AB08; }
-  nav a:hover {
-    background-color: #019BDF; }
-    nav a:hover span {
-      color: #E4AB08; }
-  nav .nav-icon {
-    width: 56px;
+  nav a[href="#add-payment-page"]::before {
     height: 56px;
-    padding: 1px 0 1px 0; }
+    content: "";
+    display: block;
+    background-image: url(../img/icon-money.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%; }
+  nav a[href="#add-payment-page"]:hover::before {
+    background-image: url(../img/icon-money-o.png); }
+  nav a[href="#add-payment-page"].icon-selected::before {
+    background-image: url(../img/icon-money-o.png); }
+  nav a[href="#residents-list-page"]::before {
+    height: 56px;
+    content: "";
+    display: block;
+    background-image: url(../img/icon-users.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%; }
+  nav a[href="#residents-list-page"]:hover::before {
+    background-image: url(../img/icon-users-o.png); }
+  nav a[href="#residents-list-page"].icon-selected::before {
+    background-image: url(../img/icon-users-o.png); }
+  nav a[href="#invoices-page"]::before {
+    height: 56px;
+    content: "";
+    display: block;
+    background-image: url(../img/icon-invoice.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%; }
+  nav a[href="#invoices-page"]:hover::before {
+    background-image: url(../img/icon-invoice-o.png); }
+  nav a[href="#invoices-page"].icon-selected::before {
+    background-image: url(../img/icon-invoice-o.png); }
+  nav a[href="#records-page"]::before {
+    height: 56px;
+    content: "";
+    display: block;
+    background-image: url(../img/icon-saving-book.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%; }
+  nav a[href="#records-page"]:hover::before {
+    background-image: url(../img/icon-saving-book-o.png); }
+  nav a[href="#records-page"].icon-selected::before {
+    background-image: url(../img/icon-saving-book-o.png); }
 
 .btn {
   background-color: #019BDF;
@@ -304,7 +398,6 @@ nav {
   height: 100%; }
 
 #form-search {
-  right: 65px;
   position: relative; }
   #form-search p {
     color: #a2a2a2;
@@ -319,7 +412,8 @@ nav {
     margin-top: 0.8em; }
 
 #form-receipt {
-  margin-left: 7rem; }
+  margin-left: 7rem;
+  position: relative; }
   #form-receipt label, #form-receipt p {
     font-size: 2.4em;
     color: #172850;
@@ -356,46 +450,57 @@ nav {
 #btn-confirm {
   position: absolute;
   right: 1em;
-  bottom: 1em; }
+  bottom: -6em; }
 
-#search-list {
+#search-list, #search-list-resident-card {
   width: 60%;
   position: relative;
   margin-top: 2em; }
-  #search-list li {
+  #search-list li, #search-list-resident-card li {
     padding: 0.4em 0; }
-  #search-list li a {
+  #search-list li a, #search-list-resident-card li a {
     text-align: left;
     font-size: 2em;
     padding: 0.1em; }
-    #search-list li a:hover {
+    #search-list li a:hover, #search-list-resident-card li a:hover {
       color: #FFF;
       background-color: #019BDF;
       cursor: default; }
-    #search-list li a:active {
+    #search-list li a:active, #search-list-resident-card li a:active {
       background-color: #00B1FF; }
-    #search-list li a i {
+    #search-list li a i, #search-list-resident-card li a i {
       position: absolute;
       left: 95%; }
 
-.residents-list-page__box input {
-  width: 45%;
-  font-size: 1.7em;
-  border: 2px solid #E4AB08;
-  padding: 0.2em; }
-.residents-list-page__box button {
-  margin: 0.5em auto; }
+.residents-list-page__box {
+  position: relative; }
+  .residents-list-page__box input {
+    width: 45%;
+    font-size: 1.7em;
+    border: 2px solid #E4AB08;
+    padding: 0.2em; }
+  .residents-list-page__box button {
+    margin: 0.5em auto; }
+  .residents-list-page__box #search-list-resident-id {
+    width: auto;
+    display: block; }
+  .residents-list-page__box #btn-close-modal {
+    top: 4rem;
+    right: 0; }
+  .residents-list-page__box .btn-delete-resident {
+    top: initial;
+    right: 0;
+    bottom: 0; }
 
 .form-resident-card {
-  border: 3px solid #019BDF;
-  width: 80%;
-  height: 23rem;
+  width: 84%;
+  height: 33rem;
   padding: 0.5rem;
-  overflow-y: overlay;
-  position: relative; }
-  .form-resident-card #btn-close-modal {
-    top: -0.9rem;
-    right: 0; }
+  overflow-y: auto;
+  position: relative;
+  left: 1.5rem; }
+  .form-resident-card .input-group {
+    margin: 0 auto 1rem auto; }
   .form-resident-card label {
     margin: 0;
     margin-left: 0.3em;
@@ -403,13 +508,12 @@ nav {
     padding: 0.2em 0 0 0; }
   .form-resident-card input, .form-resident-card select {
     margin: 0;
-    margin-left: 0.3em;
     color: #172850;
     padding-bottom: 0.2em;
     border: 1px #fff solid;
     font-size: 1.15em;
     width: auto;
-    background-color: #E6EAED;
+    background-color: #DCDCDC;
     border-radius: 5px; }
     .form-resident-card input[type="tel"], .form-resident-card select[type="tel"] {
       width: 10.5em; }
@@ -433,6 +537,11 @@ nav {
 
 .form-resident-card--expanded {
   height: 25em; }
+
+#main-page img {
+  max-width: 300px;
+  top: 4rem;
+  position: relative; }
 
 .receipt-body, .receipt-html, .invoice-body, .invoice-html {
   overflow: auto;
@@ -464,16 +573,30 @@ nav {
 .invoice-page {
   width: 8.5in;
   height: 11in;
-  position: relative; }
+  position: relative;
+  display: block; }
   .invoice-page img {
-    max-width: 10%;
+    max-width: 35%;
     position: relative;
-    float: right; }
-  .invoice-page .owner-details {
-    height: 15%;
+    top: 0; }
+  .invoice-page .invoice-header {
+    height: 9.5rem;
     margin-bottom: 1em; }
-    .invoice-page .owner-details p span {
+    .invoice-page .invoice-header p#invoice-text-header {
+      position: absolute;
+      top: 2.9rem;
+      right: 0; }
+    .invoice-page .invoice-header p span {
       font-size: 1rem; }
+  .invoice-page .frase-text {
+    width: 100%;
+    height: 4rem;
+    border: 3px solid #019BDF;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    text-align: center; }
+    .invoice-page .frase-text p {
+      margin: 0.3rem auto; }
   .invoice-page .resident-details {
     height: 7em;
     vertical-align: top; }
@@ -483,18 +606,14 @@ nav {
     line-height: 2em;
     position: absolute;
     left: 50%; }
+    .invoice-page .invoice-details p {
+      font-size: 1.1rem; }
   .invoice-page .invoice-details__data {
     height: 7em;
     vertical-align: top;
     text-align: right;
     line-height: 2em;
     float: right; }
-
-.bigger-text {
-  font-size: 3em; }
-
-.big-text {
-  font-size: 1.5em; }
 
 table.invoice {
   margin-top: 2rem; }
@@ -527,23 +646,12 @@ table.invoice {
 table.footer {
   position: absolute;
   bottom: 1rem;
-  width: 100%; }
+  width: 60%;
+  border: 2px solid black; }
   table.footer td {
-    display: inline-block; }
-  table.footer td p:nth-child(1) {
-    font-weight: bold;
-    font-size: 1.2rem; }
-  table.footer td p {
-    text-align: right; }
-  table.footer .frase {
-    width: 8rem;
-    vertical-align: top;
-    position: relative;
-    top: 3.7rem; }
-  table.footer .vertical-line {
-    border-right: solid 2px #019BDF;
-    height: 10rem;
-    margin: 0 0.5rem; }
+    border: 2px solid black;
+    text-align: center;
+    padding: 0.4rem 0; }
 
 .invoices-page__box button {
   margin: 1em auto; }
@@ -570,5 +678,79 @@ table.footer {
       position: absolute;
       bottom: 0.1rem;
       font-size: 1.1rem; }
+
+.input-group label {
+  display: inline-block; }
+
+.configs-page-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 5rem;
+  padding-left: 80px; }
+  .configs-page-box .configs-form {
+    top: 2rem;
+    position: relative;
+    left: 3rem; }
+  .configs-page-box label {
+    margin: 0;
+    margin-left: 0.3em;
+    color: #a2a2a2;
+    padding: 0.2em 0 0 0;
+    display: inline-block;
+    margin-top: 1.5rem; }
+  .configs-page-box input, .configs-page-box textarea {
+    margin: 0;
+    color: #172850;
+    padding-bottom: 0.2em;
+    padding-left: 0.5rem;
+    border: 1px #fff solid;
+    font-size: 1.15em;
+    width: auto;
+    background-color: #DCDCDC;
+    border-radius: 5px; }
+    .configs-page-box input:focus, .configs-page-box textarea:focus {
+      background-color: #172850;
+      color: #fff; }
+    .configs-page-box input:hover, .configs-page-box textarea:hover {
+      border: 1px black solid; }
+  .configs-page-box .config-category {
+    width: 10rem; }
+  .configs-page-box label input[name="config-email"] {
+    width: 41.9rem; }
+  .configs-page-box label input[name="config-bank"], .configs-page-box label input[name="config-bank-account"] {
+    width: 20.7rem; }
+  .configs-page-box label input[name="config-frase"] {
+    width: 41.9rem;
+    height: 4rem; }
+  .configs-page-box textarea {
+    width: 41.9rem;
+    height: 4rem;
+    font-size: 1.1rem; }
+  .configs-page-box button {
+    position: absolute;
+    bottom: 2rem; }
+
+.inner-box label {
+  margin: 0;
+  margin-bottom: 1rem;
+  margin-left: 0.3em;
+  color: #a2a2a2;
+  padding: 0.2em 0 0 0; }
+.inner-box input, .inner-box select {
+  margin: 0;
+  color: #172850;
+  padding-bottom: 0.2em;
+  border: 1px #fff solid;
+  font-size: 1.15em;
+  width: auto;
+  background-color: #DCDCDC;
+  border-radius: 5px; }
+.inner-box select {
+  margin: auto;
+  margin-bottom: 1rem; }
+.inner-box.choose-batch-type button {
+  margin: 1rem auto;
+  width: 20rem; }
 
 /*# sourceMappingURL=style.css.map */
