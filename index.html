@@ -78,12 +78,39 @@
 <div id="modal" class="modal__generate-invoices modal-background no-display">
 	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
 		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		
+
+		<div class="inner-box choose-resident no-display">
+			<p class="center-text">Buscar Residente</p>
+			<input type="text" name="search-resident" class="center-align box-radius">
+			<button id="btn-search" @click="search" class="btn center-align center-text"><i class="fa fa-search"></i> Buscar</button>
+			
+			<ul id="search-list" class="center-align">
+				<!-- To populate from JS -->
+				<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
+				<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
+			</ul>
+
+		</div>
+
+		<div class="inner-box create-invoice-details no-display">
+			<p class="center-text">Confirmar</p>
+
+			<span class="center-text mid-size-text">#{{ residentId }} {{ residentFullName }}</span>
+			<span class="center-text mid-size-text">Factura para el mes: {{ month }}</span>
+			<span class="center-text mid-size-text">Descripcion: {{ extraordinaryDescription }}</span>
+			<span class="center-text mid-size-text">Monto: {{ extraordinaryAmount }}</span>
+
+			<button v-bind:onclick="btnModalConfirm" class="btn center-align"><i class="fa fa-check"></i> Confirmar</button>
+		</div>
+
 		<div class="inner-box choose-batch-type">
 			<p class="center-text">Seleccione el tipo de Batch</p>
 
 			<button id="generateNormalInvoicesBatch" class="btn center-align"><i class="fa fa-file-text-o"></i> Facturas Normales</button>
 			<button id="generateExtraordinaryInvoicesBatch" class="btn center-align"><i class="fa fa-file-excel-o"></i> Facturas Extraordinarias</button>
+
+			<button id="generateNormalInvoice" class="btn center-align"><i class="fa fa-file-text-o"></i> Factura Normal</button>
+			<button id="generateExtraordinaryInvoice" class="btn center-align"><i class="fa fa-file-excel-o"></i> Factura Extraordinaria</button>
 		</div>
 
 		<div class="inner-box generate-normal-invoices no-display animated fadeInDown">
@@ -92,16 +119,17 @@
 			<select name="invoice-month" class="center-align">
 			</select>
 
+
 			<button id="generateNormalInvoicesBatchActual" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
 		</div>
 
 		<div class="inner-box generate-extraordinary-invoices no-display animated fadeInDown">
 			<p class="center-text">Detalles de Factura Extraordinaria</p>
 
-			<label for="extraordinary-description">Descripcion <input type="text" name="extraordinary-description"></label>
-			<label for="extraordinary-amount">Monto <input type="number" name="extraordinary-amount"></label>
+			<label for="extraordinary-description">Descripcion <input type="text" name="extraordinary-description" v-model="extraordinaryDescription"></label>
+			<label for="extraordinary-amount">Monto <input type="number" name="extraordinary-amount" v-model="extraordinaryAmount"></label>
 
-			<button id="generateExtraordinaryInvoicesBatchActual" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+			<button id="generateExtraordinaryInvoicesBatchActual" v-bind:onclick="btnGenerateExtraordinaryInvoices" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
 		</div>
 	</div>
 </div>
@@ -166,7 +194,7 @@
 		<span>Facturas</span>
 	</a>
 
-	<a href="#records-page">
+	<a href="#accounting-page">
 		<span>Registros</span>
 	</a>
 </nav>
@@ -183,7 +211,7 @@
 			<p>Busca residente por nombre, apellido o codigo</p>
 			<input type="text" name="search-resident" class="center-align box-radius">
 			<button id="btn-search" class="btn center-align center-text"><i class="fa fa-search"></i> Buscar</button>
-			
+
 			<ul id="search-list" class="center-align">
 				<!-- To populate from JS -->
 				<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
@@ -207,16 +235,21 @@
 			<p id="jsMonth">Mes</p>
 
 			<span>Categoria</span>
-			<p id="jsType">Propietario</p>
+			<p id="jsCategory">Propietario</p>
+
+			<span>Descripcion</span>
+			<p id="jsDescription"></p>
 			
-			<span>Monto</span>
-			<p id="jsAmount">RD$ 2,000.00</p>
+			<span>Monto RD$</span>
+			<input class="box-radius" id="jsAmount" type="text" name="receipt-amount" v-model="receiptAmount">
+
+			<p id="jsType" class="no-display"></p> <!-- Used on JS -->
 			
 			<div id="wrapper-btn-pay-method" class="center-align center-text">
 				<span class="center-text">Seleccione metodo de pago</span>
 				<button class="btn js-btn-pay-method btn--selected">Efectivo</button>
-				<button class="btn js-btn-pay-method" method="checkNumber">Cheque</button>
-				<button class="btn js-btn-pay-method" method="accountNumber">Transferencia</button>
+				<button class="btn js-btn-pay-method">Deposito</button>
+				<button class="btn js-btn-pay-method">Transferencia</button>
 
 				<input class="center-align no-display" type="number" name="pay-method-input" placeholder="00000">
 
@@ -253,7 +286,7 @@
 				<option value="D">D</option>
 			</select>
 
-			<label for="address">Direccion<input type="text" name="address" value=""/></label>
+			<label for="address">Direccion<input type="text" name="address"></label>
 			<br>
 
 			<p>RESIDENTES</p>
@@ -283,7 +316,9 @@
 				<label for="cellPhone2">Celular: <input type="text" name="cellPhone2"></label>
 			</div>
 
-			<p>PROPIETARIO</p>
+			<p>PROPIETARIO
+			 <i>(Si Propietario y Residente son el mismo, no llenar)</i>
+			</p>
 			<div class="input-group">
 				<label for="firstNameOwner">Nombre: <input type="text" name="firstNameOwner"></label>
 
@@ -309,7 +344,7 @@
 				<label for="bank3">Numero de Cuenta: <input type="text" name="bank3"></label>
 			</div>
 
-			<p class="lastPayment">Ultimo Pago Realizado</p>
+			<!-- <p class="lastPayment">Ultimo Pago Realizado</p> -->
 			
 		</div>
 			
@@ -319,6 +354,7 @@
 	</div>
 </div>
 
+<!-- INVOICES PAGE -->
 <div id="invoices-page" class="page">
 	<div class="invoices-page__box">
 		<input type="number" name="search-invoice" placeholder="00000" class="center-align box-radius">
@@ -327,7 +363,7 @@
 		<section class="center-align center-text">
 			<button id="generateInvoices" class="btn btn__big center-align"><i class="fa fa-files-o fa-3x center-align-absolute"></i> <p>Crear Facturas (Batch)</p></button>
 
-			<button id="generateInvoices" class="btn btn__big center-align"><i class="fa fa-file-o fa-3x center-align-absolute"></i> <p>Crear Factura</p></button>
+			<button id="generateOneInvoice" class="btn btn__big center-align"><i class="fa fa-file-o fa-3x center-align-absolute"></i> <p>Crear Factura</p></button>
 
 			<button id="printInBatch" class="btn btn__big center-align"><i class="fa fa-print fa-3x center-align-absolute"></i> <p>Imprimir Batch</p></button>
 		</section>
@@ -361,16 +397,75 @@
 	</div>
 </div>
 
+<!-- ACCOUNTING PAGE -->
+<div id="accounting-page" class="page">
+	<div class="accounting-page-box">
+		<div class="header">
+			<h3>RESUMEN FINANCIERO</h3>
+			<div>
+				<p><i class="fa fa-sign-in"></i> Credito {{ currentMonth() }} RD$</p>
+				<p>{{ monthCredit }}</p>
+			</div>
+
+			<div>
+				<p><i class="fa fa-sign-out"></i> Debito {{ currentMonth() }} RD$</p>
+				<p>{{ monthDebit }}</p>
+			</div>
+
+			<div>
+				<p><i class="fa fa-sign-in"></i> Credito {{ currentYear() }} RD$</p>
+				<p>{{ yearCredit }}</p>
+			</div>
+
+			<div>
+				<p><i class="fa fa-sign-out"></i> Debito {{ currentYear() }} RD$</p>
+				<p>{{ yearDebit }}</p>
+			</div>
+
+			<div>
+				<p><i class="fa fa-money"></i> Balance RD$</p>
+				<p>{{ totalBalance }}</p>
+			</div>
+		</div>
+
+		<button id="btn-close-inside-page" class="no-display" @click.prevent="closeInsidePage"><i class="fa fa-close fa-3x"></i></button>
+
+		<div class="accounting-page__inside-page" id="accounting-page-home">
+			<section class="center-align center-text">
+				<button @click.prevent="residentsList" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Lista de Residentes</p></button>
+
+				<button @click.prevent="statusByMonth" class="btn btn__big center-align"><i class="fa fa-calendar fa-3x center-align-absolute"></i> <p>Estado por Mes</p></button>
+
+				<button @click.prevent="extraordinaryInvoices" class="btn btn__big center-align"><i class="fa fa-file-excel-o fa-3x center-align-absolute"></i> <p>Facturas Extraordinarias</p></button>
+
+				<button @click.prevent="addDebit" class="btn btn__big center-align"><i class="fa fa-minus-square-o fa-3x center-align-absolute"></i> <p>Agregar Debito</p></button>
+			</section>
+		</div>
+
+		<div class="accounting-page__inside-page" id="accounting-page-residents-list">
+			<div class="list center-align" v-for="resident in residents">
+				<p class="big-text">{{ resident.fullName }}</p>
+				<p>ID: {{ resident.id }} </p>
+				<p><i class="fa fa-phone"></i> {{ resident.phone }}</p>
+				<p><i class="fa fa-sitemap"></i> Categoria: {{ resident.category }}</p>
+				<p>Facturas Pendientes {{ resident.pendingInvoices.length }}</p>
+			</div>
+		</div>
+	</div>
+</div>
 
 
+<script src="js/vue.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/jquery.number.min.js"></script>
 <script src="js/numeral.js"></script>
 <script src="js/lodash.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/locale.js"></script>
+<script src="js/vue-vm.js"></script>
 <script src="app.js"></script>
 <script src="js/invoices.js"></script>
+<script src="js/accounting.js"></script>
 </div>
 </body>
 </html>

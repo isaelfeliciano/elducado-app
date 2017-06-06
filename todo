@@ -1,12 +1,19 @@
-Input search-resident look in the DB for the auto-complete
-
 deal with backup
-
-Vitor? van a facturar otras cosas?
-pagos extraordinaros pedir descripcion y monto
-
-Facturas independientes
 
 Fix imprimiendo factura no agrega viejas
 
-Fix borrando residente
+Fix imprimiendo solo una fatura
+
+Reiniciar invoiceSequence cuando un nuevo año
+
+Features Modulo Registros
+	Resumen facturas pendientes y residentes
+	Agregar gastos
+	Estado por mes
+	Buscar factura extraordinaria por descripcion y ver que residente pago y quien no
+	
+
+
+Cambiar metodo de pago de cheque a deposito !Done
+Agregar guardar recibo
+dueDate: moment().month(configs.selectedMonth -1).add(1, 'M').date('5').format('DD/MMMM/YYYY')

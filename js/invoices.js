@@ -17,10 +17,28 @@ btnClick('#generateInvoices', (e) => {
 			return
 		}
 		configs = doc;
-		$('.modal__generate-invoices').removeClass('no-display');
+		yesDisplay('.modal__generate-invoices');
+		noDisplay('#generateNormalInvoice');
+		noDisplay('#generateExtraordinaryInvoice');
+		yesDisplay('#generateNormalInvoicesBatch');
+		yesDisplay('#generateExtraordinaryInvoicesBatch');
 
-		populateSelect(configs);
+		$('.choose-batch-type p').text('Seleccione el tipo de Batch');
+
+		let monthPrefix = configs.monthPrefix;
+		populateSelect(monthPrefix);
 	});
+});
+
+btnClick('#generateOneInvoice', (e) => {
+	yesDisplay('.modal__generate-invoices');
+	yesDisplay('#generateNormalInvoice');
+	yesDisplay('#generateExtraordinaryInvoice');
+	noDisplay('#generateNormalInvoicesBatch');
+	noDisplay('#generateExtraordinaryInvoicesBatch');
+
+	$('.choose-batch-type p').text('Seleccione el tipo de Factura');
+	populateSelect(1);
 });
 
 btnClick('#printInBatch', (e) => {
@@ -252,8 +270,8 @@ function searchPendingInvoice(resident) {
 	});
 }
 
-function populateSelect(configs) {
-	let i = configs.monthPrefix;
+function populateSelect(monthPrefix) {
+	let i = monthPrefix;
 	$(`select[name="invoice-month"]`).html('');
 	for (i; i <= 12; i++) {
 		let month = moment().month(i - 1).format("MMMM");
@@ -265,9 +283,23 @@ function populateSelect(configs) {
 btnClick('#generateNormalInvoicesBatch', (e) => {
 	noDisplay('.inner-box');
 	yesDisplay('.generate-normal-invoices');
+	$('#generateNormalInvoicesBatchActual').unbind();
+	btnClick('#generateNormalInvoicesBatchActual', generateNormalInvoicesBatch);
 });
 
-btnClick('#generateNormalInvoicesBatchActual', (e) => {
+btnClick('#generateNormalInvoice', (e) => {
+	noDisplay('.inner-box');
+	yesDisplay('.generate-normal-invoices');
+	$('#generateNormalInvoicesBatchActual').unbind(); // Borrowing this btn
+	btnClick('#generateNormalInvoicesBatchActual', () => {
+		noDisplay('.inner-box');
+		yesDisplay('.choose-resident');
+	});
+	modalSingleInvoice.handleResults = modalSingleInvoice.handleResultsNormal;
+	modalSingleInvoice.btnModalConfirm = 'modalSingleInvoice.runGenerateNormalInvoice()'; 
+})
+
+function generateNormalInvoicesBatch(e) {
 	configs.selectedMonth = $(`select[name="invoice-month"] option:selected`).val();
 	let selectedMonth = configs.selectedMonth;
 	let year = configs.yearPrefix;
@@ -296,7 +328,7 @@ btnClick('#generateNormalInvoicesBatchActual', (e) => {
 			let amount = configs.categoryPrices[category];
 			updateConfigs({invoiceSequence: configs.invoiceSequence})
 			.then(updatePendingInvoice(invoiceNumber, id))
-			.then(createInvoice(invoiceNumber, id, category, amount))
+			.then(createInvoice(invoiceNumber, id, category, amount, configs.selectedMonth))
 			.then((result) => {
 				console.log(result);
 				flashMessage('Facturas creadas', 'flashmessage--success');
@@ -315,14 +347,63 @@ btnClick('#generateNormalInvoicesBatchActual', (e) => {
 			}
 		});
 	});
-});
+};
+
+function generateNormalInvoice(residentId) {
+	let selectedMonth = $(`select[name="invoice-month"] option:selected`).val();
+	let year = configs.yearPrefix;
+	let rg = RegExp(`^${selectedMonth}${year}`); 
+	let queryString = {
+		id: parseInt(residentId), 
+		pendingInvoices: { 
+			$not: rg 
+		}, 
+		payedInvoices: {
+			$not: rg
+		}
+	}
+	mongoDbObj.residents.find(queryString).toArray((err, doc) => {
+		if (err) return console.log(err);
+		if (doc.length === 0){
+			flashMessage('Estas facturas ya existen', 'flashmessage--info');
+			$('.modal__generate-invoices #btn-close-modal').trigger('click');
+			return 
+		} 
+		let resident = doc[0];
+		let invoiceNumber = selectedMonth + year + configs.invoiceSequence;
+		configs.invoiceSequence++;
+		let id = resident.id;
+		let category = resident.category;
+		let amount = configs.categoryPrices[category];
+		updateConfigs({invoiceSequence: configs.invoiceSequence})
+		.then(updatePendingInvoice(invoiceNumber, id))
+		.then(createInvoice(invoiceNumber, id, category, amount, selectedMonth))
+		.then((result) => {
+			console.log(result);
+			flashMessage('Facturas creadas', 'flashmessage--success');
+			$('.modal__generate-invoices #btn-close-modal').trigger('click');
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	});
+}
 
 btnClick('#generateExtraordinaryInvoicesBatch', (e) => {
 	noDisplay('.inner-box');
 	yesDisplay('.generate-extraordinary-invoices');
+	modalSingleInvoice.btnGenerateExtraordinaryInvoices = 'generateExtraordinaryInvoicesBatchActual()';
 });
 
-btnClick('#generateExtraordinaryInvoicesBatchActual', (e) => {
+btnClick('#generateExtraordinaryInvoice', (e) => {
+	noDisplay('.inner-box');
+	yesDisplay('.choose-resident');
+	modalSingleInvoice.handleResults = modalSingleInvoice.handleResultsExtraordinary;
+	modalSingleInvoice.btnGenerateExtraordinaryInvoices = 'modalSingleInvoice.showConfirmStep()';
+	modalSingleInvoice.btnModalConfirm = 'generateExtraordinaryInvoiceActual()';
+});
+
+function generateExtraordinaryInvoicesBatchActual() {
 	let year = configs.yearPrefix;
 	
 	mongoDbObj.residents.find().toArray((err, doc) => {
@@ -330,8 +411,6 @@ btnClick('#generateExtraordinaryInvoicesBatchActual', (e) => {
 			console.log(err);
 			return
 		}
-		if (doc.length === 0) return flashMessage('Estas facturas ya existen', 'flashmessage--info');
-		console.log(doc);
 		_.forEach(doc, (item, index) => {
 			let invoiceNumber = `${year}${configs.invoiceSequence}`;
 			configs.invoiceSequence++;
@@ -356,11 +435,40 @@ btnClick('#generateExtraordinaryInvoicesBatchActual', (e) => {
 					updateConfigs({monthPrefix: 1, yearPrefix: configs.yearPrefix + 1});
 					return;
 				}
-				updateConfigs({monthPrefix: parseInt(configs.selectedMonth) + 1});
 			}
 		});
 	});
-});
+};
+
+function generateExtraordinaryInvoiceActual() {
+	let year = configs.yearPrefix;
+	let residentId = parseInt(modalSingleInvoice.residentId);
+	mongoDbObj.residents.find({id: residentId}).toArray((err, doc) => {
+		if (err) {
+			console.log(err);
+			return
+		}
+		_.forEach(doc, (item, index) => {
+			let invoiceNumber = `${year}${configs.invoiceSequence}`;
+			configs.invoiceSequence++;
+			let id = item.id;
+			let category = item.category;
+			let description = getInputVal('extraordinary-description');
+			let amount = getInputVal('extraordinary-amount');
+			updateConfigs({invoiceSequence: configs.invoiceSequence})
+			.then(updatePendingInvoice(invoiceNumber, id))
+			.then(createInvoiceExtraordinary(invoiceNumber, id, category, description, amount))
+			.then((result) => {
+				console.log(result);
+				$('.modal__generate-invoices #btn-close-modal').trigger('click');
+				flashMessage('Facturas creadas', 'flashmessage--success');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		});
+	});
+}
 
 function updateConfigs(data) { // Updating invoiceSequence
 	console.log("updateConfigs");
@@ -387,8 +495,9 @@ function updatePendingInvoice(invoiceNumber, id) {
 	});
 }
 
-function createInvoice(invoiceNumber, id, category, amount) {
-	let month = moment().month(configs.selectedMonth - 1).format('MMMM');
+function createInvoice(invoiceNumber, id, category, amount, selectedMonth) {
+	amount = toNumber(amount);
+	let month = moment().month(selectedMonth - 1).format('MMMM');
 	let data = {
 		id: invoiceNumber,
 		dateRealeased: moment().format('DD/MM/YYYY'),
@@ -396,8 +505,10 @@ function createInvoice(invoiceNumber, id, category, amount) {
 		status: "Sin pagar",
 		residentId: id,
 		category: category,
+		type: "maintenancePayments",
 		amount: amount,
-		dueDate: moment().month(configs.selectedMonth -1).endOf('month').format('DD/MMMM/YYYY'),
+		originalAmount: amount,
+		dueDate: moment().month(selectedMonth -1).endOf('month').format('DD/MMMM/YYYY'),
 		description: `Mantenimiento de el Residencial (${month})`
 	}
 
@@ -412,6 +523,7 @@ function createInvoice(invoiceNumber, id, category, amount) {
 
 function createInvoiceExtraordinary(invoiceNumber, id, category, description, amount) {
 	console.log("createInvoiceExtraordinary");
+	amount = toNumber(amount);
 	let month = moment().format('MMMM');
 	let data = {
 		id: invoiceNumber,
@@ -420,8 +532,10 @@ function createInvoiceExtraordinary(invoiceNumber, id, category, description, am
 		status: "Sin pagar",
 		residentId: id,
 		category: category,
+		type: "extraordinaryPayments",
 		amount: amount,
-		dueDate: moment().endOf('month').format('DD/MMMM/YYYY'),
+		originalAmount: amount,
+		dueDate: moment().add(1, 'M').endOf('month').format('DD/MMMM/YYYY'),
 		description: description
 	}
 

@@ -4,6 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 var mongoDbObj;
 var assert = require('assert');
 var spawn = require('child_process').spawn;
+const MONGOPATH = process.env.MONGOPATH;
 
 var configs;
 var creatingUser = false;
@@ -17,6 +18,9 @@ Storage.prototype.getObj = function(key) {
 	return JSON.parse(this.getItem(key));
 }
 
+btnClick('.close-application', (e) => {
+	window.close();
+})
 
 function connectMongo() {
 	MongoClient.connect('mongodb://127.0.0.1:27017/elducadodb', function(err, db) {
@@ -28,7 +32,8 @@ function connectMongo() {
 			mongoDbObj = {db: db,
 				residents: db.collection("residents"),
 				invoices: db.collection("invoices"),
-				configs: db.collection("configs")
+				configs: db.collection("configs"),
+				accounting: db.collection("accounting")
 			}
 
 			mongoDbObj.configs.find({}, {_id: 0}).toArray((err, doc) => {
@@ -39,7 +44,7 @@ function connectMongo() {
 				configs = doc[0];
 			});
 			$('.splash-screen').addClass('fadeOut');
-			setInterval(() => {
+			setTimeout(() => {
 				$('.splash-screen').addClass('no-display');
 			}, 900);
 		}
@@ -49,7 +54,7 @@ function connectMongo() {
 connectMongo();
 
 function startMongoServer() {
-	const mongod = spawn('mongod', ['--dbpath', 'C:\\Users\\rfeliciano\\data\\db']);
+	const mongod = spawn('mongod', ['--dbpath', MONGOPATH]);
 	mongod.stdout.once('data', (data) => {
 		console.log(data.toString());
 		connectMongo();
@@ -73,7 +78,11 @@ function startMongoServer() {
 function flashMessage(msg, type){
 	if(hideFlashMessage)
 		clearTimeout(hideFlashMessage);
-	$('.flashmessage').removeClass('notVisible', 'flashmessage--success', 'flashmessage--danger', 'flashmessage--info').addClass(type)
+	$('.flashmessage').removeClass('notVisible')
+	.removeClass('flashmessage--success')
+	.removeClass('flashmessage--danger')
+	.removeClass('flashmessage--info')
+	.addClass(type)
 	.html('<span>'+msg+'</span>');
 	var hideFlashMessage = setTimeout(function(){
 		$('.flashmessage').addClass('notVisible').
@@ -136,6 +145,10 @@ function setInputVal(name, value) {
 	$(`input[name="${name}"]`).val(value);
 }
 
+function setData(element, value) {
+	$(element).text(value);
+}
+
 function getInputVal(name) {
 	return $(`input[name="${name}"]`).val();
 }
@@ -178,39 +191,52 @@ function setConfigs() {
 	});
 }
 
-$("#btn-search").on("click", function(e) {
-	$('#search-list').html('');
-	e.preventDefault();
+btnClick("#form-search #btn-search", (e) => {
+	search('#form-search input[name="search-resident"]', '#form-search #search-list', loadInvoice);
+});
+
+
+
+
+function search(input, list, callback) {
+	$(list).html('');
 	let queryString;
-	let searchInput = $('input[name="search-resident"]').val();
+	let searchInput = $(input).val();
 	if (isNaN(parseInt(searchInput))) {
 		queryString = {$text: {$search: searchInput}};
 	} else { // Is a number
-		queryString = {"id": parseInt(searchInput)};
+		if (searchInput.length <= 3){
+			queryString = {"id": parseInt(searchInput)};
+		} else {
+			queryString = {"bankAccount.bank": searchInput};
+		}
 	}
 	mongoDbObj.residents.find(queryString).toArray(function(err, doc) {
 		if (err) {
 			console.log(err); // LOG THIS
 			return;
 		} else {
+			if (doc.length === 0) {
+				return flashMessage("No hay resultados", "flashmessage--info");
+			}
 			if(doc.length === 1) {
-				loadInvoice(doc[0].id, doc[0].fullName);
+				callback(doc[0].id, doc[0].fullName);
 				return;
 			}
 			_.forEach(doc, function(item, index) {
-				$('#search-list').append(
+				$(list).append(
 					`<li><a class="jsListItem" residentId="${item.id}" fullName="${item.fullName}">${item.id} | ${item.fullName}<i class="fa fa-chevron-right"></i></a></li>`
 				);
-				$('.jsListItem').on('click', (e) => {
-					e.preventDefault();
-					let residentId = $(e.target).attr('residentId');
-					let fullName = $(e.target).attr('fullName');
-					loadInvoice(residentId, fullName);
-				});
+			});
+			$('.jsListItem').on('click', (e) => {
+				e.preventDefault();
+				let residentId = $(e.target).attr('residentId');
+				let fullName = $(e.target).attr('fullName');
+				callback(residentId, fullName);
 			});
 		}
-	});
-});
+	});	
+}
 
 
 function loadInvoice(residentId, fullName) {
@@ -232,7 +258,7 @@ function loadInvoice(residentId, fullName) {
 
 		_.forEach(doc[0].bankAccount, (account, index) => { // Adding accounts to dropdown
 			$('select[name="bankAccount"]').append(`
-				<option value="${account}">${account}</option>
+				<option value="${account}">${account.bank}</option>
 				`)
 		});
 
@@ -255,9 +281,12 @@ function loadInvoice(residentId, fullName) {
 							$('#btnChangeInvoice').addClass('no-display');
 							$('#jsResident').text(`${fullName} (#${residentId})`).val(residentId);
 							$('#jsInvoiceNumber').text(item.id);
-							$('#jsType').text(item.category);
-							let amount = numeral(item.amount).format("0,0.00");
-							$('#jsAmount').text(`RD$ ${amount}`);
+							$('#jsCategory').text(item.category);
+							$('#jsDescription').text(item.description);
+							$('#jsType').text(item.type);
+							addPaymentPage.receiptAmount = item.amount;
+							addPaymentPage.tempReceiptAmount = item.amount;
+							addPaymentPage.originalReceiptAmount = item.originalAmount;
 							$('#jsMonth').text(item.month);
 							$('#jsDate').text(moment().format("DD/MM/YYYY"));
 						});
@@ -267,10 +296,13 @@ function loadInvoice(residentId, fullName) {
 						$('#btnChangeInvoice').removeClass('no-display');
 						$('#jsResident').text(`${fullName} (#${residentId})`).val(residentId);
 						$('#jsInvoiceNumber').text(invoicesArray[i].id);
-						$('#jsType').text(invoicesArray[i].category);
-						let amount = numeral(invoicesArray[i].amount).format("0,0.00");
-						$('#jsAmount').text(`RD$ ${amount}`);
-						$('#jsMonth').text(invoicesArray[i].month);
+						$('#jsCategory').text(invoicesArray[i].category);
+						$('#jsDescription').text(invoicesArray[i].description);
+						$('#jsType').text(invoicesArray[i].type);
+						addPaymentPage.receiptAmount = invoicesArray[i].amount;
+						addPaymentPage.tempReceiptAmount = invoicesArray[i].amount;
+						addPaymentPage.originalReceiptAmount = invoicesArray[i].originalAmount;
+						$('#jsMonth').text(_.capitalize(invoicesArray[i].month));
 						$('#jsDate').text(moment().format("DD/MM/YYYY"));
 
 						$('#btnChangeInvoice').on('click', (e) => {
@@ -281,8 +313,11 @@ function loadInvoice(residentId, fullName) {
 								i++
 							}
 							$('#jsInvoiceNumber').text(invoicesArray[i].id);
-							let amount = numeral(invoicesArray[i].amount).format("0,0.00");
-							$('#jsAmount').text(`RD$ ${amount}`);
+							addPaymentPage.receiptAmount = invoicesArray[i].amount;
+							addPaymentPage.tempReceiptAmount = invoicesArray[i].amount;
+							addPaymentPage.originalReceiptAmount = invoicesArray[i].originalAmount;
+							$('#jsDescription').text(invoicesArray[i].description);
+							$('#jsType').text(invoicesArray[i].type);
 							$('#jsMonth').text(invoicesArray[i].month);
 						});
 					}
@@ -298,16 +333,15 @@ function getTempReceipt () {
 		invoiceID : $('#jsInvoiceNumber').text(),
 		date : $('#jsDate').text(),
 		payMethod : $('.js-btn-pay-method.btn--selected').text(),
-		amount: $('#jsAmount').text(),
+		amount: addPaymentPage.receiptAmount,
+		originalAmount: addPaymentPage.originalReceiptAmount,
 		month: $('#jsMonth').text(),
+		type: $('#jsType').text(),
+		category: $('#jsCategory').text(),
 		residentId: parseInt($('#jsResident').val()),
-		checkNumber: $('input[name="pay-method-input"]').val(),
+		depositNumber: $('input[name="pay-method-input"]').val(),
 		accountNumber: $('select[name="bankAccount"] option:selected').val()
 	}
-
-	// tempReceipt[$('.js-btn-pay-method.btn--selected').attr('method')] = $('input[name="pay-method-input"]').val();
-	// Might be helpful in the future
-	console.log(tempReceipt);
 	return tempReceipt;
 }
 
@@ -347,7 +381,7 @@ $('.js-btn-pay-method').on('click', (e) => {
 	$('input[name="pay-method-input"]').addClass('no-display');
 	$('select[name="bankAccount"]').addClass('no-display');
 	let currentSelect = $(e.currentTarget).text();
-	if (currentSelect === "Cheque") {
+	if (currentSelect === "Deposito") {
 		$('input[name="pay-method-input"]').removeClass('no-display').focus();
 	}
 	if (currentSelect === "Transferencia") {
@@ -375,7 +409,7 @@ $('#btn-confirm').on('click', (e) => {
 		return;
 	}
 
-	if ($('.js-btn-pay-method.btn--selected').text() === "Cheque") {
+	if ($('.js-btn-pay-method.btn--selected').text() === "Deposito") {
 		if ($('input[name="pay-method-input"]').val().length === 0) {
 			flashMessage('Complete el campo vacio', 'flashmessage--danger');
 			$('input[name="pay-method-input"]').focus();
@@ -395,8 +429,8 @@ $('#btn-confirm').on('click', (e) => {
 	let amount = tempReceipt.amount;
 	let month = tempReceipt.month;
 	let payMethod = tempReceipt.payMethod;
-	if (tempReceipt.checkNumber !== ""){
-		$('#jsPayMethodNumberModal').text(tempReceipt.checkNumber);
+	if (tempReceipt.depositNumber !== ""){
+		$('#jsPayMethodNumberModal').text(tempReceipt.depositNumber);
 	}
 	if (tempReceipt.accountNumber !== "") {
 		$('#jsPayMethodNumberModal').text(tempReceipt.accountNumber);
@@ -418,6 +452,10 @@ function btnClick(btn, callback) {
 	});
 }
 
+function toNumber(string) {
+	return parseInt(numeral(string).format('0'));
+}
+
 btnClick('#btn-save-receipt', (e) => {
 	saveReceipt();
 });
@@ -427,10 +465,46 @@ function saveReceipt(print) {
 	let invoiceID = tempReceipt.invoiceID;
 	let date = tempReceipt.date;
 	let payMethod = tempReceipt.payMethod;
-	let checkNumber = tempReceipt.checkNumber;
+	let depositNumber = tempReceipt.depositNumber;
 	let accountNumber = tempReceipt.accountNumber;
 	let resident = tempReceipt.resident;
 	let residentId = tempReceipt.residentId;
+	let category = tempReceipt.category;
+	let amount = toNumber(addPaymentPage.receiptAmount);
+	let status = 'Pagada';
+	let amountForSaveInInvoice = undefined;
+
+	if (amount < addPaymentPage.tempReceiptAmount) {
+		status = 'Sin pagar'
+		amountForSaveInInvoice = addPaymentPage.receiptAmount;
+	} else if ((amount - addPaymentPage.tempReceiptAmount) === 0) {
+		status = 'Pagada';
+		amount = addPaymentPage.tempReceiptAmount;
+		amountForSaveInInvoice = addPaymentPage.originalReceiptAmount;
+
+		mongoDbObj.residents.update(
+			{
+				"id": residentId
+			},
+			{
+				$pull:
+					{
+						pendingInvoices : invoiceID
+					},
+				$push:
+					{
+						payedInvoices : invoiceID 
+					}
+			},
+			function(err, result) {
+				if (err) {
+					console.log(err);
+					return;
+				}
+			}
+		);
+	}
+
 
 	flashMessage("Salvando...", 'flashmessage--info')
 	mongoDbObj.invoices.update(
@@ -441,33 +515,12 @@ function saveReceipt(print) {
 			$set:
 				{
 					"datePayed": date,
-					"status" : "Pagada",
+					"status" : status,
 					"payMethod": payMethod,
-					"checkNumber": checkNumber,
+					"depositNumber": depositNumber,
 					"accountNumber": accountNumber, 
-					"resident": resident
-				}
-		},
-		function(err, result) {
-			if (err) {
-				console.log(err);
-				return;
-			}
-			console.log(result);
-		}
-	);
-	mongoDbObj.residents.update(
-		{
-			"id": residentId
-		},
-		{
-			$pull:
-				{
-					pendingInvoices : invoiceID
-				},
-			$push:
-				{
-					payedInvoices : invoiceID 
+					"resident": resident,
+					"amount": toNumber(amountForSaveInInvoice)
 				}
 		},
 		function(err, result) {
@@ -485,6 +538,69 @@ function saveReceipt(print) {
 				}, 900);
 			}
 		}
+	);
+	mongoDbObj.accounting.update(
+		{
+			id: "general"
+		},
+		{
+			$inc: {
+				totalBalance: amount,
+				totalCashIn: amount,
+				totalExpensives: 0
+			}
+		}, function(err, result) {
+			if (err) return console.log(err);
+		}
+	);
+
+	let incObj = {
+		cashOut: 0,
+		extraordinaryPayments: 0,
+		maintenancePayments: 0
+	};
+	incObj['cashIn'] = amount;
+	incObj['balance'] = amount;
+	incObj[tempReceipt.type] = amount;
+	mongoDbObj.accounting.updateOne(
+		{
+			id: "by-month",
+			month: accountingPage.currentMonth(),
+			year: accountingPage.currentYear()
+		},
+		{
+			$inc: incObj
+		},
+		{
+			upsert: true
+		}, function(err, result) {
+			if(err) return console.log(err)
+		} 
+	);
+
+	let incObj2 = {
+		cashIn: 0,
+		balance: 0,
+		cashOut: 0,
+		maintenancePayments: 0,
+		extraordinaryPayments: 0
+	}
+	incObj2.cashIn = amount;
+	incObj2.balance = amount;
+	incObj2[tempReceipt.type] = amount;
+	mongoDbObj.accounting.updateOne(
+		{
+			id: "by-year",
+			year: accountingPage.currentYear()
+		},
+		{
+			$inc: incObj2
+		},
+		{
+			upsert: true
+		}, function(err, result) {
+			if(err) return console.log(err)
+		} 
 	);
 }
 
@@ -542,8 +658,8 @@ btnClick('#searchResident', (e) => {
 });
 
 btnClick('#save-resident', (e) => {
-	let firstName = $('input[name="firstname"]').val();
-	let lastName = $('input[name="lastname"]').val();
+	let firstName = $('input[name="firstName"]').val();
+	let lastName = $('input[name="lastName"]').val();
 	let category = $('select[name="category"] option:selected').val();
 
 	if(firstName == "" || lastName == "" || category == "") {
@@ -566,8 +682,8 @@ btnClick('#createResident', (e) => {
 
 function saveResident() {
 	if (creatingUser === true){
-		let firstName = $('input[name="firstname"]').val();
-		let lastName = $('input[name="lastname"]').val();
+		let firstName = $('input[name="firstName"]').val();
+		let lastName = $('input[name="lastName"]').val();
 
 		let tempObj = {
 			id: configs.nextResidentNumber,
@@ -576,18 +692,18 @@ function saveResident() {
 			fullName: firstName + " " + lastName,
 			firstName2: $('input[name="firstName2"]').val(),
 			lastName2: $('input[name="lastName2"]').val(),
-			firstNameOwner: $('input[name="firstNameOwner"]').val(),
-			lastNameOwner: $('input[name="lastNameOwner"]').val(),
+			firstNameOwner: getInputVal('firstNameOwner') == "" ? firstName : getInputVal('firstNameOwner'),
+			lastNameOwner: getInputVal('lastNameOwner') == "" ? lastName : getInputVal('lastNameOwner'),
 			category: $('select[name="category"] option:selected').val(),
 			email: $('input[name="email"]').val(),
 			address: $('input[name="address"]').val(),
 			phone: $('input[name="phone"]').val(),
 			cellPhone: $('input[name="cellPhone"]').val(),
 			cellPhone2: $('input[name="cellPhone2"]').val(),
-			cellPhoneOwner: $('input[name="cellPhoneOwner"]').val(),
-			personID: $('input[name="cedula"]').val(),
+			cellPhoneOwner: getInputVal('cellPhoneOwner') == "" ? getInputVal('cellPhone') : getInputVal('cellPhoneOwner'),
+			personID: $('input[name="personID"]').val(),
 			personID2: $('input[name="personID2"]').val(),
-			personIDOwner: $('input[name="personIDOwner"]').val(),
+			personIDOwner: getInputVal('personIDOwner') == "" ? getInputVal('personID') : getInputVal('personIDOwner'),
 			bankAccount: [ 
 				{
 					bankName: $('input[name="bankName1"]').val(),
@@ -608,7 +724,6 @@ function saveResident() {
 			flashMessage('Usuario creado', 'flashmessage--success');
 			creatingUser = false;
 			$('.residents-list-page__box #btn-close-modal').trigger('click');
-			let configs = localStorage.getObj('configs');
 			configs.nextResidentNumber++;
 			localStorage.setObj('configs', configs);
 			// updateConfigs();
@@ -626,8 +741,8 @@ function saveResident() {
 	} else {
 		console.log('Just saving');
 		let id = $('#search-list-resident-id').attr('data');
-		let firstName = $('input[name="firstname"]').val();
-		let lastName = $('input[name="lastname"]').val();
+		let firstName = $('input[name="firstName"]').val();
+		let lastName = $('input[name="lastName"]').val();
 
 		let tempObj = {
 			firstName: firstName,
@@ -635,18 +750,18 @@ function saveResident() {
 			fullName: firstName + " " + lastName,
 			firstName2: $('input[name="firstName2"]').val(),
 			lastName2: $('input[name="lastName2"]').val(),
-			firstNameOwner: $('input[name="firstNameOwner"]').val(),
-			lastNameOwner: $('input[name="lastNameOwner"]').val(),
+			firstNameOwner: getInputVal('firstNameOwner') == "" ? firstName : getInputVal('firstNameOwner'),
+			lastNameOwner: getInputVal('lastNameOwner') == "" ? lastName : getInputVal('lastNameOwner'),
 			category: $('select[name="category"] option:selected').val(),
 			email: $('input[name="email"]').val(),
 			address: $('input[name="address"]').val(),
 			phone: $('input[name="phone"]').val(),
 			cellPhone: $('input[name="cellPhone"]').val(),
 			cellPhone2: $('input[name="cellPhone2"]').val(),
-			cellPhoneOwner: $('input[name="cellPhoneOwner"]').val(),
-			personID: $('input[name="cedula"]').val(),
+			cellPhoneOwner: getInputVal('cellPhoneOwner') == "" ? getInputVal('cellPhone') : getInputVal('cellPhoneOwner'),
+			personID: $('input[name="personID"]').val(),
 			personID2: $('input[name="personID2"]').val(),
-			personIDOwner: $('input[name="personIDOwner"]').val(),
+			personIDOwner: getInputVal('personIDOwner') == "" ? getInputVal('personID') : getInputVal('personIDOwner'),
 			bankAccount: [ 
 				{
 					bankName: $('input[name="bankName1"]').val(),
@@ -719,12 +834,14 @@ function loadResidentCard(resident) {
 	$('input[name="personID"]').val(resident.personID);
 	$('input[name="personID2"]').val(resident.personID2);
 	$('input[name="personIDOwner"]').val(resident.personIDOwner);
-	$('input[name="bankName1"]').val(resident.bankAccount[0].bankName);
-	$('input[name="bankName2"]').val(resident.bankAccount[1].bankName);
-	$('input[name="bankName3"]').val(resident.bankAccount[2].bankName);
-	$('input[name="bank1"]').val(resident.bankAccount[0].bank);
-	$('input[name="bank2"]').val(resident.bankAccount[1].bank);
-	$('input[name="bank3"]').val(resident.bankAccount[2].bank);
+	if (resident.bankAccount.length > 0) {
+		$('input[name="bankName1"]').val(resident.bankAccount[0].bankName);
+		$('input[name="bankName2"]').val(resident.bankAccount[1].bankName);
+		$('input[name="bankName3"]').val(resident.bankAccount[2].bankName);
+		$('input[name="bank1"]').val(resident.bankAccount[0].bank);
+		$('input[name="bank2"]').val(resident.bankAccount[1].bank);
+		$('input[name="bank3"]').val(resident.bankAccount[2].bank);
+	}
 
 	$('.modal__delete-resident #resident').text(`${resident.fullName} #(${resident.id})`);
 }
