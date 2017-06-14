@@ -86,6 +86,10 @@ var addPaymentPage = new Vue({
 var accountingPage = new Vue({
 	el: '#accounting-page',
 	data: {
+		monthList: moment.months(),
+		monthSelected: '',
+		yearSelected: '',
+		yearList: [],
 		monthCredit: '',
 		monthDebit: '',
 		yearCredit: '',
@@ -99,7 +103,8 @@ var accountingPage = new Vue({
 		debitList: [],
 		extraordinaryInvoicesList: [],
 		extraordinaryInvoicesDescriptions: [],
-		currentInvoiceDescription: ''
+		currentInvoiceDescription: '',
+		monthStatement: ''
 	},
 	methods: {
 		currentMonth: function() {
@@ -107,6 +112,15 @@ var accountingPage = new Vue({
 		},
 		currentYear: function() {
 			return moment().format('YYYY')
+		},
+		getYearList: function() {
+			mongoDbObj.accounting.aggregate([
+				{ $match: { id: "by-year" } },
+				{ $group: { _id: "$year" } }
+			]).toArray((err, result) => {
+				if (err) return console.log(err);
+				accountingPage.yearList = result;
+			});
 		},
 		residentsList: function() {
 			noDisplay('.accounting-page__inside-page');
@@ -121,9 +135,23 @@ var accountingPage = new Vue({
 			noDisplay('.accounting-page__inside-page');
 			yesDisplay('#accounting-page-home');
 			noDisplay('#btn-close-inside-page');
+			this.monthStatement = '';
 		},
-		statusByMonth: function() {
-			alert("En Construccion")
+		goMonthStatement: function() {
+			noDisplay('.accounting-page__inside-page');
+			yesDisplay('#accounting-page-month-statement');
+			yesDisplay('#btn-close-inside-page');
+			this.getYearList();
+		},
+		getMonthStatement: function() {
+			let month = this.monthSelected;
+			let year = this.yearSelected;
+			if (month === '' || year === '') return flashMessage('Seleccione Mes y Año', 'flashmessage--danger');
+			mongoDbObj.accounting.find({id: "by-month", month: month, year: year}).toArray((err, result) => {
+				if (err) return console.log(err);
+				if (result.length === 0) return flashMessage("No hay record de mes seleccionado", "flashmessage--info");
+				accountingPage.monthStatement = result[0];
+			});
 		},
 		extraordinaryInvoices: function() {
 			noDisplay('.accounting-page__inside-page');
@@ -154,9 +182,6 @@ var accountingPage = new Vue({
 				if (err) return console.log(err);
 				accountingPage.debitList = doc;
 			});
-		},
-		goModalDeleteDebit: function() {
-
 		},
 		fixInvoices: function() {
 			mongoDbObj.invoices.find({status: "Sin pagar"}).toArray((err, doc) => {
@@ -372,5 +397,8 @@ var accountingPage = new Vue({
 		totalBalance: function() {
 			return this.totalBalance = numeral(this.totalBalance).format('0,0')
 		}
+	},
+	computed: {
+		
 	}
 });

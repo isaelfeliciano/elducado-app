@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/animation.css">
     <link rel="stylesheet" type="text/css" href="css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="css/tables-min.css">
+    <link rel="stylesheet" type="text/css" href="css/forms-nr-min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -435,7 +436,7 @@
 			<section class="center-align center-text">
 				<button @click.prevent="residentsList" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Lista de Residentes</p></button>
 
-				<button @click.prevent="statusByMonth" class="btn btn__big center-align"><i class="fa fa-calendar fa-3x center-align-absolute"></i> <p>Estado por Mes</p></button>
+				<button @click.prevent="goMonthStatement" class="btn btn__big center-align"><i class="fa fa-calendar fa-3x center-align-absolute"></i> <p>Estado por Mes</p></button>
 
 				<button @click.prevent="extraordinaryInvoices" class="btn btn__big center-align"><i class="fa fa-file-excel-o fa-3x center-align-absolute"></i> <p>Facturas Extraordinarias</p></button>
 
@@ -513,6 +514,64 @@
 			</table>
 		</div>
 
+
+		<div id="accounting-page-month-statement" class="accounting-page__inside-page no-display">
+			<form class="pure-form">
+				<fieldset>
+					<div class="pure-g">
+						<div class="center-text">
+							<label for="month" class="inline-block">Mes: </label>
+							<select v-model="monthSelected" id="month" class="inline-block">
+								<option disabled value="">Seleccione</option>
+								<option v-for="month in monthList" :value="_.capitalize(month)">{{ _.capitalize(month) }}</option>
+							</select>
+
+							<label for="year" class="inline-block">Año: </label>
+							<select v-model="yearSelected" id="year" class="inline-block">
+								<option disabled value="">Seleccione</option>
+								<option v-for="year in yearList">{{ year._id }}</option>
+							</select>
+
+							<button class="btn center-align margin-sm" @click.prevent="getMonthStatement"><i class="fa fa-search"></i> Buscar</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+
+
+			<table class="pure-table pure-table-bordered center-align" v-show="monthStatement !== ''">
+				<thead>
+					<tr><th colspan="2" class="center-text">Estado para el Mes {{ monthSelected }} de {{ yearSelected }}</th></tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>Credito</td>
+						<td>{{ numeralFormat(monthStatement.cashIn) }} RD$</td>
+					</tr>
+
+					<tr>
+						<td>Debito</td>
+						<td>{{ numeralFormat(monthStatement.cashOut) }} RD$</td>
+					</tr>
+
+					<tr>
+						<td>Facturas Normales</td>
+						<td>{{ numeralFormat(monthStatement.maintenancePayments) }} RD$</td>
+					</tr>
+
+					<tr>
+						<td>Facturas Extraordinarias</td>
+						<td>{{ numeralFormat(monthStatement.extraordinaryPayments) }} RD$</td>
+					</tr>
+
+					<tr>
+						<td>Balance del Mes</td>
+						<td>{{ numeralFormat(monthStatement.balance) }} RD$</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 
