@@ -6,6 +6,9 @@
   outline: 0; }
 
 /* >>>>---- HELPERS ----*/
+.margin-sm {
+  margin: 0.5rem; }
+
 .center-align, .center-align-absolute {
   margin-left: auto;
   margin-right: auto; }
@@ -63,6 +66,9 @@
 
 .mid-size-text {
   font-size: 1.2rem; }
+
+.can-scroll {
+  overflow-y: auto; }
 
 /* ---- HELPERS ----<<<<*/
 /*Flashmessge*/
@@ -786,7 +792,7 @@ table.footer {
   .accounting-page-box p {
     display: block; }
   .accounting-page-box .header {
-    background-color: #CED5DF;
+    background-color: #ced5df;
     width: 100%;
     height: 5rem;
     padding: 0.7rem;
@@ -836,13 +842,27 @@ table.footer {
     overflow-y: auto;
     position: relative; }
     .accounting-page-box #accounting-page-residents-list .list {
-      background-color: #019BDF;
+      background-color: #ced5df;
       width: 80%;
-      height: 7rem;
+      height: 8rem;
       position: relative;
-      color: #fff;
+      color: #172850;
       font-size: 1.1rem;
       margin: 1rem;
       padding: 1rem; }
+
+#table-debit {
+  font-size: 0.95rem; }
+  #table-debit .red-on-hover:hover {
+    background-color: #c44640;
+    color: #fff;
+    cursor: url("../img/delete-sign.png"), auto; }
+  #table-debit .red-on-hover:active {
+    opacity: 0.8; }
+
+.table-extraordinary-invoices {
+  margin-bottom: 1rem; }
+  .table-extraordinary-invoices .color-red {
+    color: red; }
 
 /*# sourceMappingURL=style.css.map */

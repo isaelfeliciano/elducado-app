@@ -1,6 +1,7 @@
 'use strict'
 
 var MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID;
 var mongoDbObj;
 var assert = require('assert');
 var spawn = require('child_process').spawn;
@@ -454,6 +455,9 @@ function btnClick(btn, callback) {
 
 function toNumber(string) {
 	return parseInt(numeral(string).format('0'));
+}
+function toDecimal(string) {
+	return parseFloat(numeral(string).format('0.00'));
 }
 
 btnClick('#btn-save-receipt', (e) => {

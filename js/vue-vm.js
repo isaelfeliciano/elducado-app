@@ -40,6 +40,9 @@ var modalSingleInvoice = new Vue({
 			}
 			noDisplay('.inner-box');
 			yesDisplay('.create-invoice-details');
+		},
+		formatAmount: function(event){
+			accountingPage.formatAmount(event);
 		}
 	},
 	watch: {
@@ -88,7 +91,13 @@ var accountingPage = new Vue({
 		yearCredit: '',
 		yearDebit: '',
 		totalBalance: '',
-		residents: []
+		residents: [],
+		debitCheque: '',
+		debitName: '',
+		debitDescription: '',
+		debitAmount: '',
+		debitList: [],
+		extraordinaryInvoicesList: []
 	},
 	methods: {
 		currentMonth: function() {
@@ -115,10 +124,35 @@ var accountingPage = new Vue({
 			alert("En Construccion")
 		},
 		extraordinaryInvoices: function() {
-			alert("En Construccion")
+			noDisplay('.accounting-page__inside-page');
+			yesDisplay('#accounting-page-extraordinary-invoices');
+			yesDisplay('#btn-close-inside-page');
+			this.extraordinaryInvoicesList = [];
+			mongoDbObj.invoices.aggregate([ 
+				{ $match : { type: "extraordinaryPayments" } }, 
+				{ $group : { _id: "$description" } } 
+			]).toArray((err, result) => {
+				if (err) return console.log(err);
+				_.forEach(result, (item, index) => {
+					mongoDbObj.invoices.find({description: item._id}).toArray((err, result) => {
+						if (err) return console.log(err);
+						result = _.sortBy(result, ['fullName']);
+						accountingPage.extraordinaryInvoicesList.push(result)
+					});
+				});
+			});
 		},
-		addDebit: function() {
-			alert("En Construccion")
+		goAddDebit: function() {
+			noDisplay('.accounting-page__inside-page');
+			yesDisplay('#accounting-page-add-debit');
+			yesDisplay('#btn-close-inside-page');
+			mongoDbObj.accounting.find({type: 'debit'}).toArray((err, doc) => {
+				if (err) return console.log(err);
+				accountingPage.debitList = doc;
+			});
+		},
+		goModalDeleteDebit: function() {
+
 		},
 		fixInvoices: function() {
 			mongoDbObj.invoices.find({status: "Sin pagar"}).toArray((err, doc) => {
@@ -149,6 +183,173 @@ var accountingPage = new Vue({
 					}
 				});
 			});
+		},
+		fixAddFullNameToInvoices: function() {
+			mongoDbObj.invoices.find({}).toArray((err, doc) => {
+				if (err) return console.log(err);
+				_.forEach(doc, (invoice, index) => {
+					mongoDbObj.residents.find({id: invoice.residentId}).toArray((err, result) => {
+						if(err) return console.log(err);
+						let fullName = result[0].fullName;
+						mongoDbObj.invoices.update({id: invoice.id}, { $set: {"fullName": fullName} }, {upsert: true}, function(err, result){
+							if(err) return console.log(err);
+						});
+					});
+					if(doc.length === (index + 1)) {
+						console.log("Terminado");
+					}
+				});
+			});
+		},
+		addDebit: function() {
+			if (this.debitName == '' || this.debitCheque == '' || this.debitDescription == '' || this.debitAmount == ''){
+				return flashMessage('Debe llenar todos los campos', 'flashmessage--danger');
+			}
+			let obj = {
+				debitDate: moment().format('DD/MM/YYYY'),
+				debitCheque: accountingPage.debitCheque,
+				debitName: accountingPage.debitName,
+				debitDescription: accountingPage.debitDescription,
+				debitAmount: toDecimal(accountingPage.debitAmount),
+				month: _.capitalize(moment().format('MMMM')),
+				year: moment().format('YYYY'),
+				type: 'debit',
+				timestamp: Date.now()
+			};
+
+			mongoDbObj.accounting.insertOne(obj, (err, result) => {
+				if (err) return console.log(err);
+
+				mongoDbObj.accounting.update(
+					{
+						id: "general"
+					},
+					{
+						$inc: {
+							totalBalance: -toDecimal(obj.debitAmount),
+							totalExpensives: toDecimal(obj.debitAmount)
+						}
+					}, function(err, result) {
+						if (err) return console.log(err);
+
+						mongoDbObj.accounting.update(
+							{
+								id: "by-year",
+								year: moment().format('YYYY')
+							},
+							{
+								$inc: {
+									balance: -toDecimal(obj.debitAmount),
+									cashOut: toDecimal(obj.debitAmount)
+								}
+							}, function(err, result) {
+								if (err) return console.log(err);
+
+								mongoDbObj.accounting.update(
+									{
+										id: "by-month",
+										month: _.capitalize(moment().format('MMMM')),
+										year: moment().format('YYYY')
+									},
+									{
+										$inc: {
+											balance: -toDecimal(obj.debitAmount),
+											cashOut: toDecimal(obj.debitAmount)
+										}
+									}, function(err, result) {
+										if (err) return console.log(err);
+										updateResumen();
+									}
+								);
+							}
+						);
+					}
+				);
+			});
+
+
+			this.debitList.push(obj);
+			this.debitCheque = '';
+			this.debitName = '';
+			this.debitDescription = '';
+			this.debitAmount = '';
+
+
+		},
+		deleteDebit: function(event) {
+			let _id = $(event.target).parent().children('td:nth-child(1)').attr('_id');
+			let amount = $(event.target).parent().children('td:nth-child(6)').text();
+			amount = toDecimal(amount);
+			let date = $(event.target).parent().children('td:nth-child(2)').text();
+			date = moment(date).format('DD/MMMM/YYYY');
+			let year = moment(date).format('YYYY');
+			let month = _.capitalize(moment(moment(date).format('DD/MM/YYYY')).format('MMMM'));
+			if(confirm('Esta seguro, borrar este debito?')){
+				mongoDbObj.accounting.remove({_id: ObjectId(_id)}, (err, result) => {
+					if (err) return console.log(err);
+					mongoDbObj.accounting.update(
+						{
+							id: "general"
+						},
+						{
+							$inc: {
+								totalBalance: amount,
+								totalExpensives: -amount
+							}
+						}, function(err, result) {
+							if (err) return console.log(err);
+							mongoDbObj.accounting.update(
+								{
+									id: "by-year",
+									year: year
+								},
+								{
+									$inc: {
+										balance: amount,
+										cashOut: -amount
+									}
+								}, function(err, result) {
+									if (err) return console.log(err);
+									mongoDbObj.accounting.update(
+										{
+											id: "by-month",
+											month: month
+										},
+										{
+											$inc: {
+												balance: amount,
+												cashOut: -amount,
+											}
+										}, function(err, result) {
+											if (err) return console.log(err);
+											$(event.target).parent().remove();
+											flashMessage('Debito eliminado', 'flashmessage--info');
+											updateResumen();
+										}
+									);
+								}
+							);
+						}	
+					);
+				});
+			} else {
+				alert('Cancelado')
+			}
+		},
+		formatAmount: function(event) {
+			let isDecimal; 
+			let value = $(event.target).val();
+			let valueStr = value.toString();
+			if (valueStr.indexOf('.') !== -1) {
+				isDecimal = true;
+			  } else {isDecimal = false}
+			if (value.length >= 3 && isDecimal == false) {
+				value = numeral(value).format('0,0');
+				$(event.target).val(value);
+			}
+		},
+		numeralFormat: function(number) {
+			return numeral(number).format('0,0.00');
 		}
 	},
 	watch: {
@@ -168,4 +369,4 @@ var accountingPage = new Vue({
 			return this.totalBalance = numeral(this.totalBalance).format('0,0')
 		}
 	}
-})
+});

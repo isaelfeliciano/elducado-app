@@ -6,7 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/animation.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/tables-min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -127,7 +128,7 @@
 			<p class="center-text">Detalles de Factura Extraordinaria</p>
 
 			<label for="extraordinary-description">Descripcion <input type="text" name="extraordinary-description" v-model="extraordinaryDescription"></label>
-			<label for="extraordinary-amount">Monto <input type="number" name="extraordinary-amount" v-model="extraordinaryAmount"></label>
+			<label for="extraordinary-amount">Monto <input type="text" name="extraordinary-amount" v-model="extraordinaryAmount" @keyup="formatAmount($event)"></label>
 
 			<button id="generateExtraordinaryInvoicesBatchActual" v-bind:onclick="btnGenerateExtraordinaryInvoices" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
 		</div>
@@ -428,7 +429,7 @@
 			</div>
 		</div>
 
-		<button id="btn-close-inside-page" class="no-display" @click.prevent="closeInsidePage"><i class="fa fa-close fa-3x"></i></button>
+		<button id="btn-close-inside-page" class="no-display" @click.prevent="closeInsidePage"><i class="fa fa-arrow-circle-o-left fa-3x"></i></button>
 
 		<div class="accounting-page__inside-page" id="accounting-page-home">
 			<section class="center-align center-text">
@@ -438,11 +439,11 @@
 
 				<button @click.prevent="extraordinaryInvoices" class="btn btn__big center-align"><i class="fa fa-file-excel-o fa-3x center-align-absolute"></i> <p>Facturas Extraordinarias</p></button>
 
-				<button @click.prevent="addDebit" class="btn btn__big center-align"><i class="fa fa-minus-square-o fa-3x center-align-absolute"></i> <p>Agregar Debito</p></button>
+				<button @click.prevent="goAddDebit" class="btn btn__big center-align"><i class="fa fa-minus-square-o fa-3x center-align-absolute"></i> <p class="center-text">Debitos</p></button>
 			</section>
 		</div>
 
-		<div class="accounting-page__inside-page" id="accounting-page-residents-list">
+		<div id="accounting-page-residents-list" class="accounting-page__inside-page no-display">
 			<div class="list center-align" v-for="resident in residents">
 				<p class="big-text">{{ resident.fullName }}</p>
 				<p>ID: {{ resident.id }} </p>
@@ -451,6 +452,64 @@
 				<p>Facturas Pendientes {{ resident.pendingInvoices.length }}</p>
 			</div>
 		</div>
+
+		<div id="accounting-page-add-debit" class="accounting-page__inside-page no-display">
+			<label class="inline-block" for="debit-cheque">Cheque <input v-model="debitCheque" type="text" name="debit-cheque"></label>
+			<label class="inline-block" for="debit-name">Nombre <input v-model="debitName" type="text" name="debit-name"></label>
+			<label class="inline-block" for="debit-description">Descripcion <input v-model="debitDescription" type="text" name="debit-description" maxlength="50"></label>
+			<label class="inline-block" for="debit-amount">Monto RD$<input @keyup="formatAmount($event)" v-model="debitAmount" type="text" name="debit-amount"></label>
+
+			<button class="btn margin-sm center-align" @click.prevent="addDebit">Debitar</button>
+
+			<table id="table-debit" class="pure-table pure-table-bordered center-align">
+			<thead>
+				<tr class="">
+					<th>Fecha</th>
+					<th>Cheque</th>
+					<th>Nombre</th>
+					<th>Descripcion</th>
+					<th>Monto RD$</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr class="red-on-hover" v-for="debit in debitList" @click="deleteDebit($event)">
+					<td :_id="debit._id" class="no-display"></td>
+					<td>{{ debit.debitDate }}</td>
+					<td>{{ debit.debitCheque }}</td>
+					<td>{{ debit.debitName }}</td>
+					<td>{{ debit.debitDescription }}</td>
+					<td>{{ numeralFormat(debit.debitAmount) }}</td>
+				</tr>
+			</tbody>
+			</table>
+
+		</div>
+
+		<div id="accounting-page-extraordinary-invoices" class="accounting-page__inside-page no-display can-scroll">
+				<table v-for="invoices in extraordinaryInvoicesList" class="table-extraordinary-invoices pure-table pure-table-bordered center-align">
+					<thead>
+						<tr>
+							<th class="center-text" colspan="3">{{ invoices[0].description }}</th>
+						</tr>
+						<tr>
+							<td>ID</td>
+							<td>Nombre</td>
+							<td>Estado de Factura</td>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr v-for="invoice in invoices">
+							<td>{{ invoice.residentId }}</td>
+							<td>{{ invoice.fullName }}</td>
+							<td v-if="invoice.status === 'Sin pagar'" class="color-red">{{ invoice.status }}</td>
+							<td v-else> {{ invoice.status }} </td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+
 	</div>
 </div>
 

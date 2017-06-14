@@ -326,9 +326,10 @@ function generateNormalInvoicesBatch(e) {
 			let id = item.id;
 			let category = item.category;
 			let amount = configs.categoryPrices[category];
+			let fullName = item.fullName;
 			updateConfigs({invoiceSequence: configs.invoiceSequence})
 			.then(updatePendingInvoice(invoiceNumber, id))
-			.then(createInvoice(invoiceNumber, id, category, amount, configs.selectedMonth))
+			.then(createInvoice(invoiceNumber, id, category, amount, configs.selectedMonth, fullName))
 			.then((result) => {
 				console.log(result);
 				flashMessage('Facturas creadas', 'flashmessage--success');
@@ -375,9 +376,10 @@ function generateNormalInvoice(residentId) {
 		let id = resident.id;
 		let category = resident.category;
 		let amount = configs.categoryPrices[category];
+		let fullName = resident.fullName;
 		updateConfigs({invoiceSequence: configs.invoiceSequence})
 		.then(updatePendingInvoice(invoiceNumber, id))
-		.then(createInvoice(invoiceNumber, id, category, amount, selectedMonth))
+		.then(createInvoice(invoiceNumber, id, category, amount, selectedMonth, fullName))
 		.then((result) => {
 			console.log(result);
 			flashMessage('Facturas creadas', 'flashmessage--success');
@@ -418,9 +420,10 @@ function generateExtraordinaryInvoicesBatchActual() {
 			let category = item.category;
 			let description = getInputVal('extraordinary-description');
 			let amount = getInputVal('extraordinary-amount');
+			let fullName = item.fullName;
 			updateConfigs({invoiceSequence: configs.invoiceSequence})
 			.then(updatePendingInvoice(invoiceNumber, id))
-			.then(createInvoiceExtraordinary(invoiceNumber, id, category, description, amount))
+			.then(createInvoiceExtraordinary(invoiceNumber, id, category, description, amount, fullName))
 			.then((result) => {
 				console.log(result);
 				$('.modal__generate-invoices #btn-close-modal').trigger('click');
@@ -455,9 +458,10 @@ function generateExtraordinaryInvoiceActual() {
 			let category = item.category;
 			let description = getInputVal('extraordinary-description');
 			let amount = getInputVal('extraordinary-amount');
+			let fullName = item.fullName;
 			updateConfigs({invoiceSequence: configs.invoiceSequence})
 			.then(updatePendingInvoice(invoiceNumber, id))
-			.then(createInvoiceExtraordinary(invoiceNumber, id, category, description, amount))
+			.then(createInvoiceExtraordinary(invoiceNumber, id, category, description, amount, fullName))
 			.then((result) => {
 				console.log(result);
 				$('.modal__generate-invoices #btn-close-modal').trigger('click');
@@ -495,7 +499,7 @@ function updatePendingInvoice(invoiceNumber, id) {
 	});
 }
 
-function createInvoice(invoiceNumber, id, category, amount, selectedMonth) {
+function createInvoice(invoiceNumber, id, category, amount, selectedMonth, fullName) {
 	amount = toNumber(amount);
 	let month = moment().month(selectedMonth - 1).format('MMMM');
 	let data = {
@@ -504,6 +508,7 @@ function createInvoice(invoiceNumber, id, category, amount, selectedMonth) {
 		month: month,
 		status: "Sin pagar",
 		residentId: id,
+		fullName: fullName,
 		category: category,
 		type: "maintenancePayments",
 		amount: amount,
@@ -521,7 +526,7 @@ function createInvoice(invoiceNumber, id, category, amount, selectedMonth) {
 	})
 }
 
-function createInvoiceExtraordinary(invoiceNumber, id, category, description, amount) {
+function createInvoiceExtraordinary(invoiceNumber, id, category, description, amount, fullName) {
 	console.log("createInvoiceExtraordinary");
 	amount = toNumber(amount);
 	let month = moment().format('MMMM');
@@ -531,6 +536,7 @@ function createInvoiceExtraordinary(invoiceNumber, id, category, description, am
 		month: month,
 		status: "Sin pagar",
 		residentId: id,
+		fullName: fullName,
 		category: category,
 		type: "extraordinaryPayments",
 		amount: amount,
@@ -545,5 +551,5 @@ function createInvoiceExtraordinary(invoiceNumber, id, category, description, am
 		} else {
 			return Promise.resolve(result);
 		}
-	})
+	});
 }

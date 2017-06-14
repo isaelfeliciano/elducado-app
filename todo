@@ -15,5 +15,5 @@ Features Modulo Registros
 
 
 Cambiar metodo de pago de cheque a deposito !Done
-Agregar guardar recibo
+Agregar guardar recibo, imprimir?
 dueDate: moment().month(configs.selectedMonth -1).add(1, 'M').date('5').format('DD/MMMM/YYYY')
