@@ -450,7 +450,7 @@
 				<p>ID: {{ resident.id }} </p>
 				<p><i class="fa fa-phone"></i> {{ resident.phone }}</p>
 				<p><i class="fa fa-sitemap"></i> Categoria: {{ resident.category }}</p>
-				<p>Facturas Pendientes {{ resident.pendingInvoices.length }}</p>
+				<p v-if="resident.pendingInvoices">Facturas Pendientes {{ resident.pendingInvoices.length }}</p>
 			</div>
 		</div>
 
