@@ -97,7 +97,9 @@ var accountingPage = new Vue({
 		debitDescription: '',
 		debitAmount: '',
 		debitList: [],
-		extraordinaryInvoicesList: []
+		extraordinaryInvoicesList: [],
+		extraordinaryInvoicesDescriptions: [],
+		currentInvoiceDescription: ''
 	},
 	methods: {
 		currentMonth: function() {
@@ -133,13 +135,15 @@ var accountingPage = new Vue({
 				{ $group : { _id: "$description" } } 
 			]).toArray((err, result) => {
 				if (err) return console.log(err);
-				_.forEach(result, (item, index) => {
-					mongoDbObj.invoices.find({description: item._id}).toArray((err, result) => {
-						if (err) return console.log(err);
-						result = _.sortBy(result, ['fullName']);
-						accountingPage.extraordinaryInvoicesList.push(result)
-					});
-				});
+				accountingPage.extraordinaryInvoicesDescriptions = result;
+			});
+		},
+		findExtraordinaryInvoices: function(description) {
+			this.currentInvoiceDescription = description;
+			mongoDbObj.invoices.find({description: description}).toArray((err, result) => {
+				if (err) return console.log(err);
+				result = _.sortBy(result, ['fullName']);
+				accountingPage.extraordinaryInvoicesList = result;
 			});
 		},
 		goAddDebit: function() {

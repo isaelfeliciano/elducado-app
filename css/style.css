@@ -471,23 +471,23 @@ nav {
   right: 1em;
   bottom: -6em; }
 
-#search-list, #search-list-resident-card {
+#search-list, #search-list-resident-card, #extraordinary-invoices-list {
   width: 60%;
   position: relative;
   margin-top: 2em; }
-  #search-list li, #search-list-resident-card li {
+  #search-list li, #search-list-resident-card li, #extraordinary-invoices-list li {
     padding: 0.4em 0; }
-  #search-list li a, #search-list-resident-card li a {
+  #search-list li a, #search-list-resident-card li a, #extraordinary-invoices-list li a {
     text-align: left;
     font-size: 2em;
     padding: 0.1em; }
-    #search-list li a:hover, #search-list-resident-card li a:hover {
+    #search-list li a:hover, #search-list-resident-card li a:hover, #extraordinary-invoices-list li a:hover {
       color: #FFF;
       background-color: #019BDF;
       cursor: default; }
-    #search-list li a:active, #search-list-resident-card li a:active {
+    #search-list li a:active, #search-list-resident-card li a:active, #extraordinary-invoices-list li a:active {
       background-color: #00B1FF; }
-    #search-list li a i, #search-list-resident-card li a i {
+    #search-list li a i, #search-list-resident-card li a i, #extraordinary-invoices-list li a i {
       position: absolute;
       left: 95%; }
 

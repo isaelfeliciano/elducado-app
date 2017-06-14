@@ -487,27 +487,30 @@
 		</div>
 
 		<div id="accounting-page-extraordinary-invoices" class="accounting-page__inside-page no-display can-scroll">
-				<table v-for="invoices in extraordinaryInvoicesList" class="table-extraordinary-invoices pure-table pure-table-bordered center-align">
-					<thead>
-						<tr>
-							<th class="center-text" colspan="3">{{ invoices[0].description }}</th>
-						</tr>
-						<tr>
-							<td>ID</td>
-							<td>Nombre</td>
-							<td>Estado de Factura</td>
-						</tr>
-					</thead>
+		<ul id="extraordinary-invoices-list">
+			<li v-for="item in extraordinaryInvoicesDescriptions"><a href="#" @click.prevent="findExtraordinaryInvoices(item._id)">{{ item._id }}</a></li>
+		</ul>
+			<table class="table-extraordinary-invoices pure-table pure-table-bordered center-align">
+				<thead>
+					<tr>
+						<th class="center-text" colspan="3">{{ currentInvoiceDescription }}</th>
+					</tr>
+					<tr>
+						<td>ID</td>
+						<td>Nombre</td>
+						<td>Estado de Factura</td>
+					</tr>
+				</thead>
 
-					<tbody>
-						<tr v-for="invoice in invoices">
-							<td>{{ invoice.residentId }}</td>
-							<td>{{ invoice.fullName }}</td>
-							<td v-if="invoice.status === 'Sin pagar'" class="color-red">{{ invoice.status }}</td>
-							<td v-else> {{ invoice.status }} </td>
-						</tr>
-					</tbody>
-				</table>
+				<tbody>
+					<tr v-for="invoice in extraordinaryInvoicesList">
+						<td>{{ invoice.residentId }}</td>
+						<td>{{ invoice.fullName }}</td>
+						<td v-if="invoice.status === 'Sin pagar'" class="color-red">{{ invoice.status }}</td>
+						<td v-else> {{ invoice.status }} </td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 	</div>
