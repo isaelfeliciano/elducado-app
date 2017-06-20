@@ -126,10 +126,25 @@ var accountingPage = new Vue({
 			noDisplay('.accounting-page__inside-page');
 			yesDisplay('#accounting-page-residents-list');
 			yesDisplay('#btn-close-inside-page');
+			$(`#accounting-page-residents-list .list .total-amount`).html('');
 			mongoDbObj.residents.find({}).sort({id: 1}).toArray((err, doc) => {
 				if (err) return console.log(err);
 				accountingPage.residents = doc;
 			});
+
+			mongoDbObj.invoices.aggregate([
+				{ $match: { status: "Sin pagar" } }, 
+				{ $group: { _id: "$residentId", total: { $sum: "$amount" } } }
+			]).toArray((err, result) => {
+				if (err) return console.log(err);
+				_.forEach(result, (item, index) => {
+					let id = item._id;
+					let amount = accountingPage.numeralFormat(item.total);
+					$(`#accounting-page-residents-list .list[resident-id="${id}"`)
+					.append(`<p class="total-amount"><i class="fa fa-dollar"></i> Monto Total Pendiente RD$: ${amount}</p>`);
+				});
+			});
+
 		},
 		closeInsidePage: function() {
 			noDisplay('.accounting-page__inside-page');

@@ -197,7 +197,7 @@
 	</a>
 
 	<a href="#accounting-page">
-		<span>Registros</span>
+		<span>Reportes</span> <!-- For reference only -->
 	</a>
 </nav>
 
@@ -445,12 +445,12 @@
 		</div>
 
 		<div id="accounting-page-residents-list" class="accounting-page__inside-page no-display">
-			<div class="list center-align" v-for="resident in residents">
+			<div class="list center-align" v-for="resident in residents" :resident-id="resident.id">
 				<p class="big-text">{{ resident.fullName }}</p>
-				<p>ID: {{ resident.id }} </p>
+				<p><i class="fa fa-hashtag"></i>ID: {{ resident.id }} </p>
 				<p><i class="fa fa-phone"></i> {{ resident.phone }}</p>
 				<p><i class="fa fa-sitemap"></i> Categoria: {{ resident.category }}</p>
-				<p v-if="resident.pendingInvoices">Facturas Pendientes {{ resident.pendingInvoices.length }}</p>
+				<p v-if="resident.pendingInvoices"><i class="fa fa-file-text-o"></i> Facturas Pendientes: {{ resident.pendingInvoices.length }}</p>
 			</div>
 		</div>
 
