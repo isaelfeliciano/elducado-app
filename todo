@@ -6,14 +6,37 @@ Fix imprimiendo solo una fatura
 
 Reiniciar invoiceSequence cuando un nuevo año
 
+Agregar fecha custom en debitos (Done)
+
+Implementar Componente "resident-search"
+
 Features Modulo Registros
 	Resumen facturas pendientes y residentes
 	Agregar gastos
 	Estado por mes
 	Buscar factura extraordinaria por descripcion y ver que residente pago y quien no
-	
 
 
 Cambiar metodo de pago de cheque a deposito !Done
 Agregar guardar recibo, imprimir?
 dueDate: moment().month(configs.selectedMonth -1).add(1, 'M').date('5').format('DD/MMMM/YYYY')
+
+
+Arreglar cuando borrando, borra todas la facturas
+
+
+
+> db.residents.dropIndexes()
+{
+        "nIndexesWas" : 2,
+        "msg" : "non-_id indexes dropped for collection",
+        "ok" : 1
+}
+> db.residents.createIndex({ firstName: "text", lastName: "text", firstName2: "text", lastName2: "text" })
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+>

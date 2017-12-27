@@ -213,6 +213,10 @@ body, html {
 .bigger-font {
   font-size: 1.5em; }
 
+.normal-font {
+  font-size: 1rem;
+  font-weight: normal; }
+
 .bold {
   font-weight: bold; }
 
@@ -640,6 +644,11 @@ nav {
     line-height: 2em;
     float: right; }
 
+.pagada {
+  background-image: url(../img/pagada.png);
+  background-position: 0;
+  background-size: cover; }
+
 table.invoice {
   margin-top: 2rem; }
   table.invoice .table-head {
@@ -686,24 +695,75 @@ table.footer {
   font-size: 1.7em;
   border: 2px solid #E4AB08;
   padding: 0.2em; }
-.invoices-page__box section {
+.invoices-page__box section#invoices-page__buttons {
   width: 80%;
   height: 10rem;
   position: relative;
   top: 4rem; }
-  .invoices-page__box section .btn__big {
+  .invoices-page__box section#invoices-page__buttons .btn__big {
     margin: auto 1rem;
     display: inline-block;
     position: relative; }
-    .invoices-page__box section .btn__big i {
+    .invoices-page__box section#invoices-page__buttons .btn__big i {
       float: none;
       position: absolute;
       top: 0.5rem;
       text-align: center; }
-    .invoices-page__box section .btn__big p {
+    .invoices-page__box section#invoices-page__buttons .btn__big p {
       position: absolute;
       bottom: 0.1rem;
       font-size: 1.1rem; }
+.invoices-page__box section#invoices-page__resident-payed {
+  background-color: #E8E8E8;
+  border: 2px solid #019BDF;
+  width: 46rem;
+  height: 30rem;
+  margin-left: 8rem;
+  position: relative;
+  padding: 1rem;
+  overflow-y: scroll; }
+  .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__box {
+    position: relative;
+    top: -4rem;
+    height: 1rem; }
+  .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__detaills {
+    background-color: #fff;
+    box-shadow: 0px 8px 16px -6px #000000;
+    height: 9rem;
+    width: 21rem;
+    position: relative;
+    text-align: center; }
+    .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__detaills p {
+      padding: 0.3rem 0 0.15rem 0rem; }
+      .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__detaills p.invoice-id {
+        color: #E4AB08;
+        font-weight: 700;
+        font-size: 1.2rem; }
+      .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__detaills p.amount {
+        color: #172850;
+        font-weight: bold; }
+      .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__detaills p.description {
+        font-weight: bold; }
+  .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__buttons {
+    background-color: #fff;
+    width: 17rem;
+    margin-left: 2rem;
+    position: relative;
+    top: 13rem;
+    padding: 0 0.5rem; }
+    .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__buttons button {
+      width: 4rem;
+      font-size: 1rem;
+      display: inline-grid; }
+    .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__buttons button.btn--delete {
+      background-color: #a2a2a2;
+      float: right; }
+      .invoices-page__box section#invoices-page__resident-payed .invoices-page__resident-payed__buttons button.btn--delete:hover {
+        background-color: #c44640; }
+  .invoices-page__box section#invoices-page__resident-payed #btn-close-modal {
+    top: 10.3em;
+    right: 0.85em;
+    position: fixed; }
 
 .input-group label {
   display: inline-block; }
@@ -850,6 +910,8 @@ table.footer {
       font-size: 1.1rem;
       margin: 1rem;
       padding: 1rem; }
+  .accounting-page-box #accounting-page-add-debit {
+    overflow-y: auto; }
 
 #table-debit {
   font-size: 0.95rem; }
@@ -864,5 +926,27 @@ table.footer {
   margin-bottom: 1rem; }
   .table-extraordinary-invoices .color-red {
     color: red; }
+
+#vm-component-search {
+  position: relative; }
+  #vm-component-search input {
+    width: 45%;
+    height: 2rem;
+    font-size: 1.7em;
+    border: 2px solid #E4AB08;
+    padding: 0.2em;
+    display: block;
+    position: relative; }
+  #vm-component-search button {
+    display: block;
+    margin-top: 0.5rem; }
+  #vm-component-search #search-list {
+    border: 2px solid #019BDF;
+    position: absolute;
+    top: 0;
+    margin-top: 2.1rem;
+    padding: 0.5rem;
+    background-color: #ccc;
+    z-index: 10; }
 
 /*# sourceMappingURL=style.css.map */

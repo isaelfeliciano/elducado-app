@@ -10,6 +10,7 @@
 </head>
 <body class="invoice-body">
 
+
 	
 <script src="js/lodash.js"></script>
 <script src="js/jquery.js"></script>
@@ -26,20 +27,21 @@ Storage.prototype.getObj = function(key) {
 
 $('.invoice-body').html("");
 var tempArray = localStorage.getObj('tempInvoices').tempArray;
+console.log(tempArray);
 _.forEach(tempArray, (item, index) => {
 	item.invoice = item.pendingInvoices[0];
 	let dataString = getDataString(item);
 	let configs = localStorage.getObj('configs');
 	invoiceTotal = getInvoiceTotal(item);
 	let invoiceStatus = "";
-	if (item.invoice.status === "Pagada") invoiceStatus = "PAGADA";
+	if (item.invoice.status === "Pagada") invoiceStatus = "pagada";
 	console.log(dataString);
 	$('.invoice-body').append(`
-		<div class="invoice-page">
+		<div class="invoice-page ${invoiceStatus}">
 			<div class="invoice-header">
 				<img src="img/logo-elducado-nuevo-bw.png">
 
-				<p id="invoice-text-header" class="bigger-text bold">FACTURA <span>${invoiceStatus}</span></p>
+				<p id="invoice-text-header" class="bigger-text bold">FACTURA</span></p>
 
 			</div>
 
@@ -49,8 +51,9 @@ _.forEach(tempArray, (item, index) => {
 			</div>
 	
 			<div class="resident-details inline-block">
-				<p class="big-text bold">RESIDENTE:</p>
-				<p id="jsResidentInvoice">${item.fullName} (#${item.id})</p>
+				<p class="big-text bold">RESIDENTES:</p>
+				<p id="jsResidentInvoice">${item.fullName}</p>
+				<p id="jsResidentInvoice">& ${item.fullName2} (#${item.id})</p>
 				<p id="jsAddressInvoice">${item.address}</p>
 				<p>Residencial El Ducado</p>
 				<p>Santo Domingo, D.N</p>

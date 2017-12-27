@@ -480,7 +480,7 @@ function saveReceipt(print) {
 
 	if (amount < addPaymentPage.tempReceiptAmount) {
 		status = 'Sin pagar'
-		amountForSaveInInvoice = addPaymentPage.tempReceiptAmount - addPaymentPage.receiptAmount;
+		amountForSaveInInvoice = (addPaymentPage.tempReceiptAmount - toNumber(addPaymentPage.receiptAmount));
 	} else if ((amount - addPaymentPage.tempReceiptAmount) === 0) {
 		status = 'Pagada';
 		amount = addPaymentPage.tempReceiptAmount;

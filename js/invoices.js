@@ -26,7 +26,7 @@ btnClick('#generateInvoices', (e) => {
 		$('.choose-batch-type p').text('Seleccione el tipo de Batch');
 
 		let monthPrefix = configs.monthPrefix;
-		populateSelect(monthPrefix);
+		populateSelect(1);
 	});
 });
 
@@ -53,18 +53,26 @@ btnClick('#btn-search-invoice', (e) => {
 	mongoDbObj.invoices.find({id: invoiceNumber}).toArray((err, doc) => {
 		if (err) return console.log(err);
 		console.log(doc);
-		if (doc.length === 0) return flashMessage('Numero de factura no encontrado', 'flashmessage--info')
+		if (doc.length === 0) return flashMessage('Numero de factura no encontrado', 'flashmessage--info');
 		searchResident(doc[0].residentId)
 		.then((resident) => {
 			console.log(resident);
 			resident.invoice = doc[0];
 			resident.pendingInvoices = [doc[0]]; // Ambiguo
+			// invoicesPage.getPendingInvoices(resident.id);
+			// resident.pendingInvoices = invoicesPage.pendingInvoices;
+			// console.log(resident.pendingInvoices);
 			let tempArray = localStorage.getObj('tempInvoices').tempArray;
 			tempArray.push(resident);
-			$('.modal__search-invoice .resident').text(resident.fullName);
-			$('.modal__search-invoice .month').text(resident.invoice.month);
-			$('.modal__search-invoice .status').text(resident.invoice.status);
-			$('.modal__search-invoice .amount').text(resident.invoice.amount);
+			// searchPendingInvoice(resident);
+
+			modalSearchInvoice.invoiceId = '#' + resident.invoice.id;
+			modalSearchInvoice.resident = resident.fullName;
+			modalSearchInvoice.month = resident.invoice.month;
+			modalSearchInvoice.status = resident.invoice.status;
+			modalSearchInvoice.amount = resident.invoice.amount;
+			modalSearchInvoice.description = resident.invoice.description;
+
 			$('.modal__search-invoice').removeClass('no-display');
 			let option = $('#modal__select-search-invoice option:selected').val();
 			$('#modal__select-search-invoice').on('change', (e) => {
@@ -86,7 +94,7 @@ btnClick('#btn-search-invoice', (e) => {
 						mongoDbObj.invoices.deleteOne({id: resident.invoice.id}, (err, result) => {
 							if (err) return console.log(err);
 							resident.pendingInvoices.shift(resident.invoice.id);
-							mongoDbObj.residents.updateOne({id: resident.id}, {$set: {pendingInvoices: resident.pendingInvoices}}, (err, result) => {
+							mongoDbObj.residents.update({id: resident.id}, {$pull: {pendingInvoices: resident.invoice.id}}, (err, result) => {
 								if (err) return console.log(err);
 								flashMessage('Factura borrada', 'flashmessage--info');
 								$('.modal__search-invoice').addClass('no-display');
@@ -270,14 +278,40 @@ function searchPendingInvoice(resident) {
 	});
 }
 
+function printOneInvoice(invoiceId) {
+	localStorage.setObj('tempInvoices', {tempArray: []});
+	mongoDbObj.invoices.find({id: invoiceId}).toArray((err, doc) => {
+		if (err) return console.log(err);
+		let invoice = doc[0];
+		let residentId = invoice.residentId;
+		searchResident(residentId)
+		.then((resident) => {
+			resident.invoice = invoice;
+			resident.pendingInvoices = [invoice];
+			let tempArray = localStorage.getObj('tempInvoices').tempArray;
+			tempArray.push(resident);
+			localStorage.setObj('tempInvoices', {tempArray: tempArray});
+			window.open('./invoices.html');
+		});
+	});
+}
+
 function populateSelect(monthPrefix) {
 	let i = monthPrefix;
 	$(`select[name="invoice-month"]`).html('');
 	for (i; i <= 12; i++) {
 		let month = moment().month(i - 1).format("MMMM");
 		$(`select[name="invoice-month"]`)
-		.append(`<option value="${i}">${month}</option`)
+		.append(`<option value="${i}">${_.capitalize(month)}</option>`)
 	}
+
+	let currentYear = moment().format('YYYY');
+	let nextYear = moment().add(1, 'year').format('YYYY');
+	$('select[name="invoice-year"]').html('');
+	$('select[name="invoice-year"]').append(`
+		<option value="${currentYear}">${currentYear}
+		</option> <option value="${nextYear}">${nextYear}</option>
+	`)
 }
 
 btnClick('#generateNormalInvoicesBatch', (e) => {
@@ -302,7 +336,7 @@ btnClick('#generateNormalInvoice', (e) => {
 function generateNormalInvoicesBatch(e) {
 	configs.selectedMonth = $(`select[name="invoice-month"] option:selected`).val();
 	let selectedMonth = configs.selectedMonth;
-	let year = configs.yearPrefix;
+	let year = $(`select[name="invoice-year"] option:selected`).val();
 	let rg = RegExp(`^${selectedMonth}${year}`); 
 	console.log(rg);
 	let queryString = { 
@@ -329,7 +363,7 @@ function generateNormalInvoicesBatch(e) {
 			let fullName = item.fullName;
 			updateConfigs({invoiceSequence: configs.invoiceSequence})
 			.then(updatePendingInvoice(invoiceNumber, id))
-			.then(createInvoice(invoiceNumber, id, category, amount, configs.selectedMonth, fullName))
+			.then(createInvoice(invoiceNumber, id, category, amount, configs.selectedMonth, year, fullName))
 			.then((result) => {
 				console.log(result);
 				flashMessage('Facturas creadas', 'flashmessage--success');
@@ -352,7 +386,7 @@ function generateNormalInvoicesBatch(e) {
 
 function generateNormalInvoice(residentId) {
 	let selectedMonth = $(`select[name="invoice-month"] option:selected`).val();
-	let year = configs.yearPrefix;
+	let year = $(`select[name="invoice-year"] option:selected`).val();
 	let rg = RegExp(`^${selectedMonth}${year}`); 
 	let queryString = {
 		id: parseInt(residentId), 
@@ -379,7 +413,7 @@ function generateNormalInvoice(residentId) {
 		let fullName = resident.fullName;
 		updateConfigs({invoiceSequence: configs.invoiceSequence})
 		.then(updatePendingInvoice(invoiceNumber, id))
-		.then(createInvoice(invoiceNumber, id, category, amount, selectedMonth, fullName))
+		.then(createInvoice(invoiceNumber, id, category, amount, selectedMonth, year, fullName))
 		.then((result) => {
 			console.log(result);
 			flashMessage('Facturas creadas', 'flashmessage--success');
@@ -499,7 +533,7 @@ function updatePendingInvoice(invoiceNumber, id) {
 	});
 }
 
-function createInvoice(invoiceNumber, id, category, amount, selectedMonth, fullName) {
+function createInvoice(invoiceNumber, id, category, amount, selectedMonth, year, fullName) {
 	amount = toNumber(amount);
 	let month = moment().month(selectedMonth - 1).format('MMMM');
 	let data = {
@@ -513,8 +547,8 @@ function createInvoice(invoiceNumber, id, category, amount, selectedMonth, fullN
 		type: "maintenancePayments",
 		amount: amount,
 		originalAmount: amount,
-		dueDate: moment().month(selectedMonth -1).endOf('month').format('DD/MMMM/YYYY'),
-		description: `Mantenimiento de el Residencial (${month})`
+		dueDate: moment().year(year).month(selectedMonth -1).endOf('month').format('DD/MMMM/YYYY'),
+		description: `Mantenimiento de el Residencial (${_.capitalize(month)})`
 	}
 
 	mongoDbObj.invoices.insertOne(data, (err, result) => {

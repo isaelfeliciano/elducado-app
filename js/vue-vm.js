@@ -1,8 +1,72 @@
+Vue.component('resident-search', {
+	template: `<div id="vm-component-search" class="center-align">
+    <input type="text" class="center-align box-radius" v-model="inputValue" @keyup.enter="search(inputValue)">
+    <ul id="search-list" v-show="showList" class="center-align-absolute">
+    	<li v-for="user in usersList"><a href="#" @click.prevent="search(user.id)">{{ user.id }} | {{ user.fullName }}</a></li> 
+    </ul>
+    
+    <button class="btn center-align" @click="search(inputValue)"><i class="fa fa-search"></i> Buscar</button>
+</div>`,
+  data: function() {
+  	return {
+    	inputValue: '',
+      	usersList: [],
+      	showList: false
+    }
+  },
+  props: ['runthis'],
+  methods: {
+  	search: function(id) {
+  		let vm = this;
+  		vm.showList = false;
+    	let queryString;
+  		console.log(id);
+  		let searchInput = id; 
+		if (typeof(id) === 'object') return flashMessage("El campo de busqueda esta vacio", "flashmessage--info");
+    	if (typeof(id) === 'number') {searchInput = id.toString() }; 
+		if (isNaN(parseInt(searchInput))) {
+			queryString = {$text: {$search: searchInput}};
+		} else { // Is a number
+			if (searchInput.length <= 3){
+				queryString = {"id": parseInt(searchInput)};
+			} else {
+				queryString = {"bankAccount.bank": searchInput};
+			}
+		}
+		mongoDbObj.residents.find(queryString).toArray(function(err, doc) {
+			if (err) {
+				console.log(err); // LOG THIS
+				return;
+			} else {
+				if (doc.length === 0) {
+					return flashMessage("No hay resultados", "flashmessage--info");
+				}
+				if(doc.length === 1) {
+					vm.runthis(doc[0]);
+					return;
+				}
+				vm.usersList = doc;
+				vm.showList = true;
+
+				/*$('.jsListItem').on('click', (e) => {
+					e.preventDefault();
+					let residentId = $(e.target).attr('residentId');
+					let fullName = $(e.target).attr('fullName');
+					callback(residentId, fullName);
+				});*/
+			}
+		});
+    }
+  }
+});
+
+
 var modalSingleInvoice = new Vue({
 	el: '.modal__generate-invoices',
 	data: {
 		residentId: 'N/A',
 		month: 'N/A',
+		year: 'N/A',
 		residentFullName: 'N/A',
 		extraordinaryDescription: '',
 		extraordinaryAmount: '',
@@ -48,6 +112,7 @@ var modalSingleInvoice = new Vue({
 	watch: {
 		month: function() {
 			this.month = _.capitalize(this.month);
+			console.log('Month changed');
 		}
 	}
 });
@@ -100,6 +165,7 @@ var accountingPage = new Vue({
 		debitName: '',
 		debitDescription: '',
 		debitAmount: '',
+		debitDate: moment().format('YYYY-MM-DD'),
 		debitList: [],
 		extraordinaryInvoicesList: [],
 		extraordinaryInvoicesDescriptions: [],
@@ -108,10 +174,10 @@ var accountingPage = new Vue({
 	},
 	methods: {
 		currentMonth: function() {
-			return _.capitalize(moment().format('MMMM'))
+			return _.capitalize(moment().format('MMMM'));
 		},
 		currentYear: function() {
-			return moment().format('YYYY')
+			return moment().format('YYYY');
 		},
 		getYearList: function() {
 			mongoDbObj.accounting.aggregate([
@@ -157,6 +223,11 @@ var accountingPage = new Vue({
 			yesDisplay('#accounting-page-month-statement');
 			yesDisplay('#btn-close-inside-page');
 			this.getYearList();
+		},
+		goResidentsResumen: function() {
+			noDisplay('.accounting-page__inside-page');
+			yesDisplay('#accounting-page-residents-resumen');
+			yesDisplay('#btn-close-inside-page');
 		},
 		getMonthStatement: function() {
 			let month = this.monthSelected;
@@ -250,13 +321,13 @@ var accountingPage = new Vue({
 				return flashMessage('Debe llenar todos los campos', 'flashmessage--danger');
 			}
 			let obj = {
-				debitDate: moment().format('DD/MM/YYYY'),
+				debitDate: moment(accountingPage.debitDate, 'YYYY/MM/DD').format('DD/MM/YYYY'),
 				debitCheque: accountingPage.debitCheque,
 				debitName: accountingPage.debitName,
 				debitDescription: accountingPage.debitDescription,
 				debitAmount: toDecimal(accountingPage.debitAmount),
-				month: _.capitalize(moment().format('MMMM')),
-				year: moment().format('YYYY'),
+				month: _.capitalize(moment(accountingPage.debitDate, 'YYYY/MM/DD').format('MMMM')),
+				year: moment(accountingPage.debitDate, 'YYYY/MM/DD').format('YYYY'),
 				type: 'debit',
 				timestamp: Date.now()
 			};
@@ -276,30 +347,36 @@ var accountingPage = new Vue({
 					}, function(err, result) {
 						if (err) return console.log(err);
 
-						mongoDbObj.accounting.update(
+						mongoDbObj.accounting.updateOne(
 							{
 								id: "by-year",
-								year: moment().format('YYYY')
+								year: obj.year
 							},
 							{
 								$inc: {
 									balance: -toDecimal(obj.debitAmount),
 									cashOut: toDecimal(obj.debitAmount)
 								}
+							},
+							{
+								upsert: true
 							}, function(err, result) {
 								if (err) return console.log(err);
 
-								mongoDbObj.accounting.update(
+								mongoDbObj.accounting.updateOne(
 									{
 										id: "by-month",
-										month: _.capitalize(moment().format('MMMM')),
-										year: moment().format('YYYY')
+										month: obj.month,
+										year: obj.year
 									},
 									{
 										$inc: {
 											balance: -toDecimal(obj.debitAmount),
 											cashOut: toDecimal(obj.debitAmount)
 										}
+									},
+									{
+										upsert: true
 									}, function(err, result) {
 										if (err) return console.log(err);
 										updateResumen();
@@ -324,10 +401,9 @@ var accountingPage = new Vue({
 			let _id = $(event.target).parent().children('td:nth-child(1)').attr('_id');
 			let amount = $(event.target).parent().children('td:nth-child(6)').text();
 			amount = toDecimal(amount);
-			let date = $(event.target).parent().children('td:nth-child(2)').text();
-			date = moment(date).format('DD/MMMM/YYYY');
-			let year = moment(date).format('YYYY');
-			let month = _.capitalize(moment(moment(date).format('DD/MM/YYYY')).format('MMMM'));
+			let _date = $(event.target).parent().children('td:nth-child(2)').text();
+			let year = moment(_date, 'DD/MM/YYYY').format('YYYY');
+			let month = _.capitalize(moment(_date, 'DD/MM/YYYY').format('MMMM'));
 			if(confirm('Esta seguro, borrar este debito?')){
 				mongoDbObj.accounting.remove({_id: ObjectId(_id)}, (err, result) => {
 					if (err) return console.log(err);
@@ -342,7 +418,7 @@ var accountingPage = new Vue({
 							}
 						}, function(err, result) {
 							if (err) return console.log(err);
-							mongoDbObj.accounting.update(
+							mongoDbObj.accounting.updateOne(
 								{
 									id: "by-year",
 									year: year
@@ -352,9 +428,12 @@ var accountingPage = new Vue({
 										balance: amount,
 										cashOut: -amount
 									}
+								},
+								{
+									upsert: true
 								}, function(err, result) {
 									if (err) return console.log(err);
-									mongoDbObj.accounting.update(
+									mongoDbObj.accounting.updateOne(
 										{
 											id: "by-month",
 											month: month
@@ -364,6 +443,9 @@ var accountingPage = new Vue({
 												balance: amount,
 												cashOut: -amount,
 											}
+										},
+										{
+											upsert: true
 										}, function(err, result) {
 											if (err) return console.log(err);
 											$(event.target).parent().remove();
@@ -394,6 +476,9 @@ var accountingPage = new Vue({
 		},
 		numeralFormat: function(number) {
 			return numeral(number).format('0,0.00');
+		},
+		handleSearchResult: function(result) {
+			console.log(result);
 		}
 	},
 	watch: {
@@ -414,6 +499,153 @@ var accountingPage = new Vue({
 		}
 	},
 	computed: {
-		
 	}
 });
+
+
+var modalSearchInvoice = new Vue({
+	el: '.modal__search-invoice',
+	data: {
+		invoiceId: '',
+		resident: '',
+		month: '',
+		status: '',
+		description: '',
+		amount: ''
+	},
+	watch: {
+		amount: function() {
+			return this.amount = numeral(this.amount).format('0,0.00');
+		},
+		month: function() {
+			return this.month = _.capitalize(this.month);
+		}
+	}
+});
+
+var invoicesPage = new Vue({
+	el: '#invoices-page',
+	data: {
+		pendingInvoices: [],
+		payedInvoices: [],
+		resident: {},
+		residentId: 0,
+		showButtons: true,
+		showPayedInvoices: false
+	},
+	methods: {
+		triggerBtnSearchInvoice: function() {
+			$('#btn-search-invoice').click();
+		},
+		getPendingInvoices: function(residentId) {
+			return new Promise((resolve, reject) => {
+				mongoDbObj.invoices.find({status: 'Sin pagar', residentId: residentId}).toArray((err, result) => {
+					if (err) return console.log(err);
+					return resolve(residentId, result);
+				});
+			});
+		},
+		getPayedInvoices: function(residentId) {
+			return new Promise((resolve, reject) => {
+				mongoDbObj.invoices.find({status: 'Pagada', residentId: residentId}).toArray((err, result) => {
+					if (err) return console.log(err);
+					return resolve(result);
+				});
+			})
+		},
+		handleSearchResult: function(result) {
+			this.resident = result;
+			this.residentId = result.id;
+			let self = this;
+			this.getPayedInvoices(result.id)
+			.then((result) => {
+				self.showButtons = false;
+				self.showPayedInvoices = true;
+				// self.residentId = residentId;
+				self.payedInvoices = result;
+				console.log(result);
+			})
+		},
+		printOneInvoice: function(invoiceId) {
+			localStorage.setObj('tempInvoices', {tempArray: []});
+			mongoDbObj.invoices.find({id: invoiceId}).toArray((err, doc) => {
+				if (err) return console.log(err);
+				let invoice = doc[0];
+				let residentId = invoice.residentId;
+				searchResident(residentId)
+				.then((resident) => {
+					resident.invoice = invoice;
+					resident.pendingInvoices = [invoice];
+					let tempArray = localStorage.getObj('tempInvoices').tempArray;
+					tempArray.push(resident);
+					localStorage.setObj('tempInvoices', {tempArray: tempArray});
+					window.open('./invoices.html');
+				});
+			});
+		},
+		printPendingInvoices: function() {
+			this.searchPendingInvoice(this.resident)
+			.then((status) => {
+				if(status) window.open('./invoices.html');
+			});
+		},
+		deleteOneInvoice: function(invoiceId) {
+			mongoDbObj.invoices.deleteOne({id: invoiceId}, (err, result) => {
+				if (err) return console.log(err);
+				resident.pendingInvoices.shift(invoiceId);
+				mongoDbObj.residents.update({id: residentId}, {$pull: {pendingInvoices: invoiceId}}, (err, result) => {
+					if (err) return console.log(err);
+					flashMessage('Factura borrada', 'flashmessage--info');
+					$('.modal__search-invoice').addClass('no-display');
+					console.log(result);
+				});
+			});
+		},
+		numeralFormat: function(number) {
+			return accountingPage.numeralFormat(number);
+		},
+		closeResidentPayed: function() {
+			this.showPayedInvoices = false;
+			this.showButtons = true;
+		},
+		searchResident: function(residentId) {
+			return new Promise((resolve, reject) => {
+				mongoDbObj.residents.findOne({id: residentId}, (err, doc) => {
+					if (err) return reject(err);
+					resolve(doc);
+				});
+			});
+		},
+		searchPendingInvoice: function(resident) {
+			return new Promise((resolve, reject) => {
+				let pendingInvoices = resident.pendingInvoices;
+				mongoDbObj.invoices.find({id: {$in: pendingInvoices}}).toArray((err, doc) => {
+					console.log(doc);
+					if (err) {
+						return console.log("Error")
+					}
+					resident.pendingInvoices = doc.reverse();
+					console.log(resident);
+					let tempArray = localStorage.getObj('tempInvoices').tempArray;
+					tempArray.push(resident);
+					localStorage.setObj('tempInvoices', {tempArray: tempArray});
+					resolve(true);
+				});
+			});
+		}
+	}
+});
+
+
+
+/*var myVm = new Vue({
+	el: '#app',
+  data: {
+  	residentObj: {}
+  },
+  methods: {
+  	callback: function(text) {
+    	console.log(text);
+    }
+  }
+})*/

@@ -121,6 +121,9 @@
 			<select name="invoice-month" class="center-align">
 			</select>
 
+			<select name="invoice-year" class="center-align">
+			</select>
+
 
 			<button id="generateNormalInvoicesBatchActual" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
 		</div>
@@ -139,19 +142,37 @@
 
 <!-- MODAL SEARCH INVOICE -->
 <div id="modal" class="modal__search-invoice modal-background no-display">
-	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
+	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated padding-sm">
 		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		<p>Residente: <span class="resident"></span></p>
-		<p>Mes: <span class="month"></span></p>
-		<p>Status: <span class="status"></span></p>
-		<p>Monto: <span class="amount"></span></p>
+		<p class="inline-block bold big-text margin-sm">FACTURA<span class="invoiceId normal-font">{{ invoiceId }}</span></p>
+		<p class="inline-block bold big-text margin-sm">Residente<span class="resident normal-font">{{ resident }}</span></p>
+		<!-- <p class="inline-block bold big-text">Mes<span class="month normal-font">{{ month }}</span></p> -->
+		<p class="inline-block bold big-text margin-sm">Status<span class="status normal-font">{{ status }}</span></p>
+
+		<table class="pure-table pure-table-horizontal center-align margin-sm">
+			<thead>
+				<tr>
+					<th>Descripcion</th>
+					<th>Monto RD$</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>{{ description }}</td>
+					<td>{{ amount }}</td>
+				</tr>
+			</tbody>
+		</table>
 		
 		<select id="modal__select-search-invoice" class="center-align">
 			<option value="print">Imprimir</option>
 			<option value="delete">Eliminar</option>
 		</select>
 
-		<button id="modal__btn-search-invoice-continue" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+		<button id="modal__btn-delete-invoice" class="btn left"><i class="fa fa-trash-o"></i> Eliminar</button>
+
+		<button id="modal__btn-search-invoice-continue" class="btn right"><i class="fa fa-print"></i> Imprimir</button>
 	</div>
 </div>
 <!-- MODAL SEARCH INVOICE -->
@@ -167,6 +188,18 @@
 	</div>
 </div>
 <!-- MODAL DELETE RESIDENT -->
+
+<!-- MODAL ADD DEBIT -->
+<div id="modal" class="modal__add-debit modal-background no-display">
+	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
+		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+		<p class="center-text">Esta seguro? eliminar residente:</p>
+		<p id="resident" class="center-text"></p>
+		
+		<button id="confirm-delete" class="btn center-align"><i class="fa fa-trash-o"></i> Eliminar</button>
+	</div>
+</div>
+<!-- MODAL ADD DEBIT -->
 
 <header class="center-text jsHideOnPrint">
 	<button class="btn-menu"><i class="fa fa-bars fa-2x"></i></button>
@@ -359,15 +392,40 @@
 <!-- INVOICES PAGE -->
 <div id="invoices-page" class="page">
 	<div class="invoices-page__box">
-		<input type="number" name="search-invoice" placeholder="00000" class="center-align box-radius">
-		<button id="btn-search-invoice" class="btn center-align"><i class="fa fa-search"></i> Buscar</button>
+		<!-- <input type="number" name="search-invoice" placeholder="00000" class="center-align box-radius" @keyup.enter.prevent="triggerBtnSearchInvoice">
+		<button id="btn-search-invoice" class="btn center-align"><i class="fa fa-search"></i> Buscar</button> -->
+		<resident-search :runthis="handleSearchResult"></resident-search>
 
-		<section class="center-align center-text">
+		<section id="invoices-page__buttons" class="center-align center-text" v-show="showButtons">
 			<button id="generateInvoices" class="btn btn__big center-align"><i class="fa fa-files-o fa-3x center-align-absolute"></i> <p>Crear Facturas (Batch)</p></button>
 
 			<button id="generateOneInvoice" class="btn btn__big center-align"><i class="fa fa-file-o fa-3x center-align-absolute"></i> <p>Crear Factura</p></button>
 
 			<button id="printInBatch" class="btn btn__big center-align"><i class="fa fa-print fa-3x center-align-absolute"></i> <p>Imprimir Batch</p></button>
+		</section>
+
+		<section id="invoices-page__resident-payed" class="center-align" v-show="showPayedInvoices">
+			<button id="btn-close-modal" @click.prevent="closeResidentPayed()"><i class="fa fa-close fa-3x"></i></button>
+			<div v-for="invoice in payedInvoices" class="invoices-page__resident-payed__box inline-block">
+				<p class="center-text">{{ invoice.residentId }} {{ invoice.fullName }}</p>
+				<div class="invoices-page__resident-payed__buttons box-radius">
+					<button class="btn inline" @click.prevent="printOneInvoice(invoice.id)"><i class="fa fa-2x fa-print"></i></button>
+					<button class="btn btn--delete inline"><i class="fa fa-2x fa-trash-o"></i></button>
+				</div>
+				<div class="invoices-page__resident-payed__detaills box-radius">
+					<p class="invoice-id">{{ invoice.id }}</p>
+					<p class="amount">RD$ {{ numeralFormat(invoice.amount) }}</p>
+					<p class="description">{{ invoice.description }}</p>
+					<p class="date">{{ invoice.date }}</p>
+					<p class="pay-method">{{ invoice.payMethod }}</p>
+					<p class="account" v-if="invoice.accountNumber">{{ invoice.accountNumber }}</p>		
+					<p class="account" v-else>&nbsp;</p>
+
+					<p class="account" v-if="invoice.depositNumber">{{ invoice.depositNumber }}</p>		
+					<p class="account" v-else>&nbsp;</p>		
+				</div>
+			</div>
+			<button id="print-pending-invoices" class="btn" @click.prevent="printPendingInvoices"><i class="fa fa-print"></i> Print Pending Invoices</button>			
 		</section>
 
 	</div>
@@ -436,11 +494,13 @@
 			<section class="center-align center-text">
 				<button @click.prevent="residentsList" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Lista de Residentes</p></button>
 
+				<button @click.prevent="goResidentsResumen" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Residentes Resumen Financiero</p></button>
+
 				<button @click.prevent="goMonthStatement" class="btn btn__big center-align"><i class="fa fa-calendar fa-3x center-align-absolute"></i> <p>Estado por Mes</p></button>
 
 				<button @click.prevent="extraordinaryInvoices" class="btn btn__big center-align"><i class="fa fa-file-excel-o fa-3x center-align-absolute"></i> <p>Facturas Extraordinarias</p></button>
 
-				<button @click.prevent="goAddDebit" class="btn btn__big center-align"><i class="fa fa-minus-square-o fa-3x center-align-absolute"></i> <p class="center-text">Debitos</p></button>
+				<button @click.prevent="goAddDebit" class="btn btn__big center-align margin-sm"><i class="fa fa-minus-square-o fa-3x center-align-absolute"></i> <p class="center-text">Debitos</p></button>
 			</section>
 		</div>
 
@@ -454,11 +514,16 @@
 			</div>
 		</div>
 
+		<div id="accounting-page-residents-resumen" class="accounting-page__inside-page no-display">
+			<resident-search :runthis="handleSearchResult"></resident-search>
+		</div>
+
 		<div id="accounting-page-add-debit" class="accounting-page__inside-page no-display">
 			<label class="inline-block" for="debit-cheque">Cheque <input v-model="debitCheque" type="text" name="debit-cheque"></label>
 			<label class="inline-block" for="debit-name">Nombre <input v-model="debitName" type="text" name="debit-name"></label>
 			<label class="inline-block" for="debit-description">Descripcion <input v-model="debitDescription" type="text" name="debit-description" maxlength="50"></label>
 			<label class="inline-block" for="debit-amount">Monto RD$<input @keyup="formatAmount($event)" v-model="debitAmount" type="text" name="debit-amount"></label>
+			<label class="inline-block" for="debit-date">Fecha<input v-model="debitDate" type="date" name="debit-date"></label>
 
 			<button class="btn margin-sm center-align" @click.prevent="addDebit">Debitar</button>
 
@@ -484,7 +549,6 @@
 				</tr>
 			</tbody>
 			</table>
-
 		</div>
 
 		<div id="accounting-page-extraordinary-invoices" class="accounting-page__inside-page no-display can-scroll">
