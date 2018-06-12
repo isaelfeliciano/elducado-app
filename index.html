@@ -1,644 +1,659 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title style="display: none;">El Ducado APP</title>
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <title style="display: none;">El Ducado APP</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="css/animation.css">
     <link rel="stylesheet" type="text/css" href="css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="css/tables-min.css">
     <link rel="stylesheet" type="text/css" href="css/forms-nr-min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
-	<div class="flashmessage center-align-absolute center-text box-radius notVisible">
-	</div>
+    <div class="flashmessage center-align-absolute center-text box-radius notVisible">
+    </div>
 
 <div class="splash-screen animated no-display">
-	<img src="img/logo-elducado.png" class="center-align">
+    <img src="img/logo-elducado.png" class="center-align">
 </div>
 
-<!-- MODAL RECEIPT -->	
+<!-- MODAL RECEIPT -->  
 <div id="modal" class="modal-receipt modal-background no-display">
-	<div id="jsModalLoading" class="modal__box modal__confirm-pay center-align-absolute box-radius animated fadeInUp">
-		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		<h1>Factura</h1>
-		<span id="jsInvoiceNumberModal">#2017-001</span>
-		<p>Para el mes de <span id="jsMonthModal">Enero</span></p>
-		<p>Hoy <span id="jsDateModal">26/4/2017</span></p>
-		<p id="jsResidentModal">Fulano de Tal</p>
-		
-		<span id="jsAmountModal">RD$ 2,000.00</span>
-		<p id="jsPayMethodModal" class="inline"></p>
-		<p id="jsPayMethodNumberModal" class="inline"></p>
-		
-		<button id="btn-print-receipt" class="btn"><i class="fa fa-print"></i> Imprimir</button>
-		<button id="btn-save-receipt" class="btn"><i class="fa fa-save"></i> Solo salvar</button>
-	</div>
+    <div id="jsModalLoading" class="modal__box modal__confirm-pay center-align-absolute box-radius animated fadeInUp">
+        <button id="btn-close-modal"><i class="fas fa-times fa-3x"></i></button>
+        <h1>Factura</h1>
+        <span id="jsInvoiceNumberModal">#2017-001</span>
+        <p>Para el mes de <span id="jsMonthModal">Enero</span></p>
+        <p>Hoy <span id="jsDateModal">26/4/2017</span></p>
+        <p id="jsResidentModal">Fulano de Tal</p>
+        
+        <span id="jsAmountModal">RD$ 2,000.00</span>
+        <p id="jsPayMethodModal" class="inline"></p>
+        <p id="jsPayMethodNumberModal" class="inline"></p>
+        
+        <button id="btn-print-receipt" class="btn"><i class="fa fa-print"></i> Imprimir</button>
+        <button id="btn-save-receipt" class="btn"><i class="fa fa-save"></i> Solo salvar</button>
+    </div>
 </div>
 <!-- MODAL RECEIPT -->
 
 <!-- MODAL PRINT INVOICES IN BATCH (NOT USING) -->
 <div id="modal" class="modal__select-batch modal-background no-display">
-	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
-		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		<p class="center-text">Seleccione el mes</p>
-		<label for="batch-month" class="center-text">Mes</label>
-		<select name="batch-month" class="center-align">
-			<option value=""></option>
-			<option value="1">Enero</option>
-			<option value="2">Febrero</option>
-			<option value="3">Marzo</option>
-			<option value="4">Abril</option>
-			<option value="5">Mayo</option>
-			<option value="6">Junio</option>
-			<option value="7">Julio</option>
-			<option value="8">Agosto</option>
-			<option value="9">Septiembre</option>
-			<option value="10">Octubre</option>
-			<option value="11">Noviembre</option>
-			<option value="12">Diciembre</option>
-		</select>
+    <div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated">
+        <button id="btn-close-modal"><i class="fas fa-times fa-3x"></i></button>
+        <p class="center-text">Seleccione el mes</p>
+        <label for="batch-month" class="center-text">Mes</label>
+        <select name="batch-month" class="center-align">
+            <option value=""></option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
 
-		<label for="batch-year" class="center-text">Año</label>
-		<select name="batch-year" class="center-align">
-			<option value="2017">2017</option>
-			<option value="2018">2018</option>
-			<option value="2019">2019</option>
-			<option value="2020">2020</option>
-		</select>
-		
-		<br>
-		<button id="searchInvoiceBatch" class="btn center-align">Buscar batch</button>
-	</div>
+        <label for="batch-year" class="center-text">Año</label>
+        <select name="batch-year" class="center-align">
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+        </select>
+        
+        <br>
+        <button id="searchInvoiceBatch" class="btn center-align">Buscar batch</button>
+    </div>
 </div>
 <!-- MODAL PRINT INVOICES IN BATCH -->
 
 <!-- MODAL GENERATE INVOICES IN BATCH -->
 <div id="modal" class="modal__generate-invoices modal-background no-display">
-	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
-		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
+    <div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
+        <button id="btn-close-modal"><i class="fas fa-times fa-3x"></i></button>
 
-		<div class="inner-box choose-resident no-display">
-			<p class="center-text">Buscar Residente</p>
-			<input type="text" name="search-resident" class="center-align box-radius">
-			<button id="btn-search" @click="search" class="btn center-align center-text"><i class="fa fa-search"></i> Buscar</button>
-			
-			<ul id="search-list" class="center-align">
-				<!-- To populate from JS -->
-				<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
-				<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
-			</ul>
+        <div class="inner-box choose-resident no-display">
+            <p class="center-text">Buscar Residente</p>
+            <input type="text" name="search-resident" class="center-align box-radius">
+            <button id="btn-search" @click="search" class="btn center-align center-text"><i class="fa fa-search"></i> Buscar</button>
+            
+            <ul id="search-list" class="center-align">
+                <!-- To populate from JS -->
+                <!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
+                <li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
+            </ul>
 
-		</div>
+        </div>
 
-		<div class="inner-box create-invoice-details no-display">
-			<p class="center-text">Confirmar</p>
+        <div class="inner-box create-invoice-details no-display">
+            <p class="center-text">Confirmar</p>
 
-			<span class="center-text mid-size-text">#{{ residentId }} {{ residentFullName }}</span>
-			<span class="center-text mid-size-text">Factura para el mes: {{ month }}</span>
-			<span class="center-text mid-size-text">Descripcion: {{ extraordinaryDescription }}</span>
-			<span class="center-text mid-size-text">Monto: {{ extraordinaryAmount }}</span>
+            <span class="center-text mid-size-text">#{{ residentId }} {{ residentFullName }}</span>
+            <span class="center-text mid-size-text">Factura para el mes: {{ month }}</span>
+            <span class="center-text mid-size-text">Descripcion: {{ extraordinaryDescription }}</span>
+            <span class="center-text mid-size-text">Monto: {{ extraordinaryAmount }}</span>
 
-			<button v-bind:onclick="btnModalConfirm" class="btn center-align"><i class="fa fa-check"></i> Confirmar</button>
-		</div>
+            <button v-bind:onclick="btnModalConfirm" class="btn center-align"><i class="fa fa-check"></i> Confirmar</button>
+        </div>
 
-		<div class="inner-box choose-batch-type">
-			<p class="center-text">Seleccione el tipo de Batch</p>
+        <div class="inner-box choose-batch-type">
+            <p class="center-text">Seleccione el tipo de Batch</p>
 
-			<button id="generateNormalInvoicesBatch" class="btn center-align"><i class="fa fa-file-text-o"></i> Facturas Normales</button>
-			<button id="generateExtraordinaryInvoicesBatch" class="btn center-align"><i class="fa fa-file-excel-o"></i> Facturas Extraordinarias</button>
+            <button id="generateNormalInvoicesBatch" class="btn center-align"><i class="fa fa-file-text-o"></i> Facturas Normales</button>
+            <button id="generateExtraordinaryInvoicesBatch" class="btn center-align"><i class="far fa-file-excel"></i> Facturas Extraordinarias</button>
 
-			<button id="generateNormalInvoice" class="btn center-align"><i class="fa fa-file-text-o"></i> Factura Normal</button>
-			<button id="generateExtraordinaryInvoice" class="btn center-align"><i class="fa fa-file-excel-o"></i> Factura Extraordinaria</button>
-		</div>
+            <button id="generateNormalInvoice" class="btn center-align"><i class="fa fa-file-text-o"></i> Factura Normal</button>
+            <button id="generateExtraordinaryInvoice" class="btn center-align"><i class="fa fa-file-excel-o"></i> Factura Extraordinaria</button>
+        </div>
 
-		<div class="inner-box generate-normal-invoices no-display animated fadeInDown">
-			<p class="center-text">Generar facturas para el mes de:</p>
-			
-			<select name="invoice-month" class="center-align">
-			</select>
+        <div class="inner-box generate-normal-invoices no-display animated fadeInDown">
+            <p class="center-text">Generar facturas para el mes de:</p>
+            
+            <select name="invoice-month" class="center-align">
+            </select>
 
-			<select name="invoice-year" class="center-align">
-			</select>
+            <select name="invoice-year" class="center-align">
+            </select>
 
 
-			<button id="generateNormalInvoicesBatchActual" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
-		</div>
+            <button id="generateNormalInvoicesBatchActual" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+        </div>
 
-		<div class="inner-box generate-extraordinary-invoices no-display animated fadeInDown">
-			<p class="center-text">Detalles de Factura Extraordinaria</p>
+        <div class="inner-box generate-extraordinary-invoices no-display animated fadeInDown">
+            <p class="center-text">Detalles de Factura Extraordinaria</p>
 
-			<label for="extraordinary-description">Descripcion <input type="text" name="extraordinary-description" v-model="extraordinaryDescription"></label>
-			<label for="extraordinary-amount">Monto <input type="text" name="extraordinary-amount" v-model="extraordinaryAmount" @keyup="formatAmount($event)"></label>
+            <label for="extraordinary-description">Descripcion <input type="text" name="extraordinary-description" v-model="extraordinaryDescription"></label>
+            <label for="extraordinary-amount">Monto <input type="text" name="extraordinary-amount" v-model="extraordinaryAmount" @keyup="formatAmount($event)"></label>
 
-			<button id="generateExtraordinaryInvoicesBatchActual" v-bind:onclick="btnGenerateExtraordinaryInvoices" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
-		</div>
-	</div>
+            <button id="generateExtraordinaryInvoicesBatchActual" v-bind:onclick="btnGenerateExtraordinaryInvoices" class="btn center-align"><i class="fa fa-chevron-right"></i> Continuar</button>
+        </div>
+    </div>
 </div>
 <!-- MODAL GENERATE INVOICES IN BATCH -->
 
 <!-- MODAL SEARCH INVOICE -->
 <div id="modal" class="modal__search-invoice modal-background no-display">
-	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated padding-sm">
-		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		<p class="inline-block bold big-text margin-sm">FACTURA<span class="invoiceId normal-font">{{ invoiceId }}</span></p>
-		<p class="inline-block bold big-text margin-sm">Residente<span class="resident normal-font">{{ resident }}</span></p>
-		<!-- <p class="inline-block bold big-text">Mes<span class="month normal-font">{{ month }}</span></p> -->
-		<p class="inline-block bold big-text margin-sm">Status<span class="status normal-font">{{ status }}</span></p>
+    <div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated padding-sm">
+        <button id="btn-close-modal"><i class="fas fa-times fa-3x"></i></button>
+        <p class="inline-block bold big-text margin-sm">FACTURA<span class="invoiceId normal-font">{{ invoiceId }}</span></p>
+        <p class="inline-block bold big-text margin-sm">Residente<span class="resident normal-font">{{ resident }}</span></p>
+        <!-- <p class="inline-block bold big-text">Mes<span class="month normal-font">{{ month }}</span></p> -->
+        <p class="inline-block bold big-text margin-sm">Status<span class="status normal-font">{{ status }}</span></p>
 
-		<table class="pure-table pure-table-horizontal center-align margin-sm">
-			<thead>
-				<tr>
-					<th>Descripcion</th>
-					<th>Monto RD$</th>
-				</tr>
-			</thead>
+        <table class="pure-table pure-table-horizontal center-align margin-sm">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Monto RD$</th>
+                </tr>
+            </thead>
 
-			<tbody>
-				<tr>
-					<td>{{ description }}</td>
-					<td>{{ amount }}</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<select id="modal__select-search-invoice" class="center-align">
-			<option value="print">Imprimir</option>
-			<option value="delete">Eliminar</option>
-		</select>
+            <tbody>
+                <tr>
+                    <td>{{ description }}</td>
+                    <td>{{ amount }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <select id="modal__select-search-invoice" class="center-align">
+            <option value="print">Imprimir</option>
+            <option value="delete">Eliminar</option>
+        </select>
 
-		<button id="modal__btn-delete-invoice" class="btn left"><i class="fa fa-trash-o"></i> Eliminar</button>
+        <button id="modal__btn-delete-invoice" class="btn left"><i class="fa fa-trash-o"></i> Eliminar</button>
 
-		<button id="modal__btn-search-invoice-continue" class="btn right"><i class="fa fa-print"></i> Imprimir</button>
-	</div>
+        <button id="modal__btn-search-invoice-continue" class="btn right"><i class="fa fa-print"></i> Imprimir</button>
+    </div>
 </div>
 <!-- MODAL SEARCH INVOICE -->
 
 <!-- MODAL DELETE RESIDENT -->
 <div id="modal" class="modal__delete-resident modal-background no-display">
-	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
-		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		<p class="center-text">Esta seguro? eliminar residente:</p>
-		<p id="resident" class="center-text"></p>
-		
-		<button id="confirm-delete" class="btn center-align"><i class="fa fa-trash-o"></i> Eliminar</button>
-	</div>
+    <div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
+        <button id="btn-close-modal"><i class="fas fa-times fa-3x"></i></button>
+        <p class="center-text">Esta seguro? eliminar residente:</p>
+        <p id="resident" class="center-text"></p>
+        
+        <button id="confirm-delete" class="btn center-align"><i class="fa fa-trash-o"></i> Eliminar</button>
+    </div>
 </div>
 <!-- MODAL DELETE RESIDENT -->
 
 <!-- MODAL ADD DEBIT -->
 <div id="modal" class="modal__add-debit modal-background no-display">
-	<div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
-		<button id="btn-close-modal"><i class="fa fa-close fa-3x"></i></button>
-		<p class="center-text">Esta seguro? eliminar residente:</p>
-		<p id="resident" class="center-text"></p>
-		
-		<button id="confirm-delete" class="btn center-align"><i class="fa fa-trash-o"></i> Eliminar</button>
-	</div>
+    <div id="jsModalLoading" class="modal__box center-align-absolute box-radius animated fadeInUp">
+        <button id="btn-close-modal"><i class="fas fa-times fa-3x"></i></button>
+        <p class="center-text">Esta seguro? eliminar residente:</p>
+        <p id="resident" class="center-text"></p>
+        
+        <button id="confirm-delete" class="btn center-align"><i class="fa fa-trash-o"></i> Eliminar</button>
+    </div>
 </div>
 <!-- MODAL ADD DEBIT -->
 
 <header class="center-text jsHideOnPrint">
-	<button class="btn-menu"><i class="fa fa-bars fa-2x"></i></button>
-	<p>El Ducado APP</p>
-	<img src="img/logo-elducado.png">
-	<div class="menu no-display">
-		<ul>
-			<li><a href="#main-page"><i class="fa fa-home"></i> Inicio</a></li>
-			<li><a href="#configs-page"><i class="fa fa-pencil-square-o"></i> Editar Configuraciones</a></li>
-			<li><a class="close-application" href="#"><i class="fa fa-close"></i> Cerrar Aplicacion</a></li>
-			<li><a class="" href="#"><i class="fa fa-info"></i> About</a></li>
-		</ul>
-	</div>
+    <button class="btn-menu"><i class="fa fa-bars fa-2x"></i></button>
+    <p>El Ducado APP</p>
+    <img src="img/logo-elducado.png">
+    <div class="menu no-display">
+        <ul>
+            <li><a href="#main-page"><i class="fa fa-home"></i> Inicio</a></li>
+            <li><a href="#configs-page"><i class="fas fa-pencil-alt"></i> Editar Configuraciones</a></li>
+            <li><a class="close-application" href="#"><i class="fas fa-times"></i> Cerrar Aplicacion</a></li>
+            <li><a class="" href="#"><i class="fa fa-info"></i> About</a></li>
+        </ul>
+    </div>
 </header>
 
 
 <nav class="center-text">
-	<a href="#add-payment-page" id="jsAddPayment">
-		<span>Agregar pago</span>
-	</a>
+    <a href="#add-payment-page" id="jsAddPayment">
+        <span>Agregar pago</span>
+    </a>
 
-	<a href="#residents-list-page">
-		<span>Residentes</span>
-	</a>
+    <a href="#residents-list-page">
+        <span>Residentes</span>
+    </a>
 
-	<a href="#invoices-page">
-		<span>Facturas</span>
-	</a>
+    <a href="#invoices-page">
+        <span>Facturas</span>
+    </a>
 
-	<a href="#accounting-page">
-		<span>Reportes</span> <!-- For reference only -->
-	</a>
+    <a href="#accounting-page">
+        <span>Reportes</span> <!-- For reference only -->
+    </a>
 </nav>
 
 <div id="main-page" class="page">
-	<div class="main-page__container center-align">
-		<img src="img/logo-elducado.png" class="center-align">
-	</div>
+    <div class="main-page__container center-align">
+        <img src="img/logo-elducado.png" class="center-align">
+    </div>
 </div>
 
 <div id="add-payment-page" class="page">
-	<div class="add-payment-page__box">
-		<form id="form-search" class="center-align center-text">
-			<p>Busca residente por nombre, apellido o codigo</p>
-			<input type="text" name="search-resident" class="center-align box-radius">
-			<button id="btn-search" class="btn center-align center-text"><i class="fa fa-search"></i> Buscar</button>
+    <div class="add-payment-page__box">
+        <form id="form-search" class="center-align center-text">
+            <p>Busca residente por nombre, apellido o codigo</p>
+            <input type="text" name="search-resident" class="center-align box-radius">
+            <button id="btn-search" class="btn center-align center-text"><i class="fa fa-search"></i> Buscar</button>
 
-			<ul id="search-list" class="center-align">
-				<!-- To populate from JS -->
-				<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
-				<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
-			</ul>
-		</form>
+            <ul id="search-list" class="center-align">
+                <!-- To populate from JS -->
+                <!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
+                <li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
+            </ul>
+        </form>
 
-		<form id="form-receipt" class="no-display">
-			<button id="btn-close-form-receipt"><i class="fa fa-close fa-3x"></i></button>
-			<span>Residente</span>
-			<p id="jsResident"></p>
-			
-			<span class="no-display">Fecha</span>
-			<p class="no-display" id="jsDate"></p>
+        <form id="form-receipt" class="no-display">
+            <button id="btn-close-form-receipt"><i class="fas fa-times fa-3x"></i></button>
+            <span>Residente</span>
+            <p id="jsResident"></p>
+            
+            <span class="no-display">Fecha</span>
+            <p class="no-display" id="jsDate"></p>
 
-			<span>Factura</span>
-			<p id="jsInvoiceNumber">#</p>
-			<button id="btnChangeInvoice" class="no-display"><i class="fa fa-chevron-right"></i></button>
+            <span>Factura</span>
+            <p id="jsInvoiceNumber">#</p>
+            <button id="btnChangeInvoice" class="no-display"><i class="fa fa-chevron-right"></i></button>
 
-			<span>Para el Mes</span>
-			<p id="jsMonth">Mes</p>
+            <span>Para el Mes</span>
+            <p id="jsMonth">Mes</p>
 
-			<span>Categoria</span>
-			<p id="jsCategory">Propietario</p>
+            <span>Categoria</span>
+            <p id="jsCategory">Propietario</p>
 
-			<span>Descripcion</span>
-			<p id="jsDescription"></p>
-			
-			<span>Monto RD$</span>
-			<input class="box-radius" id="jsAmount" type="text" name="receipt-amount" v-model="receiptAmount">
+            <span>Descripcion</span>
+            <p id="jsDescription"></p>
+            
+            <span>Monto RD$</span>
+            <input class="box-radius" id="jsAmount" type="text" name="receipt-amount" v-model="receiptAmount">
 
-			<p id="jsType" class="no-display"></p> <!-- Used on JS -->
-			
-			<div id="wrapper-btn-pay-method" class="center-align center-text">
-				<span class="center-text">Seleccione metodo de pago</span>
-				<button class="btn js-btn-pay-method btn--selected">Efectivo</button>
-				<button class="btn js-btn-pay-method">Deposito</button>
-				<button class="btn js-btn-pay-method">Transferencia</button>
+            <p id="jsType" class="no-display"></p> <!-- Used on JS -->
+            
+            <div id="wrapper-btn-pay-method" class="center-align center-text">
+                <span class="center-text">Seleccione metodo de pago</span>
+                <button class="btn js-btn-pay-method btn--selected">Efectivo</button>
+                <button class="btn js-btn-pay-method">Deposito</button>
+                <button class="btn js-btn-pay-method">Transferencia</button>
 
-				<input class="center-align no-display" type="number" name="pay-method-input" placeholder="00000">
+                <input class="center-align no-display" type="number" name="pay-method-input" placeholder="00000">
 
-				<select class="center-align no-display" name="bankAccount"> <option value=""></option> </select>
-			</div>
+                <select class="center-align no-display" name="bankAccount"> <option value=""></option> </select>
+            </div>
 
-			<button id="btn-confirm" class="btn btn--confirm">Confirmar <i class="fa fa-check"></i></button>
-		</form>
-	</div>
+            <button id="btn-confirm" class="btn btn--confirm">Confirmar <i class="fa fa-check"></i></button>
+        </form>
+    </div>
 </div>
 
 <div id="residents-list-page" class="page">
-	<div class="residents-list-page__box">
-		<input name="search-resident-list" class="center-align box-radius">
-		<button id="searchResident" class="btn center-align"><i class="fa fa-search"></i> Buscar</button>
-		<button id="createResident" class="btn center-align"><i class="fa fa-user-plus"></i> Crear</button>
+    <div class="residents-list-page__box">
+        <input name="search-resident-list" class="center-align box-radius">
+        <button id="searchResident" class="btn center-align"><i class="fa fa-search"></i> Buscar</button>
+        <button id="createResident" class="btn center-align"><i class="fa fa-user-plus"></i> Crear</button>
 
-		<ul id="search-list-resident-card" class="center-align">
-			<!-- To populate from JS -->
-			<!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
-			<li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
-		</ul>
+        <ul id="search-list-resident-card" class="center-align">
+            <!-- To populate from JS -->
+            <!--<li><a>001 Alvaro Bencosme<i class="fa fa-chevron-right"></i></a></li>
+            <li><a>002 Rogelio Isael<i class="fa fa-chevron-right"></i></a></li>-->
+        </ul>
 
-		<button id="btn-close-modal" class="no-display"><i class="fa fa-close fa-3x"></i></button>
-		<div class="form-resident-card box-radius center-align no-display">
-			<span id="search-list-resident-id"></span>
-			
-			<p class="inline">Categoria</p>
-			<select name="category" class="inline">
-				<option value="empty"></option>
-				<option value="A">A</option>
-				<option value="B">B</option>
-				<option value="C">C</option>
-				<option value="D">D</option>
-			</select>
+        <button id="btn-close-modal" class="no-display"><i class="fas fa-times fa-3x"></i></button>
+        <div class="form-resident-card box-radius center-align no-display">
+            <span id="search-list-resident-id"></span>
+            
+            <p class="inline">Categoria</p>
+            <select name="category" class="inline">
+                <option value="empty"></option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
 
-			<label for="address">Direccion<input type="text" name="address"></label>
-			<br>
+            <label for="address">Direccion<input type="text" name="address"></label>
+            <br>
 
-			<p>RESIDENTES</p>
-			<p>(1)</p>
-			<div class="input-group">
-				<label for="firstName">Nombre: <input type="text" name="firstName"></label>
+            <p>RESIDENTES</p>
+            <p>(1)</p>
+            <div class="input-group">
+                <label for="firstName">Nombre: <input type="text" name="firstName"></label>
 
-				<label for="lastName">Apellido: <input type="text" name="lastName"></label>
+                <label for="lastName">Apellido: <input type="text" name="lastName"></label>
 
-				<label for="personID">Cedula: <input type="text" name="personID"></label>
+                <label for="personID">Cedula: <input type="text" name="personID"></label>
 
-				<label for="phone">Telefono: <input type="text" name="phone"></label>
+                <label for="phone">Telefono: <input type="text" name="phone"></label>
 
-				<label for="cellPhone">Celular: <input type="text" name="cellPhone"></label>
+                <label for="cellPhone">Celular: <input type="text" name="cellPhone"></label>
 
-				<label for="email">Correo: <input type="email" name="email"></label>
-			</div>
+                <label for="email">Correo: <input type="email" name="email"></label>
+            </div>
 
-			<p>(2)</p>
-			<div class="input-group">
-				<label for="firstName2">Nombre: <input type="text" name="firstName2"></label>
+            <p>(2)</p>
+            <div class="input-group">
+                <label for="firstName2">Nombre: <input type="text" name="firstName2"></label>
 
-				<label for="lastName2">Apellido: <input type="text" name="lastName2"></label>
+                <label for="lastName2">Apellido: <input type="text" name="lastName2"></label>
 
-				<label for="personID2">Cedula: <input type="text" name="personID2"></label>
+                <label for="personID2">Cedula: <input type="text" name="personID2"></label>
 
-				<label for="cellPhone2">Celular: <input type="text" name="cellPhone2"></label>
-			</div>
+                <label for="cellPhone2">Celular: <input type="text" name="cellPhone2"></label>
+            </div>
 
-			<p>PROPIETARIO
-			 <i>(Si Propietario y Residente son el mismo, no llenar)</i>
-			</p>
-			<div class="input-group">
-				<label for="firstNameOwner">Nombre: <input type="text" name="firstNameOwner"></label>
+            <p>PROPIETARIO
+             <i>(Si Propietario y Residente son el mismo, no llenar)</i>
+            </p>
+            <div class="input-group">
+                <label for="firstNameOwner">Nombre: <input type="text" name="firstNameOwner"></label>
 
-				<label for="lastNameOwner">Apellido: <input type="text" name="lastNameOwner"></label>
+                <label for="lastNameOwner">Apellido: <input type="text" name="lastNameOwner"></label>
 
-				<label for="personIDOwner">Cedula: <input type="text" name="personIDOwner"></label>
+                <label for="personIDOwner">Cedula: <input type="text" name="personIDOwner"></label>
 
-				<label for="cellPhoneOwner">Celular: <input type="text" name="cellPhoneOwner"></label>
-			</div>
+                <label for="cellPhoneOwner">Celular: <input type="text" name="cellPhoneOwner"></label>
+            </div>
 
-			<p>CUENTAS BANCARIAS</p>
-			<div class="input-group">
-				<label for="bankName1">Banco: <input type="text" name="bankName1"></label>
+            <p>CUENTAS BANCARIAS</p>
+            <div class="input-group">
+                <label for="bankName1">Banco: <input type="text" name="bankName1"></label>
 
-				<label for="bankName2">Banco: <input type="text" name="bankName2"></label>
+                <label for="bankName2">Banco: <input type="text" name="bankName2"></label>
 
-				<label for="bankName3">Banco: <input type="text" name="bankName3"></label>
-				
-				<label for="bank1">Numero de Cuenta: <input type="text" name="bank1"></label>
+                <label for="bankName3">Banco: <input type="text" name="bankName3"></label>
+                
+                <label for="bank1">Numero de Cuenta: <input type="text" name="bank1"></label>
 
-				<label for="bank2">Numero de Cuenta: <input type="text" name="bank2"></label>
+                <label for="bank2">Numero de Cuenta: <input type="text" name="bank2"></label>
 
-				<label for="bank3">Numero de Cuenta: <input type="text" name="bank3"></label>
-			</div>
+                <label for="bank3">Numero de Cuenta: <input type="text" name="bank3"></label>
+            </div>
 
-			<!-- <p class="lastPayment">Ultimo Pago Realizado</p> -->
-			
-		</div>
-			
-		<button class="btn-delete-resident no-display"><i class="fa fa-trash-o fa-3x"></i></button>
+            <!-- <p class="lastPayment">Ultimo Pago Realizado</p> -->
+            
+        </div>
+            
+        <button class="btn-delete-resident no-display"><i class="fa fa-trash-o fa-3x"></i></button>
 
-		<button id=save-resident class="btn no-display"><i class="fa fa-save"></i> Salvar</button>
-	</div>
+        <button id=save-resident class="btn no-display"><i class="fa fa-save"></i> Salvar</button>
+    </div>
 </div>
 
 <!-- INVOICES PAGE -->
 <div id="invoices-page" class="page">
-	<div class="invoices-page__box">
-		<!-- <input type="number" name="search-invoice" placeholder="00000" class="center-align box-radius" @keyup.enter.prevent="triggerBtnSearchInvoice">
-		<button id="btn-search-invoice" class="btn center-align"><i class="fa fa-search"></i> Buscar</button> -->
-		<resident-search :runthis="handleSearchResult"></resident-search>
+    <div class="invoices-page__box">
+        <!-- <input type="number" name="search-invoice" placeholder="00000" class="center-align box-radius" @keyup.enter.prevent="triggerBtnSearchInvoice">
+        <button id="btn-search-invoice" class="btn center-align"><i class="fa fa-search"></i> Buscar</button> -->
+        <resident-search :runthis="handleSearchResult"></resident-search>
 
-		<section id="invoices-page__buttons" class="center-align center-text" v-show="showButtons">
-			<button id="generateInvoices" class="btn btn__big center-align"><i class="fa fa-files-o fa-3x center-align-absolute"></i> <p>Crear Facturas (Batch)</p></button>
+        <section id="invoices-page__buttons" class="center-align center-text" v-show="showButtons">
+            <button id="generateInvoices" class="btn btn__big center-align"><i class="far fa-copy fa-3x center-align-absolute"></i> <p>Crear Facturas (Batch)</p></button>
 
-			<button id="generateOneInvoice" class="btn btn__big center-align"><i class="fa fa-file-o fa-3x center-align-absolute"></i> <p>Crear Factura</p></button>
+            <button id="generateOneInvoice" class="btn btn__big center-align"><i class="far fa-file fa-3x center-align-absolute"></i> <p>Crear Factura</p></button>
 
-			<button id="printInBatch" class="btn btn__big center-align"><i class="fa fa-print fa-3x center-align-absolute"></i> <p>Imprimir Batch</p></button>
-		</section>
+            <button id="printInBatch" class="btn btn__big center-align"><i class="fa fa-print fa-3x center-align-absolute"></i> <p>Imprimir Batch</p></button>
+        </section>
 
-		<section id="invoices-page__resident-payed" class="center-align" v-show="showPayedInvoices">
-			<button id="btn-close-modal" @click.prevent="closeResidentPayed()"><i class="fa fa-close fa-3x"></i></button>
-			<div v-for="invoice in payedInvoices" class="invoices-page__resident-payed__box inline-block">
-				<p class="center-text">{{ invoice.residentId }} {{ invoice.fullName }}</p>
-				<div class="invoices-page__resident-payed__buttons box-radius">
-					<button class="btn inline" @click.prevent="printOneInvoice(invoice.id)"><i class="fa fa-2x fa-print"></i></button>
-					<button class="btn btn--delete inline"><i class="fa fa-2x fa-trash-o"></i></button>
-				</div>
-				<div class="invoices-page__resident-payed__detaills box-radius">
-					<p class="invoice-id">{{ invoice.id }}</p>
-					<p class="amount">RD$ {{ numeralFormat(invoice.amount) }}</p>
-					<p class="description">{{ invoice.description }}</p>
-					<p class="date">{{ invoice.date }}</p>
-					<p class="pay-method">{{ invoice.payMethod }}</p>
-					<p class="account" v-if="invoice.accountNumber">{{ invoice.accountNumber }}</p>		
-					<p class="account" v-else>&nbsp;</p>
+        <div class="invoices-page__section-header" v-show="showPayedInvoices">
+          <span>Facturas Pagadas</span>
+        </div>
+        <section id="invoices-page__resident-payed" class="center-align" v-show="showPayedInvoices">
+            <button id="btn-close-modal" @click.prevent="closeResidentPayed()"><i class="fas fa-times fa-3x"></i></button>
+            <div v-for="invoice in payedInvoices" :key="invoice.id" class="invoices-page__resident-payed__box inline">
+            <!-- <p class="center-text">{{ invoice.residentId }} {{ invoice.fullName }}</p> -->
+                <div class="invoices-page__resident-payed__buttons box-radius no-display">
+                    <button class="btn inline" @click.prevent="printOneInvoice(invoice.id)"><i class="fa fa-2x fa-print"></i></button>
+                    <button class="btn btn--delete inline"><i class="fa fa-2x fa-trash-o"></i></button>
+                </div>
+                <div class="invoices-page__resident-payed__detaills box-radius">
+                    <p class="invoice-id">{{ invoice.id }}</p>
+                    <p class="amount">RD$ {{ numeralFormat(invoice.amount) }}</p>
+                    <p class="description">{{ invoice.description }}</p>
+                    <p class="status inline">{{ invoice.status }} ({{ invoice.datePayed }}) con {{ invoice.payMethod }} 
+                      <p class="inline" v-if="invoice.depositNumber">({{ invoice.depositNumber }}) </p>
+                      <p class="inline" v-if="invoice.accountNumber">({{ invoice.accountNumber }}) </p> 
+                      <p class="date inline"> | Creada: {{ invoice.dateRealeased }}</p>
+                    </p>
+                    <invoice-menu-t :invoice="invoice.id"></invoice-menu-t>
+                </div>
+            </div>
+            <button id="print-pending-invoices" class="btn" @click.prevent="printPendingInvoices"><i class="fa fa-print"></i>Imprimir Facturas Pendientes</button>           
+        </section>
 
-					<p class="account" v-if="invoice.depositNumber">{{ invoice.depositNumber }}</p>		
-					<p class="account" v-else>&nbsp;</p>		
-				</div>
-			</div>
-			<button id="print-pending-invoices" class="btn" @click.prevent="printPendingInvoices"><i class="fa fa-print"></i> Print Pending Invoices</button>			
-		</section>
-
-	</div>
+    </div>
 </div>
 
 <!-- CONFIGS PAGE -->
 <div id="configs-page" class="page">
-	<div class="configs-page-box">
-		<h1 class="center-text">Editar Configuraciones</h1>
+    <div class="configs-page-box">
+        <h1 class="center-text">Editar Configuraciones</h1>
 
-		<div class="configs-form">
-		<label for="category-a">Categoria A <input class="config-category" type="number" name="category-a"></label>
+        <div class="configs-form">
+        <label for="category-a">Categoria A <input class="config-category" type="number" name="category-a"></label>
 
-		<label for="category-b">Categoria B<input class="config-category" type="number" name="category-b"></label>
+        <label for="category-b">Categoria B<input class="config-category" type="number" name="category-b"></label>
 
-		<label for="category-c" >Categoria C<input class="config-category" type="number" name="category-c"></label>
+        <label for="category-c" >Categoria C<input class="config-category" type="number" name="category-c"></label>
 
-		<label for="category-d" >Categoria D<input class="config-category" type="number" name="category-d"></label>
+        <label for="category-d" >Categoria D<input class="config-category" type="number" name="category-d"></label>
 
-		<label for="config-email">Email <input type="text" name="config-email"></label>
+        <label for="config-email">Email <input type="text" name="config-email"></label>
 
-		<label for="config-bank">Banco <input type="text" name="config-bank"></label>
+        <label for="config-bank">Banco <input type="text" name="config-bank"></label>
 
-		<label for="config-bank-account">Numero de Cuenta <input type="text" name="config-bank-account"></label>
+        <label for="config-bank-account">Numero de Cuenta <input type="text" name="config-bank-account"></label>
 
-			<label for="config-frase">Frase <textarea name="config-frase" class="box-radius"></textarea></label>
-		</div>
-		<button id="btn-configs-save" class="btn center-align-absolute"><i class="fa fa-save"></i> Salvar</button>
-	</div>
+            <label for="config-frase">Frase <textarea name="config-frase" class="box-radius"></textarea></label>
+        </div>
+        <button id="btn-configs-save" class="btn center-align-absolute"><i class="fa fa-save"></i> Salvar</button>
+    </div>
 </div>
 
 <!-- ACCOUNTING PAGE -->
 <div id="accounting-page" class="page">
-	<div class="accounting-page-box">
-		<div class="header">
-			<h3>RESUMEN FINANCIERO</h3>
-			<div>
-				<p><i class="fa fa-sign-in"></i> Credito {{ currentMonth() }} RD$</p>
-				<p>{{ monthCredit }}</p>
-			</div>
+    <div class="accounting-page-box">
+        <div class="header">
+            <h3>RESUMEN FINANCIERO</h3>
+            <div>
+                <p><i class="fas fa-sign-in-alt"></i> Credito {{ currentMonth() }} RD$</p>
+                <p>{{ monthCredit }}</p>
+            </div>
 
-			<div>
-				<p><i class="fa fa-sign-out"></i> Debito {{ currentMonth() }} RD$</p>
-				<p>{{ monthDebit }}</p>
-			</div>
+            <div>
+                <p><i class="fas fa-sign-out-alt"></i> Debito {{ currentMonth() }} RD$</p>
+                <p>{{ monthDebit }}</p>
+            </div>
 
-			<div>
-				<p><i class="fa fa-sign-in"></i> Credito {{ currentYear() }} RD$</p>
-				<p>{{ yearCredit }}</p>
-			</div>
+            <div>
+                <p><i class="fas fa-sign-in-alt"></i> Credito {{ currentYear() }} RD$</p>
+                <p>{{ yearCredit }}</p>
+            </div>
 
-			<div>
-				<p><i class="fa fa-sign-out"></i> Debito {{ currentYear() }} RD$</p>
-				<p>{{ yearDebit }}</p>
-			</div>
+            <div>
+                <p><i class="fas fa-sign-out-alt"></i> Debito {{ currentYear() }} RD$</p>
+                <p>{{ yearDebit }}</p>
+            </div>
 
-			<div>
-				<p><i class="fa fa-money"></i> Balance RD$</p>
-				<p>{{ totalBalance }}</p>
-			</div>
-		</div>
+            <div>
+                <p><i class="far fa-money-bill-alt"></i> Balance RD$</p>
+                <p>{{ totalBalance }}</p>
+            </div>
+        </div>
 
-		<button id="btn-close-inside-page" class="no-display" @click.prevent="closeInsidePage"><i class="fa fa-arrow-circle-o-left fa-3x"></i></button>
+        <button id="btn-close-inside-page" class="no-display" @click.prevent="closeInsidePage"><i class="fa fa-arrow-circle-o-left fa-3x"></i></button>
 
-		<div class="accounting-page__inside-page" id="accounting-page-home">
-			<section class="center-align center-text">
-				<button @click.prevent="residentsList" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Lista de Residentes</p></button>
+        <div class="accounting-page__inside-page" id="accounting-page-home">
+            <section class="center-align center-text">
+                <button @click.prevent="residentsList" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Lista de Residentes</p></button>
 
-				<button @click.prevent="goResidentsResumen" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Residentes Resumen Financiero</p></button>
+                <button @click.prevent="goResidentsResumen" class="btn btn__big center-align"><i class="fa fa-list-ul fa-3x center-align-absolute"></i> <p>Residentes Resumen Financiero</p></button>
 
-				<button @click.prevent="goMonthStatement" class="btn btn__big center-align"><i class="fa fa-calendar fa-3x center-align-absolute"></i> <p>Estado por Mes</p></button>
+                <button @click.prevent="goMonthStatement" class="btn btn__big center-align"><i class="far fa-calendar-alt fa-3x center-align-absolute"></i> <p>Estado por Mes</p></button>
 
-				<button @click.prevent="extraordinaryInvoices" class="btn btn__big center-align"><i class="fa fa-file-excel-o fa-3x center-align-absolute"></i> <p>Facturas Extraordinarias</p></button>
+                <button @click.prevent="extraordinaryInvoices" class="btn btn__big center-align"><i class="far fa-file-excel fa-3x center-align-absolute"></i> <p>Facturas Extraordinarias</p></button>
 
-				<button @click.prevent="goAddDebit" class="btn btn__big center-align margin-sm"><i class="fa fa-minus-square-o fa-3x center-align-absolute"></i> <p class="center-text">Debitos</p></button>
-			</section>
-		</div>
+                <button @click.prevent="goAddDebit" class="btn btn__big center-align margin-sm"><i class="far fa-minus-square fa-3x center-align-absolute"></i> <p class="center-text">Debitos</p></button>
+            </section>
+        </div>
 
-		<div id="accounting-page-residents-list" class="accounting-page__inside-page no-display">
-			<div class="list center-align" v-for="resident in residents" :resident-id="resident.id">
-				<p class="big-text">{{ resident.fullName }}</p>
-				<p><i class="fa fa-hashtag"></i>ID: {{ resident.id }} </p>
-				<p><i class="fa fa-phone"></i> {{ resident.phone }}</p>
-				<p><i class="fa fa-sitemap"></i> Categoria: {{ resident.category }}</p>
-				<p v-if="resident.pendingInvoices"><i class="fa fa-file-text-o"></i> Facturas Pendientes: {{ resident.pendingInvoices.length }}</p>
-			</div>
-		</div>
+        <div id="accounting-page-residents-list" class="accounting-page__inside-page no-display">
+            <div class="list center-align" v-for="resident in residents" :resident-id="resident.id">
+                <p class="big-text">{{ resident.fullName }}</p>
+                <p><i class="fa fa-hashtag"></i>ID: {{ resident.id }} </p>
+                <p><i class="fa fa-phone"></i> {{ resident.phone }}</p>
+                <p><i class="fa fa-sitemap"></i> Categoria: {{ resident.category }}</p>
+                <p v-if="resident.pendingInvoices"><i class="fa fa-file-text-o"></i> Facturas Pendientes: {{ resident.pendingInvoices.length }}</p>
+            </div>
+        </div>
 
-		<div id="accounting-page-residents-resumen" class="accounting-page__inside-page no-display">
-			<resident-search :runthis="handleSearchResult"></resident-search>
-		</div>
+        <div id="accounting-page-residents-resumen" class="accounting-page__inside-page no-display">
+            <resident-search :runthis="handleSearchResult"></resident-search>
+        </div>
 
-		<div id="accounting-page-add-debit" class="accounting-page__inside-page no-display">
-			<label class="inline-block" for="debit-cheque">Cheque <input v-model="debitCheque" type="text" name="debit-cheque"></label>
-			<label class="inline-block" for="debit-name">Nombre <input v-model="debitName" type="text" name="debit-name"></label>
-			<label class="inline-block" for="debit-description">Descripcion <input v-model="debitDescription" type="text" name="debit-description" maxlength="50"></label>
-			<label class="inline-block" for="debit-amount">Monto RD$<input @keyup="formatAmount($event)" v-model="debitAmount" type="text" name="debit-amount"></label>
-			<label class="inline-block" for="debit-date">Fecha<input v-model="debitDate" type="date" name="debit-date"></label>
+        <div id="accounting-page-add-debit" class="accounting-page__inside-page no-display">
+            <label class="inline-block" for="debit-cheque">Cheque <input v-model="debitCheque" type="text" name="debit-cheque"></label>
+            <label class="inline-block" for="debit-name">Nombre <input v-model="debitName" type="text" name="debit-name"></label>
+            <label class="inline-block" for="debit-description">Descripcion <input v-model="debitDescription" type="text" name="debit-description" maxlength="50"></label>
+            <label class="inline-block" for="debit-amount">Monto RD$<input @keyup="formatAmount($event)" v-model="debitAmount" type="text" name="debit-amount"></label>
+            <label class="inline-block" for="debit-date">Fecha<input v-model="debitDate" type="date" name="debit-date"></label>
 
-			<button class="btn margin-sm center-align" @click.prevent="addDebit">Debitar</button>
+            <button class="btn margin-sm center-align" @click.prevent="addDebit">Debitar</button>
 
-			<table id="table-debit" class="pure-table pure-table-bordered center-align">
-			<thead>
-				<tr class="">
-					<th>Fecha</th>
-					<th>Cheque</th>
-					<th>Nombre</th>
-					<th>Descripcion</th>
-					<th>Monto RD$</th>
-				</tr>
-			</thead>
+            <table id="table-debit" class="pure-table pure-table-bordered center-align">
+            <thead>
+                <tr class="">
+                    <th>Fecha</th>
+                    <th>Cheque</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Monto RD$</th>
+                </tr>
+            </thead>
 
-			<tbody>
-				<tr class="red-on-hover" v-for="debit in debitList" @click="deleteDebit($event)">
-					<td :_id="debit._id" class="no-display"></td>
-					<td>{{ debit.debitDate }}</td>
-					<td>{{ debit.debitCheque }}</td>
-					<td>{{ debit.debitName }}</td>
-					<td>{{ debit.debitDescription }}</td>
-					<td>{{ numeralFormat(debit.debitAmount) }}</td>
-				</tr>
-			</tbody>
-			</table>
-		</div>
+            <tbody>
+                <tr class="red-on-hover" v-for="debit in debitList" @click="deleteDebit($event)">
+                    <td :_id="debit._id" class="no-display"></td>
+                    <td>{{ debit.debitDate }}</td>
+                    <td>{{ debit.debitCheque }}</td>
+                    <td>{{ debit.debitName }}</td>
+                    <td>{{ debit.debitDescription }}</td>
+                    <td>{{ numeralFormat(debit.debitAmount) }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
 
-		<div id="accounting-page-extraordinary-invoices" class="accounting-page__inside-page no-display can-scroll">
-		<ul id="extraordinary-invoices-list">
-			<li v-for="item in extraordinaryInvoicesDescriptions"><a href="#" @click.prevent="findExtraordinaryInvoices(item._id)">{{ item._id }}</a></li>
-		</ul>
-			<table class="table-extraordinary-invoices pure-table pure-table-bordered center-align">
-				<thead>
-					<tr>
-						<th class="center-text" colspan="3">{{ currentInvoiceDescription }}</th>
-					</tr>
-					<tr>
-						<td>ID</td>
-						<td>Nombre</td>
-						<td>Estado de Factura</td>
-					</tr>
-				</thead>
+        <div id="accounting-page-extraordinary-invoices" class="accounting-page__inside-page no-display can-scroll">
+        <ul id="extraordinary-invoices-list">
+            <li v-for="item in extraordinaryInvoicesDescriptions"><a href="#" @click.prevent="findExtraordinaryInvoices(item._id)">{{ item._id }}</a></li>
+        </ul>
+            <table class="table-extraordinary-invoices pure-table pure-table-bordered center-align">
+                <thead>
+                    <tr>
+                        <th class="center-text" colspan="3">{{ currentInvoiceDescription }}</th>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>Nombre</td>
+                        <td>Estado de Factura</td>
+                    </tr>
+                </thead>
 
-				<tbody>
-					<tr v-for="invoice in extraordinaryInvoicesList">
-						<td>{{ invoice.residentId }}</td>
-						<td>{{ invoice.fullName }}</td>
-						<td v-if="invoice.status === 'Sin pagar'" class="color-red">{{ invoice.status }}</td>
-						<td v-else> {{ invoice.status }} </td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-
-		<div id="accounting-page-month-statement" class="accounting-page__inside-page no-display">
-			<form class="pure-form">
-				<fieldset>
-					<div class="pure-g">
-						<div class="center-text">
-							<label for="month" class="inline-block">Mes: </label>
-							<select v-model="monthSelected" id="month" class="inline-block">
-								<option disabled value="">Seleccione</option>
-								<option v-for="month in monthList" :value="_.capitalize(month)">{{ _.capitalize(month) }}</option>
-							</select>
-
-							<label for="year" class="inline-block">Año: </label>
-							<select v-model="yearSelected" id="year" class="inline-block">
-								<option disabled value="">Seleccione</option>
-								<option v-for="year in yearList">{{ year._id }}</option>
-							</select>
-
-							<button class="btn center-align margin-sm" @click.prevent="getMonthStatement"><i class="fa fa-search"></i> Buscar</button>
-						</div>
-					</div>
-				</fieldset>
-			</form>
+                <tbody>
+                    <tr v-for="invoice in extraordinaryInvoicesList">
+                        <td>{{ invoice.residentId }}</td>
+                        <td>{{ invoice.fullName }}</td>
+                        <td v-if="invoice.status === 'Sin pagar'" class="color-red">{{ invoice.status }}</td>
+                        <td v-else> {{ invoice.status }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 
-			<table class="pure-table pure-table-bordered center-align" v-show="monthStatement !== ''">
-				<thead>
-					<tr><th colspan="2" class="center-text">Estado para el Mes {{ monthSelected }} de {{ yearSelected }}</th></tr>
-				</thead>
+        <div id="accounting-page-month-statement" class="accounting-page__inside-page no-display">
+            <form class="pure-form">
+                <fieldset>
+                    <div class="pure-g">
+                        <div class="center-text">
+                            <label for="month" class="inline-block">Mes: </label>
+                            <select v-model="monthSelected" id="month" class="inline-block">
+                                <option disabled value="">Seleccione</option>
+                                <option v-for="month in monthList" :value="_.capitalize(month)">{{ _.capitalize(month) }}</option>
+                            </select>
 
-				<tbody>
-					<tr>
-						<td>Credito</td>
-						<td>{{ numeralFormat(monthStatement.cashIn) }} RD$</td>
-					</tr>
+                            <label for="year" class="inline-block">Año: </label>
+                            <select v-model="yearSelected" id="year" class="inline-block">
+                                <option disabled value="">Seleccione</option>
+                                <option v-for="year in yearList">{{ year._id }}</option>
+                            </select>
 
-					<tr>
-						<td>Debito</td>
-						<td>{{ numeralFormat(monthStatement.cashOut) }} RD$</td>
-					</tr>
+                            <button class="btn center-align margin-sm" @click.prevent="getMonthStatement"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
 
-					<tr>
-						<td>Facturas Normales</td>
-						<td>{{ numeralFormat(monthStatement.maintenancePayments) }} RD$</td>
-					</tr>
 
-					<tr>
-						<td>Facturas Extraordinarias</td>
-						<td>{{ numeralFormat(monthStatement.extraordinaryPayments) }} RD$</td>
-					</tr>
+            <table class="pure-table pure-table-bordered center-align" v-show="monthStatement !== ''">
+                <thead>
+                    <tr><th colspan="2" class="center-text">Estado para el Mes {{ monthSelected }} de {{ yearSelected }}</th></tr>
+                </thead>
 
-					<tr>
-						<td>Balance del Mes</td>
-						<td>{{ numeralFormat(monthStatement.balance) }} RD$</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+                <tbody>
+                    <tr>
+                        <td>Credito</td>
+                        <td>{{ numeralFormat(monthStatement.cashIn) }} RD$</td>
+                    </tr>
+
+                    <tr>
+                        <td>Debito</td>
+                        <td>{{ numeralFormat(monthStatement.cashOut) }} RD$</td>
+                    </tr>
+
+                    <tr>
+                        <td>Facturas Normales</td>
+                        <td>{{ numeralFormat(monthStatement.maintenancePayments) }} RD$</td>
+                    </tr>
+
+                    <tr>
+                        <td>Facturas Extraordinarias</td>
+                        <td>{{ numeralFormat(monthStatement.extraordinaryPayments) }} RD$</td>
+                    </tr>
+
+                    <tr>
+                        <td>Balance del Mes</td>
+                        <td>{{ numeralFormat(monthStatement.balance) }} RD$</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
+<template id="invoice-menu-t">
+  <div class="invoice-menu-root">
+    <button class="btn--menu-dots" @click="toggleShow" @blur="hideMenuWithDelay">
+      <i class="fa fa-lg fa-ellipsis-v"></i>
+    </button>
+    <div class="invoice-menu box-radius" v-show="showMenu" @focus="showMenu = true">
+      <ul>
+        <li @click.prevent="printInvoice(invoice)"><i class="fas fa-print"></i>Imprimir</li>
+        <!-- <li><i class="fas fa-trash"></i>Eliminar</li> -->
+      </ul>
+    </div>
+  </div>
+</template>
 
 <script src="js/vue.js"></script>
 <script src="js/jquery.js"></script>

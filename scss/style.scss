@@ -10,10 +10,11 @@ $cancel-color: #D9534F;
 $danger-color: #c44640;
 $danger-background: #F2DEDE;
 $dark-color: #191C21;
-$crown-color: #E4AB08;
+$crown-color: #FF9900; /* #E4AB08*/
 $label-color: #a2a2a2;
 $input-background: #DCDCDC;
 $list-item-background: #ced5df;
+$border-color: #E2E5EE;
 
 
 // @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
@@ -21,10 +22,10 @@ $list-item-background: #ced5df;
 
 
 *{
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	display: block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  display: block;
     outline: 0;
 }
 /* >>>>---- HELPERS ----*/
@@ -32,57 +33,57 @@ $list-item-background: #ced5df;
     margin: 0.5rem;
 }
 .center-align, .center-align-absolute{
-	margin-left: auto;
-	margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .center-align-absolute{
   left: 0;
   right: 0;
 }
 .center-text{
-	text-align: center;
+  text-align: center;
 }
 
 .padding-sm{
-	padding: 1em;
+  padding: 1em;
 }
 .box-radius{
   border-radius: 5px;
 }
 .not-visible, .notVisible {
 /*  visibility: hidden;*/
-	opacity: 0;
-	-webkit-transition:opacity 1s linear;
+  opacity: 0;
+  -webkit-transition:opacity 1s linear;
 }
 .no-display {
-	display: none;
+  display: none;
 }
 .is-visible{
-	visibility: visible;
-	opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 .invisible {
     visibility: hidden;
 }
 
 .inline {
-	display: inline;
+  display: inline;
 }
 .inline-block {
-	display: inline-block;
+  display: inline-block;
 }
 .block {
-	display: block;
+  display: block;
 }
 .right {
-//	float: right;
-	position: relative;
-	left: 50%;
+//  float: right;
+  position: relative;
+  left: 50%;
 }
 .left {
-//	float: left;
-	position: absolute;
-	left: 0;
+//  float: left;
+  position: absolute;
+  left: 0;
 }
 
 .bigger-text {
@@ -98,39 +99,43 @@ $list-item-background: #ced5df;
     overflow-y: auto;
 }
 
+.horizontal-short-line {
+  border-bottom: 1px solid $border-color;
+  width: 40%;
+}
 
 /* ---- HELPERS ----<<<<*/
 
 /*Flashmessge*/
 .flashmessage {
-  	position: absolute;
-	left: 65px; /* 100px from nav */ 
-  	bottom: 2rem;
-  	width: 80%;
+    position: absolute;
+  left: 65px; /* 100px from nav */ 
+    bottom: 2rem;
+    width: 80%;
 
-//  	box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
+//    box-shadow: 0px 10px 10px rgba(0,0,0,0.5);
 
-  	z-index: 99999;
-	
-	& span {
-		padding: 0.8em;
-		font-size: 1.3em;
-	}
+    z-index: 99999;
+  
+  & span {
+    padding: 0.8em;
+    font-size: 1.3em;
+  }
 }
 .flashmessage--success {
-	background-color: $success-background;
-	color: $success-color;
-	border: 0.18em solid $success-color;
+  background-color: $success-background;
+  color: $success-color;
+  border: 0.18em solid $success-color;
 }
 .flashmessage--danger {
-	background-color: $danger-background;
-	color: $danger-color;
-	border: 0.18em solid $danger-color;
+  background-color: $danger-background;
+  color: $danger-color;
+  border: 0.18em solid $danger-color;
 }
 .flashmessage--info {
-	background-color: $info-background;
-	color: $info-color;
-	border: 0.18em solid $info-color;
+  background-color: $info-background;
+  color: $info-color;
+  border: 0.18em solid $info-color;
 }
 /*Flashmessge*/
 
@@ -148,7 +153,7 @@ $list-item-background: #ced5df;
 }
 
 .modal-background {
-	width: 100%;
+  width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     position: fixed;
@@ -161,74 +166,74 @@ $list-item-background: #ced5df;
     position: absolute;
     top: 25%;
     background-color: #FFF;
-  	border: 2px solid $main-color;
+    border: 2px solid $main-color;
 }
 button#btn-close-modal, .btn-delete-resident, #btn-close-inside-page {
-	background: none;
-	border: none;
-	position: absolute;
-	right: 0.6em;
-	top: 0.5em;
-	&:hover {
-		opacity: 0.8;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0.6em;
+  top: 0.5em;
+  &:hover {
+    opacity: 0.8;
         color: $cancel-color;
-	}
-	&:active {
-		opacity: 0.5;
+  }
+  &:active {
+    opacity: 0.5;
         color: $cancel-color;
-	}
+  }
 }
 
 .modal__confirm-pay {
-	padding-left: 1em;
-	& button#btn-close-modal {
-		background: none;
-		border: none;
-		position: absolute;
-		right: 0.6em;
-		top: 0.5em;
-	}
-	& p, span {
-		margin: 0.1em 0;
-	}
-	font-size: 1.05em;
-	& p > span {
-		display: inline-block;
-	}
-	& span {
-		font-size: 1.2em;
-	}
-	& span#jsAmount {
-		position: relative;
-		left: 60%;
-		top: 15%;
-		font-size: 2em;
-	}
-	& button#btn-print-receipt {
-		position: absolute;
-		bottom: 0.5em;
-	}
-	& button#btn-save-receipt {
-		position: absolute;
-		bottom: 0.5em;
-		right: 0.6em;
-	}
+  padding-left: 1em;
+  & button#btn-close-modal {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0.6em;
+    top: 0.5em;
+  }
+  & p, span {
+    margin: 0.1em 0;
+  }
+  font-size: 1.05em;
+  & p > span {
+    display: inline-block;
+  }
+  & span {
+    font-size: 1.2em;
+  }
+  & span#jsAmount {
+    position: relative;
+    left: 60%;
+    top: 15%;
+    font-size: 2em;
+  }
+  & button#btn-print-receipt {
+    position: absolute;
+    bottom: 0.5em;
+  }
+  & button#btn-save-receipt {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.6em;
+  }
 }
 
 .modal__select-batch {
-	color: $dark-blue;
-	& p {
-		margin-top: 1rem;
-		font-size: 2rem;
-		padding-bottom: 2rem;
-	}
-	& label {
-		font-size: 1.5rem;
-		margin-top: 0.5rem;
-	}
-	& select {
-		font-size: 1.5rem;
-	}
+  color: $dark-blue;
+  & p {
+    margin-top: 1rem;
+    font-size: 2rem;
+    padding-bottom: 2rem;
+  }
+  & label {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  & select {
+    font-size: 1.5rem;
+  }
 }
 
 .modal__generate-invoices {
@@ -260,32 +265,32 @@ button#btn-close-modal, .btn-delete-resident, #btn-close-inside-page {
 }
 
 body, html {
-	width: 100%;
-	height: 100%;
-	background-color: #FFF;
-	overflow: hidden;
-	color: #000;
-	font-size: 16px;
-	font-family: 'Ubuntu Condensed', sans-serif, 'calibri', 'ubuntu';
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+  overflow: hidden;
+  color: #000;
+  font-size: 16px;
+  font-family: 'Ubuntu Condensed', sans-serif, 'calibri', 'ubuntu';
 }
 .big-font {
-	font-size: 1.2em;
+  font-size: 1.2em;
 }
 .bigger-font {
-	font-size: 1.5em;
+  font-size: 1.5em;
 }
 .normal-font {
     font-size: 1rem;
     font-weight: normal;
 }
 .bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 .bolder {
-	font-weight: bolder;
+  font-weight: bolder;
 }
 .italic {
-	font-style: italic;
+  font-style: italic;
 }
 .letter-space {
     letter-spacing: 0.5em;
@@ -293,8 +298,8 @@ body, html {
 
 
 #main-page, #create-page {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
     position: relative;
 }
 
@@ -303,7 +308,7 @@ a {
     color: #000;
 
     &:visited {
-    	color: #000;
+      color: #000;
     }
     &:hover {
         text-decoration: none;
@@ -311,15 +316,15 @@ a {
 }
 
 h1, h2 {
-	padding: 0.1em 0;
+  padding: 0.1em 0;
 }
 
 h1 {
-	font-size: 3em;
+  font-size: 3em;
 }
 
 h2 {
-	font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 header {
@@ -362,15 +367,15 @@ header {
         height: 12.2rem;
         top: 2.5rem;
         left: 1.2rem;
-//		padding: 0.5rem;
-		box-shadow: 5px 5px 18px -6px #000000;
-		& li {
-			font-size: 1.1rem;
-		}
+//    padding: 0.5rem;
+    box-shadow: 5px 5px 18px -6px #000000;
+    & li {
+      font-size: 1.1rem;
+    }
         & a {
             padding: 1rem 1rem;
             text-align: left;
-//			border-bottom: 1px solid grey;
+//      border-bottom: 1px solid grey;
             &:hover {
                 background-color: $main-color;
                 color: #fff;
@@ -408,82 +413,82 @@ nav {
             color: $crown-color;
         }
     }*/
-	& a[href="#add-payment-page"]::before {
-		height: 56px;
-		content: "";
-		display: block;
-		background-image: url(../img/icon-money.png);
-		background-size: 56px;
-		background-repeat: no-repeat;
-		background-position-x: 50%;
-	}
-	& a[href="#add-payment-page"]:hover::before {
-		background-image: url(../img/icon-money-o.png);
-	}
-	& a[href="#add-payment-page"].icon-selected::before {
-		background-image: url(../img/icon-money-o.png);
-	}
-	& a[href="#residents-list-page"]::before {
-		height: 56px;
-		content: "";
-		display: block;
-		background-image: url(../img/icon-users.png);
-		background-size: 56px;
-		background-repeat: no-repeat;
-		background-position-x: 50%;
-	}
-	& a[href="#residents-list-page"]:hover::before {
-		background-image: url(../img/icon-users-o.png);
-	}
-	& a[href="#residents-list-page"].icon-selected::before {
-		background-image: url(../img/icon-users-o.png);
-	}
-	& a[href="#invoices-page"]::before {
-		height: 56px;
-		content: "";
-		display: block;
-		background-image: url(../img/icon-invoice.png);
-		background-size: 56px;
-		background-repeat: no-repeat;
-		background-position-x: 50%;
-	}
-	& a[href="#invoices-page"]:hover::before {
-		background-image: url(../img/icon-invoice-o.png);
-	}
-	& a[href="#invoices-page"].icon-selected::before {
-		background-image: url(../img/icon-invoice-o.png);
-	}
-	& a[href="#accounting-page"]::before {
-		height: 56px;
-		content: "";
-		display: block;
-		background-image: url(../img/icon-saving-book.png);
-		background-size: 56px;
-		background-repeat: no-repeat;
-		background-position-x: 50%;
-	}
-	& a[href="#accounting-page"]:hover::before {
-		background-image: url(../img/icon-saving-book-o.png);
-	}
-	& a[href="#accounting-page"].icon-selected::before {
-		background-image: url(../img/icon-saving-book-o.png);
-	}
+  & a[href="#add-payment-page"]::before {
+    height: 56px;
+    content: "";
+    display: block;
+    background-image: url(../img/icon-money.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+  }
+  & a[href="#add-payment-page"]:hover::before {
+    background-image: url(../img/icon-money-o.png);
+  }
+  & a[href="#add-payment-page"].icon-selected::before {
+    background-image: url(../img/icon-money-o.png);
+  }
+  & a[href="#residents-list-page"]::before {
+    height: 56px;
+    content: "";
+    display: block;
+    background-image: url(../img/icon-users.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+  }
+  & a[href="#residents-list-page"]:hover::before {
+    background-image: url(../img/icon-users-o.png);
+  }
+  & a[href="#residents-list-page"].icon-selected::before {
+    background-image: url(../img/icon-users-o.png);
+  }
+  & a[href="#invoices-page"]::before {
+    height: 56px;
+    content: "";
+    display: block;
+    background-image: url(../img/icon-invoice.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+  }
+  & a[href="#invoices-page"]:hover::before {
+    background-image: url(../img/icon-invoice-o.png);
+  }
+  & a[href="#invoices-page"].icon-selected::before {
+    background-image: url(../img/icon-invoice-o.png);
+  }
+  & a[href="#accounting-page"]::before {
+    height: 56px;
+    content: "";
+    display: block;
+    background-image: url(../img/icon-saving-book.png);
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+  }
+  & a[href="#accounting-page"]:hover::before {
+    background-image: url(../img/icon-saving-book-o.png);
+  }
+  & a[href="#accounting-page"].icon-selected::before {
+    background-image: url(../img/icon-saving-book-o.png);
+  }
 }
 
 .btn {
-	background-color: $main-color;
-	border-radius: 5px;
-	color: #FFF;
-	border: none;
-	font-size: 1.5rem;
-	width: 7.5em;
-	&:hover {
-		background-color: $crown-color;
-	}
-	&:active {
-		background-color: $crown-color;
-		opacity: 0.8;
-	}
+  background-color: $main-color;
+  border-radius: 5px;
+  color: #FFF;
+  border: none;
+  font-size: 1.5rem;
+  width: 7.5em;
+  &:hover {
+    background-color: $crown-color;
+  }
+  &:active {
+    background-color: $crown-color;
+    opacity: 0.8;
+  }
 
     & i {
         position: relative;
@@ -498,15 +503,15 @@ nav {
 }
 
 .btn--selected {
-	background-color: $crown-color;
+  background-color: $crown-color;
 }
 
 .btn--confirm {
     background-color: $success-color;
-	&:hover {
-		background-color: $success-color;
-		opacity: 0.8;
-	}
+  &:hover {
+    background-color: $success-color;
+    opacity: 0.8;
+  }
 }
 
 .page {
@@ -525,40 +530,40 @@ nav {
 #form-search {
     // right: 65px;
     position: relative;
-	& p {
-		color: $label-color;
-		font-size: 1.4em;
-		margin-bottom: 1em;
-		
-	}
+  & p {
+    color: $label-color;
+    font-size: 1.4em;
+    margin-bottom: 1em;
+    
+  }
     & input {
         width: 45%;
         font-size: 1.7em;
-		border: 2px solid $crown-color;
-		padding: 0.2em;
+    border: 2px solid $crown-color;
+    padding: 0.2em;
     }
-	& button {
-		margin-top: 0.8em;
-	}
+  & button {
+    margin-top: 0.8em;
+  }
 }
 
 #form-receipt {
     margin-left: 7rem;
     position: relative;
-	& label, p{
-		font-size: 2.4em;
-		color: $dark-blue;
+  & label, p{
+    font-size: 2.4em;
+    color: $dark-blue;
         border: none;
-	}
-	& span {
-		font-size: 1.1em;
-		color: $label-color;
-	}
-	& #btn-close-form-receipt {
-		background-color: #fff;
-		border: none;
-		position: relative;
-		left: 85%;
+  }
+  & span {
+    font-size: 1.1em;
+    color: $label-color;
+  }
+  & #btn-close-form-receipt {
+    background-color: #fff;
+    border: none;
+    position: relative;
+    left: 85%;
         &:hover {
             color: $cancel-color;
         }
@@ -566,7 +571,7 @@ nav {
             opacity: 0.5;
             color: $cancel-color;
         }
-	}
+  }
     & input#jsAmount {
         border: 1px solid #fff;
         padding: 0.4rem;
@@ -591,47 +596,47 @@ nav {
 }
 
 #wrapper-btn-pay-method {
-	width: 100%;
+  width: 100%;
     right: 65px; /* 100px from nav */
     position: relative;
-	& button {
-		display: inline-block;
-		// width: 6em;
-	}
+  & button {
+    display: inline-block;
+    // width: 6em;
+  }
 }
 
 #btn-confirm {
-	position: absolute;
+  position: absolute;
     right: 1em;
     bottom: -6em;
-	// margin-top: 1em;
-	// right: 1em;
+  // margin-top: 1em;
+  // right: 1em;
 }
 
 #search-list, #search-list-resident-card, #extraordinary-invoices-list {
-	width: 60%;
-	position: relative;
-	margin-top: 2em;
-	& li {
-		padding: 0.4em 0;
-	}
-	& li a {
-		text-align: left;
-		font-size: 2em;
-		padding: 0.1em;
-		&:hover {
-			color: #FFF;
-			background-color: $main-color;
+  width: 60%;
+  position: relative;
+  margin-top: 2em;
+  & li {
+    padding: 0.4em 0;
+  }
+  & li a {
+    text-align: left;
+    font-size: 2em;
+    padding: 0.1em;
+    &:hover {
+      color: #FFF;
+      background-color: $main-color;
             cursor: default;
-		}
-		&:active {
-			background-color: $main-color__light;
-		}
-		& i {
-			position: absolute;
-			left: 95%;
-		}
-	}
+    }
+    &:active {
+      background-color: $main-color__light;
+    }
+    & i {
+      position: absolute;
+      left: 95%;
+    }
+  }
 }
 
 .choose-resident #search-list {
@@ -643,15 +648,15 @@ nav {
 
 .residents-list-page__box {
     position: relative;
-	& input {
-		width: 45%;
+  & input {
+    width: 45%;
         font-size: 1.7em;
         border: 2px solid $crown-color;
         padding: 0.2em;
-	}
-	& button {
-		margin: 0.5em auto;
-	}
+  }
+  & button {
+    margin: 0.5em auto;
+  }
     & #search-list-resident-id {
         width: auto;
         display: block;
@@ -678,44 +683,44 @@ nav {
     & .input-group {
         margin: 0 auto 1rem auto;
     }
-	& label {
-		margin: 0;
+  & label {
+    margin: 0;
         margin-left: 0.3em;
-		color: $label-color;
-		padding: 0.2em 0 0 0;
-	}
-	& input, select {
-		margin: 0;
-		color: $dark-blue;
-		padding-bottom: 0.2em;
-		border: 1px #fff solid;
-		font-size: 1.15em;
-		width: auto;
+    color: $label-color;
+    padding: 0.2em 0 0 0;
+  }
+  & input, select {
+    margin: 0;
+    color: $dark-blue;
+    padding-bottom: 0.2em;
+    border: 1px #fff solid;
+    font-size: 1.15em;
+    width: auto;
         background-color: $input-background;
         border-radius: 5px;
-		
-		&[type="tel"] {
-			width: 10.5em;
-		}
-		
-		&:focus {
-			// margin: 0;
-			background-color: $dark-blue;
-			color: #fff;
-		}
-		&:hover {
-			// margin: 0;
-			// color: $crown-color;
+    
+    &[type="tel"] {
+      width: 10.5em;
+    }
+    
+    &:focus {
+      // margin: 0;
+      background-color: $dark-blue;
+      color: #fff;
+    }
+    &:hover {
+      // margin: 0;
+      // color: $crown-color;
             border: 1px black solid;
-		}
-	}
-	& span {
-		display: inline-block;
-		width: 12em;
-	}
-	& .wrapper {
-		display: inline-block;
-	}
+    }
+  }
+  & span {
+    display: inline-block;
+    width: 12em;
+  }
+  & .wrapper {
+    display: inline-block;
+  }
     span.short-input {
         width: 5rem;
         margin-right: 1rem;
@@ -728,7 +733,7 @@ nav {
     }
 }
 .form-resident-card--expanded {
-	height: 25em;
+  height: 25em;
 }
 
 #main-page {
@@ -740,96 +745,96 @@ nav {
 }
 
 .receipt-body, .receipt-html, .invoice-body, .invoice-html {
-	overflow: auto;
-	width: 8.5in;
-	height: 11in;
+  overflow: auto;
+  width: 8.5in;
+  height: 11in;
 }
 
 .invoice-html {
-	overflow: auto;
-	width: 8.5in;
-	height: auto;
+  overflow: auto;
+  width: 8.5in;
+  height: auto;
 }
 .invoice-body {
-	overflow: auto;
-	height: auto;
-	width: auto;
+  overflow: auto;
+  height: auto;
+  width: auto;
 }
 
 .printable-receipt {
-	width: 50%;
-	height: 50%;
-	
-	& img {
-		width: 25%;
-		height: 25%;
-	}
-	& p {
-		margin: 0;
-		font-size: 1.1em;
-	}
-	& .space-creator {
-		margin: 2em 0;
-	}
+  width: 50%;
+  height: 50%;
+  
+  & img {
+    width: 25%;
+    height: 25%;
+  }
+  & p {
+    margin: 0;
+    font-size: 1.1em;
+  }
+  & .space-creator {
+    margin: 2em 0;
+  }
 }
 
 .invoice-page {
-//	border: 1px solid yellow;
-	$height: 7em;
-	width: 8.5in;
-	height: 11in;
-	position: relative;
-	display: block;
-	& img {
-		max-width: 35%;
-		position: relative;
-		top: 0;
-	}
-	& .invoice-header {
-		height: 9.5rem;
-		margin-bottom: 1em;
+//  border: 1px solid yellow;
+  $height: 7em;
+  width: 8.5in;
+  height: 11in;
+  position: relative;
+  display: block;
+  & img {
+    max-width: 35%;
+    position: relative;
+    top: 0;
+  }
+  & .invoice-header {
+    height: 9.5rem;
+    margin-bottom: 1em;
 
-		& p#invoice-text-header {
-			position: absolute;
-			top: 2.9rem;
-			right: 0;
-		}
+    & p#invoice-text-header {
+      position: absolute;
+      top: 2.9rem;
+      right: 0;
+    }
         & p span {
             font-size: 1rem;
         }
-	}
-	& .frase-text {
-		width: 100%;
-		height: 5rem;
-		border: 3px solid $main-color;
-		margin: 1rem auto;
-		padding: 0.5rem;
-		text-align: center;
-		& p {
-			margin: 0.3rem auto;
-		}
-	}
-	& .resident-details {
-		height: $height;
-		vertical-align: top;
-	}
-	& .invoice-details {
-		height: $height;
-		vertical-align: top;
-		line-height: 2em;
-		position: absolute;
-		left: 50%;
+  }
+  & .frase-text {
+    width: 100%;
+    height: 5rem;
+    border: 3px solid $main-color;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    text-align: center;
+    & p {
+      margin: 0.3rem auto;
+    }
+  }
+  & .resident-details {
+    height: $height;
+    vertical-align: top;
+  }
+  & .invoice-details {
+    height: $height;
+    vertical-align: top;
+    line-height: 2em;
+    position: absolute;
+    left: 50%;
         & p {
             font-size: 1.1rem;
         }
-	}
-	& .invoice-details__data {
-		height: $height;
-		vertical-align: top;
-		text-align: right;
-		line-height: 2em;
-		float: right;
-	}
+  }
+  & .invoice-details__data {
+    height: $height;
+    vertical-align: top;
+    text-align: right;
+    line-height: 2em;
+    float: right;
+  }
 }
 .pagada {
     background-image: url(../img/pagada.png);
@@ -838,58 +843,61 @@ nav {
 }
 
 table.invoice {
-	margin-top: 2rem;
-	& .table-head {
-		padding: 0.5em 0;
-		border-top: solid 2px $main-color;
-		border-bottom: solid 2px $main-color;
-		color: $dark-blue;
-	}
-	& th {
-		font-weight: bold;
-	}
-	& .data {
+  margin-top: 2rem;
+  & .table-head {
+    padding: 0.5em 0;
+    border-top: solid 2px $main-color;
+    border-bottom: solid 2px $main-color;
+    color: $dark-blue;
+  }
+  & th {
+    font-weight: bold;
+  }
+  & .data {
         margin-top: 0.3rem;
-		margin-bottom: 0.3rem;
-	}
-	& th, td {
-		display: inline-block;
-	}
-	& .qty {
-		width: 5em;
-		text-align: center;
-	}
-	& td.qty {
-		
-	}
-	& .description {
-		width: 20em;
-	}
-	& th.description {
-		text-align: center;
-	}
-	& .amount, .total {
-		width: 10em;
-		text-align: right;
-	}
-	& .data__total {
-		margin-top: 1em;
-		& .amount, .total {
-			font-weight: bold;
-		}
-	}
+    margin-bottom: 0.3rem;
+  }
+  & th, td {
+    display: inline-block;
+  }
+  & .qty {
+    width: 5em;
+    text-align: center;
+    vertical-align: top;
+  }
+  & td.qty {
+    vertical-align: top;
+  }
+  & .description {
+    width: 20.2em;
+  }
+  & th.description {
+    text-align: center;
+    vertical-align: top;
+  }
+  & .amount, .total {
+    width: 10em;
+    text-align: right;
+    vertical-align: top;
+  }
+  & .data__total {
+    margin-top: 1em;
+    & .amount, .total {
+      font-weight: bold;
+    }
+  }
 }
 
 table.footer {
-	position: absolute;
-	bottom: 1rem;
-	width: 60%;
-	border: 2px solid black;
-	& td {
-		border: 2px solid black;
-		text-align: center;
-		padding: 0.4rem 0;
-	}
+  position: absolute;
+  bottom: 1rem;
+  width: 60%;
+  border: 2px solid black;
+  & td {
+    border: 2px solid black;
+    text-align: center;
+    padding: 0.4rem 0;
+  }
 }
 
 .invoices-page__box {
@@ -928,8 +936,8 @@ table.footer {
         }
     }
     & section#invoices-page__resident-payed {
-        background-color: #E8E8E8;
-        border: 2px solid $main-color;
+        // background-color: #E8E8E8;
+        // border: 2px solid $main-color;
         width: 46rem;
         height: 30rem;
         margin-left: 8rem;
@@ -943,17 +951,21 @@ table.footer {
         }
         & .invoices-page__resident-payed__detaills {
             background-color: #fff;
-            box-shadow: 0px 8px 16px -6px #000000;
-            height: 9rem;
-            width: 21rem;
+            // box-shadow: 0px 8px 16px -6px #000000;
+            border: 1px solid $border-color;
+            height: 6.5rem;
+            width: 100%;
             position: relative;
-            text-align: center;
+            padding-left: 0.5rem;
+            top: 2.5rem;
+            margin-top: 1rem;
+            // text-align: center;
             & p {
                 padding: 0.3rem 0 0.15rem 0rem;
                 &.invoice-id {
                     color: $crown-color;
                     font-weight: 700;
-                    font-size: 1.2rem;
+                    font-size: 1.5rem;
                 }
                 &.amount {
                     color: $dark-blue;
@@ -962,6 +974,43 @@ table.footer {
                 &.description {
                     font-weight: bold;
                 }
+            }
+            & .btn--menu-dots {
+              background-color: white;
+              border: none;
+              z-index: 11;
+              right: 0.5rem;
+              top: 0;
+              position: absolute;
+              &:hover {
+                color: $crown-color;
+              }
+            }
+            & .invoice-menu {
+              width: 100px;
+              height: 60px;
+              position: absolute;
+              right: 18px;
+              top: 31px;
+              z-index: 1;
+              background-color: white;
+              box-shadow: 0px 8px 16px -6px #000000;
+              border: 1px solid $border-color;
+              & ul li {
+                padding: 0.4rem 0 0.4rem 0.2rem;
+                border-radius: 5px 5px 0 0;
+                &:nth-child(2) {
+                  border-radius: 0 0 5px 5px;
+                }
+                &:hover {
+                  background-color: $crown-color;
+                  color: white;
+                  cursor: default;
+                }
+              }
+              & ul li i {
+                margin-right: 0.3rem;
+              }
             }
         }
         & .invoices-page__resident-payed__buttons {
@@ -992,79 +1041,104 @@ table.footer {
         & .btn#print-pending-invoices {
             // position: relative;
             // top: 17rem;
+            width: 23rem;
+            height: 3rem;
         }
     }
 }
 
+.invoices-page__section-header span {
+  margin: 0;
+  padding: 0 10px;
+  background-color: #fff;
+  display: inline-block;
+}
+
+.invoices-page__section-header {
+  text-align: center;
+  position: relative;
+  z-index:2;
+
+  &:after {
+    content: "";
+    position: absolute;
+    border-top: solid 1px $border-color;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    z-index: -1;
+  }
+}
+
 
 .input-group {
-	& label {
-		display: inline-block;
-	}
+  & label {
+    display: inline-block;
+  }
 }
 
 .configs-page-box {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	padding-top: 5rem;
-	padding-left: 80px;
-	& .configs-form {
-		top: 2rem;
-		position: relative;
-		left: 3rem;
-	}
-	& label {
-		margin: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 5rem;
+  padding-left: 80px;
+  & .configs-form {
+    top: 2rem;
+    position: relative;
+    left: 3rem;
+  }
+  & label {
+    margin: 0;
         margin-left: 0.3em;
-		color: $label-color;
-		padding: 0.2em 0 0 0;
-		display: inline-block;
-		margin-top: 1.5rem;
-	}
-	& input, textarea {
-		margin: 0;
-		color: $dark-blue;
-		padding-bottom: 0.2em;
+    color: $label-color;
+    padding: 0.2em 0 0 0;
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+  & input, textarea {
+    margin: 0;
+    color: $dark-blue;
+    padding-bottom: 0.2em;
         padding-left: 0.5rem;
-		border: 1px #fff solid;
-		font-size: 1.15em;
-		width: auto;
+    border: 1px #fff solid;
+    font-size: 1.15em;
+    width: auto;
         background-color: $input-background;
         border-radius: 5px;
-		&:focus {
-			// margin: 0;
-			background-color: $dark-blue;
-			color: #fff;
-		}
-		&:hover {
-			// margin: 0;
-			// color: $crown-color;
+    &:focus {
+      // margin: 0;
+      background-color: $dark-blue;
+      color: #fff;
+    }
+    &:hover {
+      // margin: 0;
+      // color: $crown-color;
             border: 1px black solid;
-		}
-	}
-	& .config-category {
-		width: 10rem;
-	}
-	& label input[name="config-email"] {
-		width: 41.9rem;
-	}
-	& label input[name="config-bank"], label input[name="config-bank-account"] {
-		width: 20.7rem;
-	}
-	& label input[name="config-frase"] {
-		width: 41.9rem;
-		height: 4rem;
-	}
-	& textarea {
-		width: 41.9rem;
-		height: 4rem;
-		font-size: 1.1rem;
-	}
-	& button {
-		position: absolute;
-		bottom: 2rem;
-	}
+    }
+  }
+  & .config-category {
+    width: 10rem;
+  }
+  & label input[name="config-email"] {
+    width: 41.9rem;
+  }
+  & label input[name="config-bank"], label input[name="config-bank-account"] {
+    width: 20.7rem;
+  }
+  & label input[name="config-frase"] {
+    width: 41.9rem;
+    height: 4rem;
+  }
+  & textarea {
+    width: 41.9rem;
+    height: 4rem;
+    font-size: 1.1rem;
+  }
+  & button {
+    position: absolute;
+    bottom: 2rem;
+  }
 }
 
 .inner-box {

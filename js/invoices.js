@@ -48,6 +48,7 @@ btnClick('#printInBatch', (e) => {
 });
 
 btnClick('#btn-search-invoice', (e) => {
+	console.log('test');
 	let invoiceNumber = $('input[name="search-invoice"]').val();
 	if (invoiceNumber == "") return;
 	mongoDbObj.invoices.find({id: invoiceNumber}).toArray((err, doc) => {
@@ -305,12 +306,14 @@ function populateSelect(monthPrefix) {
 		.append(`<option value="${i}">${_.capitalize(month)}</option>`)
 	}
 
+	let lastYear = moment().subtract(1, 'year').format('YYYY');
 	let currentYear = moment().format('YYYY');
 	let nextYear = moment().add(1, 'year').format('YYYY');
 	$('select[name="invoice-year"]').html('');
 	$('select[name="invoice-year"]').append(`
-		<option value="${currentYear}">${currentYear}
-		</option> <option value="${nextYear}">${nextYear}</option>
+		<option value="${lastYear}">${lastYear}</option>
+		<option selected="selected" value="${currentYear}">${currentYear}</option> 
+		<option value="${nextYear}">${nextYear}</option>
 	`)
 }
 

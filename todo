@@ -8,7 +8,10 @@ Reiniciar invoiceSequence cuando un nuevo año
 
 Agregar fecha custom en debitos (Done)
 
-Implementar Componente "resident-search"
+Implementar Componente "resident-search" (Done)
+
+Cuando el cliente no tenga faturas pendientes ponerlo en flash-message
+
 
 Features Modulo Registros
 	Resumen facturas pendientes y residentes

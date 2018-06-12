@@ -1,149 +1,193 @@
 <!DOCTYPE html>
 <html class="invoice-html">
 <head>
-	<meta charset="utf-8">
-	<!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
-	<link rel="stylesheet" type="text/css" href="css/reset-without-mytable-reset.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<title style="display: none;">Factura</title>
-	
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/reset-without-mytable-reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title style="display: none;">Factura</title>
+    
 </head>
 <body class="invoice-body">
 
 
-	
+    
 <script src="js/lodash.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/numeral.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/locale.js"></script>
 <!-- <script src="js/invoices.js"></script> -->
 <script type="text/javascript" class="no-display">
 
+moment.locale('es-do');
+
 Storage.prototype.setObj = function(key, obj) {
-	return this.setItem(key, JSON.stringify(obj));
+    return this.setItem(key, JSON.stringify(obj));
 }
 Storage.prototype.getObj = function(key) {
-	return JSON.parse(this.getItem(key));
+    return JSON.parse(this.getItem(key));
 }
 
 $('.invoice-body').html("");
 var tempArray = localStorage.getObj('tempInvoices').tempArray;
-console.log(tempArray);
 _.forEach(tempArray, (item, index) => {
-	item.invoice = item.pendingInvoices[0];
-	let dataString = getDataString(item);
-	let configs = localStorage.getObj('configs');
-	invoiceTotal = getInvoiceTotal(item);
-	let invoiceStatus = "";
-	if (item.invoice.status === "Pagada") invoiceStatus = "pagada";
-	console.log(dataString);
-	$('.invoice-body').append(`
-		<div class="invoice-page ${invoiceStatus}">
-			<div class="invoice-header">
-				<img src="img/logo-elducado-nuevo-bw.png">
+    item.invoice = item.pendingInvoices[0];
+    let dataString = getDataString(item);
+    let configs = localStorage.getObj('configs');
+    invoiceTotal = getInvoiceTotal(item);
+    let invoiceStatus = "";
+    if (item.invoice.status === "Pagada") invoiceStatus = "pagada";
+    $('.invoice-body').append(`
+        <div class="invoice-page ${invoiceStatus}">
+            <div class="invoice-header">
+                <img src="img/logo-elducado-nuevo-bw.png">
 
-				<p id="invoice-text-header" class="bigger-text bold">FACTURA</span></p>
+                <p id="invoice-text-header" class="bigger-text bold">FACTURA</span></p>
 
-			</div>
+            </div>
 
-			<div class="frase-text">
-				<p class="bold">Frase del Mes:</p>
-				<p>${configs.frase}</p>
-			</div>
-	
-			<div class="resident-details inline-block">
-				<p class="big-text bold">RESIDENTES:</p>
-				<p id="jsResidentInvoice">${item.fullName}</p>
-				<p id="jsResidentInvoice">& ${item.fullName2} (#${item.id})</p>
-				<p id="jsAddressInvoice">${item.address}</p>
-				<p>Residencial El Ducado</p>
-				<p>Santo Domingo, D.N</p>
-			</div>
+            <div class="frase-text">
+                <p class="bold">Frase del Mes:</p>
+                <p>${configs.frase}</p>
+            </div>
+    
+            <div class="resident-details inline-block">
+                <p class="big-text bold">RESIDENTES:</p>
+                <p id="jsResidentInvoice">${item.fullName}</p>
+                <p id="jsResidentInvoice">& ${item.fullName2} (#${item.id})</p>
+                <p id="jsAddressInvoice">${item.address}</p>
+                <p>Residencial El Ducado</p>
+                <p>Santo Domingo, D.N</p>
+            </div>
 
-			<div class="invoice-details inline-block">
-				<p>FACTURA:</p>
-				<p>FACTURA MES DE:</p>
-				<p>PAGAR ANTES DE:</p>
-			</div>
-			
-			<div class="invoice-details__data inline-block">
-				<span id="jsInvoiceNumberInvoice">${item.invoice.id}</span>
-				<span id="jsDateInvoice">${item.invoice.month.toUpperCase()}</span>
-				<span id="jsDueDateInvoice">${item.invoice.dueDate}</span>
-			</div>
+            <div class="invoice-details inline-block">
+                <p>FACTURA:</p>
+                <p>FACTURA MES DE:</p>
+                <p>PAGAR ANTES DE:</p>
+            </div>
+            
+            <div class="invoice-details__data inline-block">
+                <span id="jsInvoiceNumberInvoice">${item.invoice.id}</span>
+                <span id="jsDateInvoice">${item.invoice.month.toUpperCase()}</span>
+                <span id="jsDueDateInvoice">${item.invoice.dueDate}</span>
+            </div>
 
-			<table class="invoice">
-				<tr class="table-head">
-					<th class="qty">CANTIDAD</th>
-					<th class="description">DESCRIPCIÓN</th>
-					<th class="amount">MONTO</th>
-					<th class="total">TOTAL</th>
-				</tr>
-				${dataString}
-				<tr class="data__total">
-					<td class="qty"></td>
-					<td class="description"></td>
-					<td class="amount">TOTAL</td>
-					<td class="total">RD$ ${numeral(invoiceTotal).format("0,0.00")}</td>
-				</tr>
-			</table>
-			
-			<table class="footer">
-				<tr class="center-text">
-					<td>
-						<p class="bold">Formas de Pago</p>
-					</td>
-					<td>
-						<p class="bold">1. PAGOS EN ESTAFETA LOCAL:</p>
-						<p> Depositar cuota correspondiente dentro de buzón rojo localizado en nuestra estafeta local de pagos. La cuota debe insertarse primero en un sobre debidamente identificado con el nombre del residente, numero de propiedad, fecha y monto.<p>
-					</td>
-					<td>
-						<p class="bold">2. PAGOS POR DEPOSITOS O TRANSFERENCIA BANCARIA:</p>
-						<p>Depositar o Transferir monto debidamente identificado a nuestra cuenta bancaria No.: ${configs.bankAccountNumber} del ${configs.bank}
-					</td>
-					<td>
-						<p>Enviar notificación de pago por correo electrónico a:</p>
-						<p>${configs.email}</p>
-					</td>
-				</tr>
-			</table>
-		</div>
-	`);
-	if (tempArray.length === (index + 1)) {
-		window.print();
-	}
+            <table class="invoice">
+                <tr class="table-head">
+                    <th class="qty">CANTIDAD</th>
+                    <th class="description">DESCRIPCIÓN</th>
+                    <th class="amount">MONTO</th>
+                    <th class="total">TOTAL</th>
+                </tr>
+                ${dataString}
+                <tr class="data__total">
+                    <td class="qty"></td>
+                    <td class="description"></td>
+                    <td class="amount">TOTAL</td>
+                    <td class="total">RD$ ${numeral(invoiceTotal).format("0,0.00")}</td>
+                </tr>
+            </table>
+            
+            <table class="footer">
+                <tr class="center-text">
+                    <td>
+                        <p class="bold">Formas de Pago</p>
+                    </td>
+                    <td>
+                        <p class="bold">1. PAGOS EN ESTAFETA LOCAL:</p>
+                        <p> Depositar cuota correspondiente dentro de buzón rojo localizado en nuestra estafeta local de pagos. La cuota debe insertarse primero en un sobre debidamente identificado con el nombre del residente, numero de propiedad, fecha y monto.<p>
+                    </td>
+                    <td>
+                        <p class="bold">2. PAGOS POR DEPOSITOS O TRANSFERENCIA BANCARIA:</p>
+                        <p>Depositar o Transferir monto debidamente identificado a nuestra cuenta bancaria No.: ${configs.bankAccountNumber} del ${configs.bank}
+                    </td>
+                    <td>
+                        <p>Enviar notificación de pago por correo electrónico a:</p>
+                        <p>${configs.email}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    `);
+    if (tempArray.length === (index + 1)) {
+        window.print();
+    }
 });
 
-function getDataString (item) {
-	let dataString = "";
-	_.forEach(item.pendingInvoices, (item, index) => {
-		dataString = dataString + `<tr class="data">
-			<td class="qty">1</td>
-			<td class="description">${item.description}</td>
-			<td class="amount">RD$ ${numeral(item.amount).format("0,0.00")}</td>
-			<td class="total">RD$ ${numeral(item.amount).format("0,0.00")}</td>
-		</tr>`;
-		return dataString;
-	});
-	return dataString;
+function getDataString (residentWithPI) { // Parameter: Resident with pending invoices
+    let dataString = "";
+    let extraordinaryInvoice = [];
+    let lastInvoice = residentWithPI.pendingInvoices.splice(0, 1);
+    let oldInvoices = [];
+    _.forEach(residentWithPI.pendingInvoices, (item, index) => {
+        if (item.type === 'extraordinaryPayments') {
+          extraordinaryInvoice.push(item);
+        }
+        if (item.type === 'maintenancePayments') {
+          oldInvoices.push(item);
+        }
+        if ((index + 1) === residentWithPI.pendingInvoices.length) {
+          oldInvoices.sort((a, b) => { // Sorting the invoices
+            return moment(a.dueDate, 'DD/MMMM/YYYY').format('X') - moment(b.dueDate, 'DD/MMMM/YYYY').format('X')
+          })
+          let descriptionString = "Mantenimiento Residencial Meses atrasados: ";
+          let oldInvoicesTotal = 0;
+          _.forEach(oldInvoices, (item, index) => {
+            descriptionString += `${_.capitalize(item.month)}(${moment(item.dueDate, 'DD/MMMM/YYYY').format('YY')})`;
+            if (oldInvoices.length > (index + 1)) {
+              descriptionString += ', '
+            }
+            oldInvoicesTotal += item.amount;
+            if (oldInvoices.length === (index + 1)) {
+              dataString += `<tr class="data"> <td class="qty">1</td>
+              <td class="description">${descriptionString}</td>
+              <td class="amount">RD$ ${numeral(oldInvoicesTotal).format("0,0.00")}</td>
+              <td class="total">RD$ ${numeral(oldInvoicesTotal).format("0,0.00")}</td>
+              </tr>`
+              _.forEach(extraordinaryInvoice, (item, index) => {
+                dataString += `<tr class="data"> <td class="qty">1</td>
+                <td class="description">${item.description}</td>
+                <td class="amount">RD$ ${numeral(item.amount).format("0,0.00")}</td>
+                <td class="total">RD$ ${numeral(item.amount).format("0,0.00")}</td>
+                </tr>`
+                if (extraordinaryInvoice.length === (index + 1)) {
+                  return dataString;
+                }
+              })
+            }
+            return dataString
+          })
+        }
+        return dataString;
+    });
+    residentWithPI.pendingInvoices.unshift(lastInvoice[0]); // Adding back the last invoice
+    return `${dataString}
+      <tr class="data">
+        <td class="qty">1</td>
+        <td class="description">${lastInvoice[0].description}</td>
+        <td class="amount">RD$ ${numeral(lastInvoice[0].amount).format("0,0.00")}</td>
+        <td class="total">RD$ ${numeral(lastInvoice[0].amount).format("0,0.00")}</td>
+      </tr>`;
 }
 
 function getInvoiceTotal (resident) {
-	var invoiceTotal = 0;
-	_.forEach(resident.pendingInvoices, (item, index) => {
-		if(item.amount !== null){
-			invoiceTotal += parseInt(item.amount);
-		}
-		return invoiceTotal;
-	});
-	return invoiceTotal;
+    var invoiceTotal = 0;
+    _.forEach(resident.pendingInvoices, (item, index) => {
+        if(item.amount !== null){
+            invoiceTotal += parseInt(item.amount);
+        }
+        return invoiceTotal;
+    });
+    return invoiceTotal;
 }
 
 $('.invoice-body').on('mouseover', (e) => {
-	e.preventDefault();
-	localStorage.setObj('tempInvoices', {tempArray: []});
-	setTimeout(function() {
-		window.close(true);
-	}, 500);
+    e.preventDefault();
+    localStorage.setObj('tempInvoices', {tempArray: []});
+    setTimeout(function() {
+        window.close(true);
+    }, 500);
 });
 </script>
 </body>
