@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title style="display: none;">Estado de Cuenta</title>
+	<meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="css/element-ui_v2.4.1.css">
+</head>
+<body>
+<div id="app">
+  <statement-page class="statement-page" v-for="resident in allStatement" v-bind:resident="resident" :key="resident.id"></statement-page>
+  <div class="loading center-text">
+    <i class="el-icon-loading"></i>
+  </div>
+</div>
+
+
+<template id="statement-page">
+  <div class="statement-page-root">
+  	<div class="first-page">
+     <img src="img/logo-elducado-nuevo-bw.png">
+
+     <p class="page-number">Pagina 1</p>
+
+     <h2 class="title">ESTADO DE CUENTA</h2>
+
+     <div class="line"></div>
+
+     <div class="resident-container">
+       <div class="resident-details inline-block">
+         <h2>RESIDENTE</h2>
+         <p>{{ resident.fullName }} #{{ resident.id }}</p>
+         <p>C/ Mi Calle </p>
+         <p>Residencial El Ducado</p>
+         <p>Santo Domingo, D.N.</p>
+       </div>
+
+       <div class="invoices-details inline-block">
+        <p>Estado de el año: </p>
+        <p>Total facturado:</p>
+        <p>Total pagos realizados:</p>
+        <p>Balance pendiente:</p>
+       </div>
+
+       <div class="invoices-details-data inline-block">
+         <p>2018</p>
+         <p>{{ sumBy(resident.rInvoices, 'originalAmount') }}</p>
+         <p>{{ sumBy(resident.rInvoices, 'amount') }}</p>
+         <p>{{ getPendingBalance(resident.rInvoices) }}</p>
+       </div>
+     </div>
+
+     <el-table :data="returnEight(resident.rInvoices)"
+        width="90%"
+        :height="650"
+        border
+        v-loading="loadig">
+        <el-table-column 
+          prop="dueDate"
+          label="FECHA"
+          :formatter="formatDate"
+          align="center"
+          width="200"
+          height="50">
+        </el-table-column>
+        <el-table-column
+          prop="id"
+          label="FACTURA"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop="description"
+          label="DESCRIPCIÓN"
+          :formatter="formatDescription"
+          header-align="center">
+        </el-table-column>
+        <el-table-column
+          prop="originalAmount"
+          :formatter="formatCellAmount"
+          label="MONTO"
+          header-align="center"
+          align="right">
+        </el-table-column>
+        <el-table-column
+          prop="amount"
+          label="PAGO"
+          :formatter="formatCellAmount"
+          header-align="center"
+          align="right">
+        </el-table-column>
+        <el-table-column
+          label="PENDIENTE"
+          :formatter="getPendingAmount"
+          header-align="center"
+          align="right">
+        </el-table-column>
+      </el-table>
+
+      <footer class="statement-footer center-align">
+        <div class="__section block">
+          PARA REALIZAR PAGOS, FAVOR HACER DEPOSITO O TRANSFERENCIA A:
+          CUENTA NO. <p class="bold">745317289 - BANCO POPULAR</p>
+        </div>
+        <div class="__section block">
+          ENVIAR NOTIFICACION DE PAGO POR CORREO ELECTRONICO A:
+          hoisex gomez@hotmail.com y/o jv.elducado@gmail.com
+        </div>
+      </footer>
+    </div>
+
+    <div v-if="resident.rInvoices.length > 8" class="second-page">
+
+      <p class="page-number page-number--second-page">Pagina 2</p>
+
+      <el-table :data="returnEight(nextInvoices)"
+        width="90%"
+        :height="800">
+        <el-table-column 
+          prop="dueDate"
+          label="FECHA"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop="id"
+          label="FACTURA"
+          align="center">
+        </el-table-column>
+        <el-table-column
+          prop="description"
+          label="DESCRIPCIÓN"
+          :formatter="formatDescription"
+          header-align="center">
+        </el-table-column>
+        <el-table-column
+          prop="originalAmount"
+          :formatter="formatCellAmount"
+          label="MONTO"
+          header-align="center"
+          align="right">
+        </el-table-column>
+        <el-table-column
+          prop="amount"
+          label="PAGO"
+          :formatter="formatCellAmount"
+          header-align="center"
+          align="right">
+        </el-table-column>
+        <el-table-column
+          label="PENDIENTE"
+          :formatter="getPendingAmount"
+          header-align="center"
+          align="right">
+        </el-table-column>
+      </el-table>
+    </div>
+
+  </div>
+</template>
+
+<style type="text/css" style="display: none;">
+  body {
+    height: auto;
+  }
+  html {
+    width: 8.5in;
+    /*border: 1px solid yellow;*/
+  }
+  .loading {
+    width: 100%;
+    height: 23rem;
+    z-index: 100;
+  }
+  .loading i {
+    font-size: 4rem;
+    color: #409EFF;
+    position: relative;
+    top: 17rem;
+    left: 2rem;
+  }
+  @media print{
+    .loading {
+      display: none;
+    }
+  }
+  #app {
+    min-height: 400px;
+  }
+  .el-loading-spinner {
+    margin-left: 50%;
+  }
+  .first-page, .second-page {
+    height: 11in;
+    position: relative;
+  }
+  .first-page .statement-footer {
+    position: relative;
+    top: 1.5rem;
+    width: 90%;
+  }
+  .statement-footer .__section {
+    border: 1px solid grey;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem 0 0.5rem 0;
+    margin-bottom: 0.5rem;
+  }
+  img {
+    left: 1rem;
+    max-width: 15rem;
+    position: relative;
+  }
+  .page-number {
+    position: relative;
+    width: 100%;
+    text-align: right;
+    top: -6rem;
+  }
+  .page-number--second-page {
+    top: 2rem;
+  }
+
+  .title {
+    position: relative;
+    left: 18rem;
+    top: -5rem;
+    font-size: 1.5rem;
+    display: block;
+    text-align: center;
+  }
+  .title span {
+    text-align: center;
+    display: block;
+  }
+  .line {
+    width: 100%;
+    border-bottom: 3px solid black;
+    position: relative;
+    top: -3rem;
+    right: auto;
+    left: auto;
+  }
+  .resident-container {
+    position: relative;
+    top: -2.5rem;
+  }
+  .resident-details {
+    width: 30rem;
+  }
+  .invoices-details {
+    position: relative;
+    left: 1rem;
+  }
+  .invoices-details-data {
+    position: relative;
+    left: 7rem;
+    text-align: right;
+  }
+  .el-table {
+    position: relative;
+    top: -1rem;
+  }
+  .second-page .el-table {
+    top: 3rem;
+  }
+  .el-table .el-table__body-wrapper {
+    overflow-y: hidden;
+  }
+  .el-table td {
+    padding: 0;
+  }
+  .el-table th .cell {
+    background-color: #3E3D45;
+    color: #FFF;
+  }
+</style>
+
+<script src="js/vue.js"></script>
+<script src="js/element-ui_v2.4.1.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.number.min.js"></script>
+<script src="js/numeral.js"></script>
+<script src="js/lodash.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/locale.js"></script>
+<script src="js/statement.js"></script>
+</body>
+</html>

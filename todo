@@ -6,10 +6,6 @@ Fix imprimiendo solo una fatura
 
 Reiniciar invoiceSequence cuando un nuevo año
 
-Agregar fecha custom en debitos (Done)
-
-Implementar Componente "resident-search" (Done)
-
 Cuando el cliente no tenga faturas pendientes ponerlo en flash-message
 
 

@@ -14,7 +14,7 @@ $crown-color: #FF9900; /* #E4AB08*/
 $label-color: #a2a2a2;
 $input-background: #DCDCDC;
 $list-item-background: #ced5df;
-$border-color: #E2E5EE;
+$border-color:#b3b3b3; /* #E2E5EE */
 
 
 // @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
@@ -1300,5 +1300,93 @@ table.footer {
     padding: 0.5rem;
     background-color: #ccc;
     z-index: 10;
+  }
+}
+
+#residents-statement {
+  padding-top: 5rem;
+  & #head-title {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    width: 15rem;
+    text-align: center;
+    position: relative;
+    bottom: 4rem;
+  }
+  & #vm-component-search {
+    bottom: 4rem;
+  }
+  & .el-select {
+    display: table;
+    margin-top: 4.5rem;
+    margin-bottom: 0.8rem;
+    width: 30.5rem;
+    & .el-input__inner {
+      border:2px solid $crown-color;
+    }
+  }
+  & .btn--custom {
+    width: 30.5rem;
+    margin-top: 1rem;
+    height: 2.5rem;
+  }
+  & .btn-back {
+    position: relative;
+    left: 7rem;
+    bottom: 1.6rem;
+    font-size: 31px;
+  }
+  & #resident-details, #table-headers, .el-table {
+    border: 1px solid $border-color;
+    width: 85%;
+    margin-left: 6.7rem;
+    position: relative;
+    bottom: 4rem;
+  }
+  & .el-table {
+    bottom: 3.8rem;
+  }
+  & #resident-details {
+    height: 7rem;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    & button {
+      position: relative;
+      left: 35.3rem;
+      bottom: 4rem;
+    }
+  }
+  & #table-headers {
+    margin-top: 1rem;
+    height: 15rem;
+    overflow-y: auto;
+    & span {
+      display: inline-block;
+      background-color: #3E3D45;
+      color: white;
+      padding: 0.3rem;
+      text-align: center;
+      position: static;
+    }
+    & td {
+      padding: 0.3rem;
+      text-align: center;
+    }
+    & #span1, .td1 {
+      width: 4rem;
+    }
+    & #span2, .td2 {
+      width: 5.2rem;
+    }
+    & #span3, .td3 {
+      width: 12rem;
+    }
+    & #span4, #span5, #span6, .td4, .td5, .td6 {
+      width: 7rem;
+    }
+    & table, .el-table {
+      height: 15rem;
+    }
   }
 }

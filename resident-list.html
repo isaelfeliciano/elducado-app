@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title style="display: none;">Lista de Residentes</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="css/element-ui_v2.4.1.css">
+</head>
+<body>
+<div id="app">
+	<resident-list class="resident-list-page" v-bind:allresidents="allResidents"></resident-list>
+</div>
+
+<template id="resident-list">
+  <div class="resident-list-root">
+    <div class="first-page">
+      <el-table
+        :data="allresidents"
+        style="width: 100%;"
+        border
+        stripe
+        size="small">
+        <el-table-column
+          type="index"
+          width="50">
+        </el-table-column>
+        <el-table-column
+          prop="firstName"
+          label="Nombres"
+          :formatter="isEmpty">
+        </el-table-column>
+        <el-table-column
+          prop="lastName"
+          label="Apellidos"
+          :formatter="isEmpty">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="Dirreccion"
+          :formatter="isEmpty">
+        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="Telefono"
+          :formatter="isEmpty">
+        </el-table-column>
+        <el-table-column
+          prop="cellPhone"
+          label="Celular"
+          :formatter="isEmpty">
+        </el-table-column>
+        <el-table-column
+          prop="cellPhone2"
+          label="Otro Cel"
+          :formatter="isEmpty">
+        </el-table-column>
+      </el-table>
+    </div>
+  </div>
+</template>
+
+<style type="text/css" style="display: none">
+  body {
+    height: auto;
+    width: 8.5in;
+  }
+</style>
+
+<script src="js/vue.js"></script>
+<script src="js/element-ui_v2.4.1.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/lodash.js"></script>
+<script src="js/resident-list.js"></script>
+<script type="text/javascript" style="display: none;">
+  /*win.print({
+    'autoprint': false,
+    'headerFooterEnabled': false,
+    'shouldPrintBackgrounds': true
+  });*/
+  window.print();
+  $('#app').on('mouseover', (e) => {
+    e.preventDefault();
+    setTimeout(function() {
+        window.close(true);
+    }, 500);
+  });
+</script>
+</body>
+</html>

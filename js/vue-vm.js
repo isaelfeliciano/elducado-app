@@ -1,6 +1,6 @@
 Vue.component('resident-search', {
   template: `<div id="vm-component-search" class="center-align">
-    <input type="text" class="center-align box-radius" v-model="inputValue" @keyup.enter="search(inputValue)">
+    <input type="text" class="center-align box-radius" v-model="inputValue" @keyup.enter="search(inputValue)" placeholder="Buscar por nombre o codigo">
     <ul id="search-list" v-show="showList" class="center-align-absolute">
       <li v-for="user in usersList"><a href="#" @click.prevent="search(user.id)">{{ user.id }} | {{ user.fullName }}</a></li> 
     </ul>
@@ -209,17 +209,27 @@ var accountingPage = new Vue({
         { $group: { _id: "$year" } }
       ]).toArray((err, result) => {
         if (err) return console.log(err);
-        accountingPage.yearList = result;
+        accountingPage.yearList = _.sortBy(result, [(o) => { return o._id }]);
       });
     },
     residentsList: function() {
-      noDisplay('.accounting-page__inside-page');
+      /*noDisplay('.accounting-page__inside-page');
       yesDisplay('#accounting-page-residents-list');
       yesDisplay('#btn-close-inside-page');
-      $(`#accounting-page-residents-list .list .total-amount`).html('');
-      mongoDbObj.residents.find({}).sort({id: 1}).toArray((err, doc) => {
+      $(`#accounting-page-residents-list .list .total-amount`).html('');*/
+      mongoDbObj.residents.find({}, {
+        id: true,
+        firstName: true,
+        lastName: true,
+        address: true,
+        phone: true,
+        cellPhone: true,
+        cellPhone2: true
+      }).sort({firstName: 1}).toArray((err, doc) => {
         if (err) return console.log(err);
         accountingPage.residents = doc;
+        localStorage.setObj('allResidents', doc);
+        window.open('./resident-list.html');
       });
 
       mongoDbObj.invoices.aggregate([
@@ -249,9 +259,14 @@ var accountingPage = new Vue({
       this.getYearList();
     },
     goResidentsResumen: function() {
-      noDisplay('.accounting-page__inside-page');
+      this.getYearList();
+      window.location = '#residents-statement';
+      residentsStatement.showBtnBack = true;
+
+      // residentsStatement.showResidentsStatement = true;
+      /*noDisplay('.accounting-page__inside-page');
       yesDisplay('#accounting-page-residents-resumen');
-      yesDisplay('#btn-close-inside-page');
+      yesDisplay('#btn-close-inside-page');*/
     },
     getMonthStatement: function() {
       let month = this.monthSelected;
@@ -526,6 +541,122 @@ var accountingPage = new Vue({
   }
 });
 
+var residentsStatement = new Vue({
+  el: '#residents-statement',
+  data: {
+    rName: "",
+    rID: 0,
+    rInvoices: [],
+    allResidents: [],
+    totalInvoices: 0,
+    totalInvoicesPayed: 0,
+    totalPayed: 0,
+    totalPending: 0,
+    showResidentsStatement: true,
+    showBtnPrintAll: true,
+    showDetailsTable: false,
+    showBtnBack: false,
+    showSelectYear: true,
+    selectYearValue: '',
+    accountingPage: accountingPage
+  },
+  methods: {
+    isLastItem: function(length, counter) {
+      if (length === counter) 
+        return true;
+      else return false; 
+    },
+    handleSearchResult: function(r) {
+      let self = this
+      this.rName = r.fullName;
+      this.rID = r.id;
+      this.totalInvoices = (r.pendingInvoices.length + r.payedInvoices.length);
+      invoicesPage.searchAllInvoices(r)
+      .then((invoices) => {
+        self.rInvoices = invoices;
+        self.showBtnPrintAll = false;
+        self.showSelectYear = false;
+        self.showDetailsTable = true;
+        self.totalPayed = _.sumBy(invoices, (o) => { return o.amount});
+        self.totalInvoices = _.sumBy(invoices, (o) => { return o.originalAmount })
+        self.totalPending = self.totalInvoices - self.totalPayed;
+        r['rInvoices'] = invoices;
+        r.invoices.sort((a, b) => {
+          return moment(a.dueDate, 'DD/MMMM/YYYY').format('X') - moment(b.dueDate, 'DD/MMMM/YYYY').format('X')
+        })
+        let resident = [r]
+        localStorage.setObj('allStatement', resident)
+      });
+    },
+    indexMethod: function(index) {
+      return this.formatAmount((this.rInvoices[index].originalAmount - this.rInvoices[index].amount));
+    },
+    formatAmount: function(amount) {
+      return numeral(amount).format('0,0');
+    },
+    formatCellAmount: function(row, column, cellValue, index) {
+      return numeral(cellValue).format('0,0'); 
+    },
+    formatDescription: function(row, column, cellValue, index) {
+      if (row.type === "extraordinaryPayments") return cellValue;
+      let maintenanceString = `Mantenimiento R. ${_.capitalize(moment(row.month, 'MMMM').format('MMM'))}(${moment(row.dueDate, 'DD/MMMM/YYYY').format('YY')})`
+      return maintenanceString;
+    },
+    formatDate(row, column, cellValue, index) {
+      let date = cellValue;
+      return moment(date, 'DD/MMMM/YYYY').format('DD/MM/YY');
+    },
+    goBack: function() {
+      if (this.showDetailsTable) {
+        this.showDetailsTable = false;
+        this.showBtnPrintAll = true;
+        this.showSelectYear = true;
+      } else {
+      window.location = '#accounting-page';
+      this.showBtnBack = false;
+      }
+    },
+    printAllStatement: function() {
+      if(this.selectYearValue === '') return flashMessage('Seleccione un año', 'flashmessage--danger');
+      let self = this;
+      mongoDbObj.residents.find({}, {
+        id: true,
+        fullName: true,
+        pendingInvoices: true,
+        payedInvoices: true,
+        address: true
+      }).toArray((err, doc) => {
+        if (err) return console.log(err);
+          self.allResidents = [];
+          let counter = 0;
+        _.forEach(doc, (item, index) => {
+          invoicesPage.searchAllInvoices(item, self.selectYearValue)
+          .then((invoices) => {
+            item['rInvoices'] = invoices;
+            item.rInvoices.sort((a, b) => {
+              return moment(a.dueDate, 'DD/MMMM/YYYY').format('X') - moment(b.dueDate, 'DD/MMMM/YYYY').format('X')
+            })
+            self.allResidents.push(item);
+            counter++;
+            if (self.isLastItem(doc.length, counter)){
+              self.allResidents = _.sortBy(self.allResidents, [(o) => { return o.id }]);
+              console.log(self.allResidents);
+              localStorage.removeItem('allStatement');
+              localStorage.setObj('allStatement', self.allResidents);
+              window.open('../statement.html');
+            }
+          });          
+        });
+      });
+    },
+    printSingleStatement: function() {
+      window.open('../statement.html');
+    }
+  },
+  created() {
+    //
+  }
+});
 
 var modalSearchInvoice = new Vue({
   el: '.modal__search-invoice',
@@ -586,9 +717,7 @@ var invoicesPage = new Vue({
       .then((result) => {
         self.showButtons = false;
         self.showPayedInvoices = true;
-        // self.residentId = residentId;
         self.payedInvoices = result;
-        console.log(result);
       })
     },
     printOneInvoice: function(invoiceId) {
@@ -657,6 +786,36 @@ var invoicesPage = new Vue({
           resolve(true);
         });
       });
+    },
+    searchAllInvoices: function (resident, yearFilter) {
+      if (yearFilter === null) {
+        return new Promise((resolve, reject) => {
+          console.log(resident);
+          let invoicesIDs = resident.pendingInvoices.concat(resident.payedInvoices);
+          console.log(invoicesIDs);
+          mongoDbObj.invoices.find({id: {$in: invoicesIDs}}).toArray((err, doc) => {
+            if(err) {
+              reject();
+              return console.log("Error in searchAllInvoices | " + err);
+            }
+            resolve(doc);
+          });
+        });
+      } 
+      else{
+        return new Promise((resolve, reject) => {
+          console.log(resident);
+          let invoicesIDs = resident.pendingInvoices.concat(resident.payedInvoices);
+          console.log(invoicesIDs);
+          mongoDbObj.invoices.find({id: {$in: invoicesIDs}, dueDate: RegExp(yearFilter)}).toArray((err, doc) => {
+            if(err) {
+              reject();
+              return console.log("Error in searchAllInvoices | " + err);
+            }
+            resolve(doc);
+          });
+        });
+      }
     }
   }
 });

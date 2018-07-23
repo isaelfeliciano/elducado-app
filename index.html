@@ -5,6 +5,7 @@
     <title style="display: none;">El Ducado APP</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/fontawesome-all.css">
+    <link rel="stylesheet" href="css/element-ui_v2.4.1.css">
     <link rel="stylesheet" type="text/css" href="css/animation.css">
     <link rel="stylesheet" type="text/css" href="css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="css/tables-min.css">
@@ -641,6 +642,89 @@
     </div>
 </div>
 
+<div id="residents-statement" class="page" v-show="showResidentsStatement">
+  <el-button @click="goBack" v-show="showBtnBack" class="btn-back" type="text" icon="el-icon-back"></el-button>
+  <h3 id="head-title" class="center-align">Estado de Cuentas Residentes</h3>
+  
+  <resident-search :runthis="handleSearchResult"></resident-search>
+
+  <el-select v-show="showSelectYear" v-model="selectYearValue" placeholder="Seleccione año" class="center-align">
+    <el-option
+      v-for="item in accountingPage.yearList"
+      :key="item._id"
+      :label="item._id"
+      :value="item._id">
+    </el-option>
+  </el-select>
+
+  <button @click="printAllStatement" class="center-align btn btn--custom" v-show="showBtnPrintAll"><i class="fas fa-print"></i> Estado de Cuenta Todos Los Residentes</button>
+
+  <div v-show="showDetailsTable" id="resident-details" class="center-align">
+    <p>{{ rName }} #{{ rID }}</p>
+    <!-- <p>Total de Facturas: {{ totalInvoices }}</p> -->
+    <p>Total Facturado {{ formatAmount(totalInvoices) }}</p>
+    <p>Total Pagado: {{ formatAmount(totalPayed) }}</p>
+    <p>Total Pendiente: {{ formatAmount(totalPending) }}</p>
+    <button class="btn" @click="printSingleStatement"><i class="fa fa-print"></i>Imprimir</button>
+  </div>
+
+  <el-table
+    v-show="showDetailsTable"
+    :data="rInvoices"
+    border
+    resizable
+    :height="395"
+    style="width: 100%'">
+    <el-table-column
+      prop="dueDate"
+      label="FECHA"
+      width="50"
+      :formatter="formatDate"
+      resizable
+      align="left">
+    </el-table-column>
+    <el-table-column
+      prop="id"
+      label="FACTURA"
+      width="50"
+      align="left">
+    </el-table-column>
+    <el-table-column
+      prop="description"
+      label="DESCRIPCIÓN"
+      min-width="500"
+      :formatter="formatDescription"
+      resizable
+      header-align="left">
+    </el-table-column>
+    <el-table-column
+      prop="originalAmount"
+      :formatter="formatCellAmount"
+      label="MONTO"
+      width="50"
+      header-align="left"
+      align="right">
+    </el-table-column>
+    <el-table-column
+      prop="amount"
+      label="PAGO"
+      width="50"
+      :formatter="formatCellAmount"
+      header-align="left"
+      align="right">
+    </el-table-column>
+    <el-table-column
+      label="PENDIENTE"
+      type="index"
+      width="50"
+      :index="indexMethod"
+      header-align="left"
+      align="right">
+    </el-table-column>
+  </el-table>
+
+</div>
+
 <template id="invoice-menu-t">
   <div class="invoice-menu-root">
     <button class="btn--menu-dots" @click="toggleShow" @blur="hideMenuWithDelay">
@@ -656,6 +740,7 @@
 </template>
 
 <script src="js/vue.js"></script>
+<script src="js/element-ui_v2.4.1.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/jquery.number.min.js"></script>
 <script src="js/numeral.js"></script>
