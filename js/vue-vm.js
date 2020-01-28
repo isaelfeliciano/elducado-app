@@ -581,7 +581,7 @@ var residentsStatement = new Vue({
         self.totalInvoices = _.sumBy(invoices, (o) => { return o.originalAmount })
         self.totalPending = self.totalInvoices - self.totalPayed;
         r['rInvoices'] = invoices;
-        r.invoices.sort((a, b) => {
+        r.rInvoices.sort((a, b) => {
           return moment(a.dueDate, 'DD/MMMM/YYYY').format('X') - moment(b.dueDate, 'DD/MMMM/YYYY').format('X')
         })
         let resident = [r]
@@ -774,10 +774,11 @@ var invoicesPage = new Vue({
       return new Promise((resolve, reject) => {
         let pendingInvoices = resident.pendingInvoices;
         mongoDbObj.invoices.find({id: {$in: pendingInvoices}}).toArray((err, doc) => {
-          console.log(doc);
+          // console.log(doc);
           if (err) {
             return console.log("Error")
           }
+          if (doc < 1) return flashMessage('Este Residente no tiene pendientes', 'flashmessage--info');
           resident.pendingInvoices = doc.reverse();
           console.log(resident);
           let tempArray = localStorage.getObj('tempInvoices').tempArray;

@@ -6,6 +6,7 @@ var mongoDbObj;
 var assert = require('assert');
 var spawn = require('child_process').spawn;
 const MONGOPATH = process.env.MONGOPATH;
+var win = nw.Window.get();
 
 var configs;
 var creatingUser = false;
@@ -19,9 +20,16 @@ Storage.prototype.getObj = function(key) {
 	return JSON.parse(this.getItem(key));
 }
 
+
 btnClick('.close-application', (e) => {
 	window.close();
 })
+
+win.on('close', () => {
+	win.hide();
+	console.log('Closing application');
+	win.close(true);
+});
 
 function connectMongo() {
 	MongoClient.connect('mongodb://127.0.0.1:27017/elducadodb', function(err, db) {

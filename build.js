@@ -8,7 +8,7 @@ var nw = new NwBuilder({
 		'!.scss/**'
 	],
 	platforms: ['win64', 'win32'],
-	version: '0.17.4',
+	version: '0.34.5',
 	flavor: 'normal',
 	zip: true,
 	buildDir: './build',

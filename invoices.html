@@ -20,6 +20,7 @@
 <!-- <script src="js/invoices.js"></script> -->
 <script type="text/javascript" class="no-display">
 
+const win = nw.Window.get()
 moment.locale('es-do');
 
 Storage.prototype.setObj = function(key, obj) {
@@ -111,7 +112,11 @@ _.forEach(tempArray, (item, index) => {
         </div>
     `);
     if (tempArray.length === (index + 1)) {
-        window.print();
+        win.print({
+            autoprint: false,
+            headerFooterEnabled: false,
+            shouldPrintBackgrounds: true,
+        });
     }
 });
 
