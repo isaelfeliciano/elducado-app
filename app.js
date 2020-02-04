@@ -5,7 +5,8 @@ const ObjectId = require('mongodb').ObjectID;
 var mongoDbObj;
 var assert = require('assert');
 var spawn = require('child_process').spawn;
-const MONGOPATH = process.env.MONGOPATH;
+// const MONGOPATH = process.env.MONGOPATH;
+// const MONGOPATH = '';
 var win = nw.Window.get();
 
 var configs;
@@ -32,18 +33,21 @@ win.on('close', () => {
 });
 
 function connectMongo() {
-	MongoClient.connect('mongodb://127.0.0.1:27017/elducadodb', function(err, db) {
+	MongoClient.connect('mongodb://localhost:27017/elducadodb', function(err, client) {
 		if (err) {
-			startMongoServer();
+			// startMongoServer();
 			return console.log(err); // LOG THIS
 		} else {
 			console.log("Connected to DB"); // LOG THIS
+			// console.log(client.db("elducadodb").collection("residents").find({}))
+			let db = client.db("elducadodb")
 			mongoDbObj = {db: db,
 				residents: db.collection("residents"),
 				invoices: db.collection("invoices"),
 				configs: db.collection("configs"),
 				accounting: db.collection("accounting")
 			}
+			console.log("mongoDbObj.residents")
 
 			mongoDbObj.configs.find({}, {_id: 0}).toArray((err, doc) => {
 				if (err) {
