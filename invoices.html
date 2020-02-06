@@ -30,93 +30,124 @@ Storage.prototype.getObj = function(key) {
     return JSON.parse(this.getItem(key));
 }
 
+var invoiceForEmail = [];
+
 $('.invoice-body').html("");
 var tempArray = localStorage.getObj('tempInvoices').tempArray;
 _.forEach(tempArray, (item, index) => {
+    if (item.email !== '') {
+        invoiceForEmail.push(item);
+        return checkForEachFinish();
+    }
     item.invoice = item.pendingInvoices[0];
     let dataString = getDataString(item);
     let configs = localStorage.getObj('configs');
     invoiceTotal = getInvoiceTotal(item);
     let invoiceStatus = "";
     if (item.invoice.status === "Pagada") invoiceStatus = "pagada";
-    $('.invoice-body').append(`
-        <div class="invoice-page ${invoiceStatus}">
-            <div class="invoice-header">
-                <img src="img/logo-elducado-nuevo-bw.png">
+    appendTemplate(invoiceStatus, dataString, configs, invoiceTotal, item)
+    function appendTemplate(invoiceStatus, dataString, configs, invoiceTotal, item) {
+        $('.invoice-body').append(`
+            <div class="invoice-page ${invoiceStatus}">
+                <div class="invoice-header">
+                    <img src="img/logo-elducado-nuevo-bw.png">
 
-                <p id="invoice-text-header" class="bigger-text bold">FACTURA</span></p>
+                    <p id="invoice-text-header" class="bigger-text bold">FACTURA</span></p>
 
-            </div>
+                </div>
 
-            <div class="frase-text">
-                <p class="bold">Frase del Mes:</p>
-                <p>${configs.frase}</p>
-            </div>
-    
-            <div class="resident-details inline-block">
-                <p class="big-text bold">RESIDENTES:</p>
-                <p id="jsResidentInvoice">${item.fullName}</p>
-                <p id="jsResidentInvoice">& ${item.fullName2} (#${item.id})</p>
-                <p id="jsAddressInvoice">${item.address}</p>
-                <p>Residencial El Ducado</p>
-                <p>Santo Domingo, D.N</p>
-            </div>
+                <div class="frase-text">
+                    <p class="bold">Frase del Mes:</p>
+                    <p>${configs.frase}</p>
+                </div>
+        
+                <div class="resident-details inline-block">
+                    <p class="big-text bold">RESIDENTES:</p>
+                    <p id="jsResidentInvoice">${item.fullName}</p>
+                    <p id="jsResidentInvoice">& ${item.fullName2} (#${item.id})</p>
+                    <p id="jsAddressInvoice">${item.address}</p>
+                    <p>Residencial El Ducado</p>
+                    <p>Santo Domingo, D.N</p>
+                </div>
 
-            <div class="invoice-details inline-block">
-                <p>FACTURA:</p>
-                <p>FACTURA MES DE:</p>
-                <p>PAGAR ANTES DE:</p>
-            </div>
-            
-            <div class="invoice-details__data inline-block">
-                <span id="jsInvoiceNumberInvoice">${item.invoice.id}</span>
-                <span id="jsDateInvoice">${item.invoice.month.toUpperCase()}</span>
-                <span id="jsDueDateInvoice">${item.invoice.dueDate}</span>
-            </div>
+                <div class="invoice-details inline-block">
+                    <p>FACTURA:</p>
+                    <p>FACTURA MES DE:</p>
+                    <p>PAGAR ANTES DE:</p>
+                </div>
+                
+                <div class="invoice-details__data inline-block">
+                    <span id="jsInvoiceNumberInvoice">${item.invoice.id}</span>
+                    <span id="jsDateInvoice">${item.invoice.month.toUpperCase()}</span>
+                    <span id="jsDueDateInvoice">${item.invoice.dueDate}</span>
+                </div>
 
-            <table class="invoice">
-                <tr class="table-head">
-                    <th class="qty">CANTIDAD</th>
-                    <th class="description">DESCRIPCIÓN</th>
-                    <th class="amount">MONTO</th>
-                    <th class="total">TOTAL</th>
-                </tr>
-                ${dataString}
-                <tr class="data__total">
-                    <td class="qty"></td>
-                    <td class="description"></td>
-                    <td class="amount">TOTAL</td>
-                    <td class="total">RD$ ${numeral(invoiceTotal).format("0,0.00")}</td>
-                </tr>
-            </table>
-            
-            <table class="footer">
-                <tr class="center-text">
-                    <td>
-                        <p class="bold">Formas de Pago</p>
-                    </td>
-                    <td>
-                        <p class="bold">1. PAGOS EN ESTAFETA LOCAL:</p>
-                        <p> Depositar cuota correspondiente dentro de buzón rojo localizado en nuestra estafeta local de pagos. La cuota debe insertarse primero en un sobre debidamente identificado con el nombre del residente, numero de propiedad, fecha y monto.<p>
-                    </td>
-                    <td>
-                        <p class="bold">2. PAGOS POR DEPOSITOS O TRANSFERENCIA BANCARIA:</p>
-                        <p>Depositar o Transferir monto debidamente identificado a nuestra cuenta bancaria No.: ${configs.bankAccountNumber} del ${configs.bank}
-                    </td>
-                    <td>
-                        <p>Enviar notificación de pago por correo electrónico a:</p>
-                        <p>${configs.email}</p>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    `);
-    if (tempArray.length === (index + 1)) {
-        win.print({
-            autoprint: false,
-            headerFooterEnabled: false,
-            shouldPrintBackgrounds: true,
-        });
+                <table class="invoice">
+                    <tr class="table-head">
+                        <th class="qty">CANTIDAD</th>
+                        <th class="description">DESCRIPCIÓN</th>
+                        <th class="amount">MONTO</th>
+                        <th class="total">TOTAL</th>
+                    </tr>
+                    ${dataString}
+                    <tr class="data__total">
+                        <td class="qty"></td>
+                        <td class="description"></td>
+                        <td class="amount">TOTAL</td>
+                        <td class="total">RD$ ${numeral(invoiceTotal).format("0,0.00")}</td>
+                    </tr>
+                </table>
+                
+                <table class="footer">
+                    <tr class="center-text">
+                        <td>
+                            <p class="bold">Formas de Pago</p>
+                        </td>
+                        <td>
+                            <p class="bold">1. PAGOS EN ESTAFETA LOCAL:</p>
+                            <p> Depositar cuota correspondiente dentro de buzón rojo localizado en nuestra estafeta local de pagos. La cuota debe insertarse primero en un sobre debidamente identificado con el nombre del residente, numero de propiedad, fecha y monto.<p>
+                        </td>
+                        <td>
+                            <p class="bold">2. PAGOS POR DEPOSITOS O TRANSFERENCIA BANCARIA:</p>
+                            <p>Depositar o Transferir monto debidamente identificado a nuestra cuenta bancaria No.: ${configs.bankAccountNumber} del ${configs.bank}
+                        </td>
+                        <td>
+                            <p>Enviar notificación de pago por correo electrónico a:</p>
+                            <p>${configs.email}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        `);
+    }
+    checkForEachFinish();
+    function checkForEachFinish(){
+        if (tempArray.length === (index + 1)) {
+            console.info('forEach Finished')
+            win.print({
+                autoprint: false,
+                headerFooterEnabled: false,
+                shouldPrintBackgrounds: true,
+            });
+            setTimeout( function() { // When finish printing
+                _.forEach(invoiceForEmail, (item, index) => {
+                    $('.invoice-body').html("");
+                    item.invoice = item.pendingInvoices[0];
+                    let dataString = getDataString(item);
+                    let configs = localStorage.getObj('configs');
+                    invoiceTotal = getInvoiceTotal(item);
+                    let invoiceStatus = "";
+                    if (item.invoice.status === "Pagada") invoiceStatus = "pagada";
+                    appendTemplate(invoiceStatus, dataString, configs, invoiceTotal, item)
+                    win.print({
+                        pdf_path: `/tmp/pdfs/${item.invoice.id}`,
+                        autoprint: true,
+                        headerFooterEnabled: false,
+                        shouldPrintBackgrounds: true,
+                    })
+                }) 
+            }, 500);
+        }
     }
 });
 
@@ -191,7 +222,7 @@ $('.invoice-body').on('mouseover', (e) => {
     e.preventDefault();
     localStorage.setObj('tempInvoices', {tempArray: []});
     setTimeout(function() {
-        window.close(true);
+        // window.close(true);
     }, 500);
 });
 </script>
