@@ -25,7 +25,16 @@ moment.locale('es-do');
 var fs = require('fs');
 var pdf = require('html-pdf');
 var html = win.window.location.href;
-var pdfOptions = { format: 'Letter' };
+var pdfOptions = { 
+    format: 'Letter',
+    base: `file:///${process.cwd()}/`,
+    border: {
+        top: "0.05in",            // default is 0, units: mm, cm, in, px
+        right: "0.05in",
+        bottom: "0.05in",
+        left: "0.05in"
+    }
+};
 
 Storage.prototype.setObj = function(key, obj) {
     return this.setItem(key, JSON.stringify(obj));
@@ -35,6 +44,7 @@ Storage.prototype.getObj = function(key) {
 }
 
 var invoiceForEmail = [];
+var printToPrinter = false;
 
 $('.invoice-body').html("");
 var tempArray = localStorage.getObj('tempInvoices').tempArray;
@@ -43,6 +53,7 @@ _.forEach(tempArray, (item, index) => {
         invoiceForEmail.push(item);
         return checkForEachFinish();
     }
+    printToPrinter = true;
     item.invoice = item.pendingInvoices[0];
     let dataString = getDataString(item);
     let configs = localStorage.getObj('configs');
@@ -128,11 +139,13 @@ _.forEach(tempArray, (item, index) => {
     function checkForEachFinish(){
         if (tempArray.length === (index + 1)) {
             console.info('forEach Finished')
-            win.print({
-                autoprint: false,
-                headerFooterEnabled: false,
-                shouldPrintBackgrounds: true,
-            });
+            if (printToPrinter) {
+                win.print({
+                    autoprint: false,
+                    headerFooterEnabled: false,
+                    shouldPrintBackgrounds: true,
+                });
+            }
             setTimeout( function() { // When finish printing
                 _.forEach(invoiceForEmail, (item, index) => {
                     // $('.invoice-body').html("");
@@ -149,9 +162,9 @@ _.forEach(tempArray, (item, index) => {
                         headerFooterEnabled: false,
                         shouldPrintBackgrounds: true,
                     })*/
-                    fs.writeFile(`./${item.invoice.id}.html`, $('.invoice-html').html(), (err) => {
+                    fs.writeFile(`./${item.invoice.id}.html`, '<!DOCTYPE html>' + $('.invoice-html').html(), (err) => {
                         if (err) return console.log(err)
-                        pdf.create(fs.readFileSync(`./${item.invoice.id}.html`, 'utf8'), pdfOptions).toFile(`/tmp/pdfs/${item.invoice.id}.pdf`, (err, res) => {
+                        pdf.create(fs.readFileSync(`./${item.invoice.id}.html`, 'utf8'), pdfOptions).toFile(`./pdfs/${item.invoice.id}.pdf`, (err, res) => {
                             if (err) return console.log(err)
                             console.log(res)
                         })
@@ -237,5 +250,7 @@ $('.invoice-body').on('mouseover', (e) => {
     }, 500);
 });
 </script>
+
+
 </body>
 </html>
