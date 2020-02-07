@@ -17,11 +17,12 @@
     "url": "git+https://github.com/isaelfeliciano/elducado-app.git"
   },
   "dependencies": {
+    "html-pdf": "^2.2.0",
     "log4js": "^0.6.38",
+    "mongodb": "latest",
     "node-printer": "latest",
     "shortid": "latest",
-    "unique-temp-dir": "latest",
-    "mongodb": "latest"
+    "unique-temp-dir": "latest"
   },
   "keywords": [
     "accounting",

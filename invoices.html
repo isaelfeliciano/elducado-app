@@ -22,6 +22,10 @@
 
 const win = nw.Window.get()
 moment.locale('es-do');
+var fs = require('fs');
+var pdf = require('html-pdf');
+var html = win.window.location.href;
+var pdfOptions = { format: 'Letter' };
 
 Storage.prototype.setObj = function(key, obj) {
     return this.setItem(key, JSON.stringify(obj));
@@ -131,7 +135,7 @@ _.forEach(tempArray, (item, index) => {
             });
             setTimeout( function() { // When finish printing
                 _.forEach(invoiceForEmail, (item, index) => {
-                    $('.invoice-body').html("");
+                    // $('.invoice-body').html("");
                     item.invoice = item.pendingInvoices[0];
                     let dataString = getDataString(item);
                     let configs = localStorage.getObj('configs');
@@ -139,11 +143,18 @@ _.forEach(tempArray, (item, index) => {
                     let invoiceStatus = "";
                     if (item.invoice.status === "Pagada") invoiceStatus = "pagada";
                     appendTemplate(invoiceStatus, dataString, configs, invoiceTotal, item)
-                    win.print({
-                        pdf_path: `/tmp/pdfs/${item.invoice.id}`,
+                    /*win.print({
+                        pdf_path: `/tmp/pdfs/${item.invoice.id}.pdf`,
                         autoprint: true,
                         headerFooterEnabled: false,
                         shouldPrintBackgrounds: true,
+                    })*/
+                    fs.writeFile(`./${item.invoice.id}.html`, $('.invoice-html').html(), (err) => {
+                        if (err) return console.log(err)
+                        pdf.create(fs.readFileSync(`./${item.invoice.id}.html`, 'utf8'), pdfOptions).toFile(`/tmp/pdfs/${item.invoice.id}.pdf`, (err, res) => {
+                            if (err) return console.log(err)
+                            console.log(res)
+                        })
                     })
                 }) 
             }, 500);
