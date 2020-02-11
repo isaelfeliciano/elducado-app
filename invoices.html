@@ -21,18 +21,25 @@
 <script type="text/javascript" class="no-display">
 
 const win = nw.Window.get()
+const uniqueTempDir = require('unique-temp-dir');
+const tempDirPath = uniqueTempDir({create: true, thunk : true})
+const tempDir = tempDirPath()
 moment.locale('es-do');
 var fs = require('fs');
+const path = require('path')
 var pdf = require('html-pdf');
 var html = win.window.location.href;
 var pdfOptions = { 
-    format: 'Letter',
+    // format: 'Letter',
+    height: "11in",
+    width: "9in",
     base: `file:///${process.cwd()}/`,
+    type: 'pdf',
     border: {
-        top: "0.05in",            // default is 0, units: mm, cm, in, px
-        right: "0.05in",
-        bottom: "0.05in",
-        left: "0.05in"
+        top: "0.00mm",            // default is 0, units: mm, cm, in, px
+        right: "5.00mm",
+        bottom: "0.00mm",
+        left: "5.00mm"
     }
 };
 
@@ -162,9 +169,10 @@ _.forEach(tempArray, (item, index) => {
                         headerFooterEnabled: false,
                         shouldPrintBackgrounds: true,
                     })*/
-                    fs.writeFile(`./${item.invoice.id}.html`, '<!DOCTYPE html>' + $('.invoice-html').html(), (err) => {
+                    console.log(tempDir)
+                    fs.writeFile(path.join(tempDir, item.invoice.id + '.html'), '<!DOCTYPE html>' + $('.invoice-html').html(), (err) => {
                         if (err) return console.log(err)
-                        pdf.create(fs.readFileSync(`./${item.invoice.id}.html`, 'utf8'), pdfOptions).toFile(`./pdfs/${item.invoice.id}.pdf`, (err, res) => {
+                        pdf.create(fs.readFileSync(path.join(tempDir, item.invoice.id + '.html'), 'utf8'), pdfOptions).toFile(`${tempDir}/pdfs/${item.invoice.id}.pdf`, (err, res) => {
                             if (err) return console.log(err)
                             console.log(res)
                         })
