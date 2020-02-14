@@ -17,6 +17,7 @@
     "url": "git+https://github.com/isaelfeliciano/elducado-app.git"
   },
   "dependencies": {
+    "googleapis": "^39.2.0",
     "html-pdf": "^2.2.0",
     "log4js": "^0.6.38",
     "mongodb": "latest",

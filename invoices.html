@@ -5,11 +5,30 @@
     <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
     <link rel="stylesheet" type="text/css" href="css/reset-without-mytable-reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <title style="display: none;">Factura</title>
     
 </head>
 <body class="invoice-body">
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Requiriendo autorizacion
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     
 <script src="js/lodash.js"></script>
@@ -17,6 +36,7 @@
 <script src="js/numeral.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/locale.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!-- <script src="js/invoices.js"></script> -->
 <script type="text/javascript" class="no-display">
 
@@ -25,10 +45,12 @@ const uniqueTempDir = require('unique-temp-dir');
 const tempDirPath = uniqueTempDir({create: true, thunk : true})
 const tempDir = tempDirPath()
 moment.locale('es-do');
-var fs = require('fs');
+const fs = require('fs');
 const path = require('path')
 var pdf = require('html-pdf');
 const nodemailer = require('nodemailer');
+const readline = require('readline');
+const {google} = require('googleapis');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -59,6 +81,39 @@ var pdfOptions = {
     }
 };
 
+//Gmail API Setup >>>
+const SCOPES  = ['https://www.googleapis.com/auth/gmail.readonly'];
+const TOKEN_PATH = 'token.json';
+fs.readFile('credentials.json', (err, content) => {
+    if (err) return console.log('Error loading client secret file: ', err);
+    console.log('Success reading client secret file');
+    authorize(JSON.parse(content), null);
+})
+
+function authorize(credentials, callback) {
+    console.log('Authorizing...')
+    const {client_secret, client_id, redirect_uris} = credentials.installed;
+    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+    fs.readFile(TOKEN_PATH, (err, token) => {
+        if (err) return getNewToken(oAuth2Client, callback);
+        oAuth2Client.setCredentials(JSON.parse(token));
+        callback(oAuth2Client)
+    });
+}
+
+function getNewToken(oAuth2Client, callback) {
+    const authUrl = oAuth2Client.generateAuthUrl({
+        access_type: 'offline',
+        scope: SCOPES,
+    });
+    console.log('authURL: ', authUrl)
+    console.log('Accede a esta direccion para autorizar: ', authUrl)
+}
+
+//Code: 4/wgGBkDE7df5Yc0AjodvqQ6VHuPWHWOikHXZx6WaOyGzv3TCFcfM1LEk
+//Gmail API Setup <<<
+
+
 Storage.prototype.setObj = function(key, obj) {
     return this.setItem(key, JSON.stringify(obj));
 }
@@ -69,7 +124,7 @@ Storage.prototype.getObj = function(key) {
 var invoiceForEmail = [];
 var printToPrinter = false;
 
-$('.invoice-body').html("");
+// $('.invoice-body').html("");
 var tempArray = localStorage.getObj('tempInvoices').tempArray;
 _.forEach(tempArray, (item, index) => {
     if (item.email !== '') {
@@ -191,13 +246,14 @@ _.forEach(tempArray, (item, index) => {
                         pdf.create(fs.readFileSync(path.join(tempDir, item.invoice.id + '.html'), 'utf8'), pdfOptions).toFile(`${tempDir}/pdfs/${item.invoice.id}.pdf`, (err, res) => {
                             if (err) return console.log(err)
                             console.log(res)
-                            transporter.sendMail(mailOptions, (err, info) => {
+                            $('#exampleModal').modal({show: true})
+                            /*transporter.sendMail(mailOptions, (err, info) => {
                                 if (err) {
                                     console.log(err)
                                 } else {
                                     console.log(info)
                                 }
-                            })
+                            })*/
                         })
                     })
                 }) 
