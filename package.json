@@ -22,7 +22,6 @@
     "log4js": "^0.6.38",
     "mongodb": "latest",
     "node-printer": "latest",
-    "nodemailer": "^6.4.2",
     "shortid": "latest",
     "unique-temp-dir": "^1.0.0"
   },

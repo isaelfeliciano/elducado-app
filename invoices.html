@@ -3,31 +3,44 @@
 <head>
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/reset-without-mytable-reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <title style="display: none;">Factura</title>
     
 </head>
-<body class="invoice-body">
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Requiriendo autorizacion
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+<body>
+<div class="invoice-body"></div>
+<div id="app">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h4 class="m-2">Requiriendo authorizacion para enviar emails atravez de Gmail</h4>
+            <p class="m-2">Acceder al siguiente link en su navegador para autorizar</p>
+            <a class="badge badge-primary d-inline-block" @click.prevent="openLink">Autorizar</a>
+
+            <label class="m-2 d-block" for="input-codigo">Codigo</label>
+            <div class="input-group input-group-sm mb-3">
+              <input type="text" class="form-control" placeholder="Pegar codigo" aria-label="Username" aria-describedby="basic-addon1" id="input-codigo" v-model="code">
+              <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="getToken">Enviar codigo</button>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 </div>
 
     
@@ -37,6 +50,7 @@
 <script src="js/moment.js"></script>
 <script src="js/locale.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- <script src="js/invoices.js"></script> -->
 <script type="text/javascript" class="no-display">
 
@@ -48,24 +62,8 @@ moment.locale('es-do');
 const fs = require('fs');
 const path = require('path')
 var pdf = require('html-pdf');
-const nodemailer = require('nodemailer');
 const readline = require('readline');
 const {google} = require('googleapis');
-
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'jv.elducado@gmail.com',
-        pass: 'elducado'
-    }
-});
-
-var mailOptions = {
-    from: 'jv.elducado@gmail.com',
-    to: 'rogelioisael@hotmail.com',
-    subject: '[Factura] El Ducado',
-    html: '<p>Adjunta esta tu factura</p>'
-}
 
 var pdfOptions = { 
     // format: 'Letter',
@@ -82,12 +80,12 @@ var pdfOptions = {
 };
 
 //Gmail API Setup >>>
-const SCOPES  = ['https://www.googleapis.com/auth/gmail.readonly'];
+const SCOPES  = ['https://www.googleapis.com/auth/gmail.send'];
 const TOKEN_PATH = 'token.json';
 fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file: ', err);
     console.log('Success reading client secret file');
-    authorize(JSON.parse(content), null);
+    authorize(JSON.parse(content), sendEMail);
 })
 
 function authorize(credentials, callback) {
@@ -97,22 +95,89 @@ function authorize(credentials, callback) {
     fs.readFile(TOKEN_PATH, (err, token) => {
         if (err) return getNewToken(oAuth2Client, callback);
         oAuth2Client.setCredentials(JSON.parse(token));
-        callback(oAuth2Client)
+        app.oAuth2Client = oAuth2Client
+       /* callback(oAuth2Client).
+        then(() => {
+            console.log('Mensaje enviado con exito')
+        })
+        .catch((err) => {
+            console.error(err)
+        })*/
     });
 }
 
 function getNewToken(oAuth2Client, callback) {
-    const authUrl = oAuth2Client.generateAuthUrl({
+    app.authUrl = oAuth2Client.generateAuthUrl({
         access_type: 'offline',
         scope: SCOPES,
     });
-    console.log('authURL: ', authUrl)
-    console.log('Accede a esta direccion para autorizar: ', authUrl)
+    console.log('authURL: ', app.authUrl)
+    console.log('Accede a esta direccion para autorizar: ', app.authUrl)
+    $('#exampleModal').modal({show: true})
+    app.oAuth2Client = oAuth2Client;
+    app.callback = callback;
 }
 
-//Code: 4/wgGBkDE7df5Yc0AjodvqQ6VHuPWHWOikHXZx6WaOyGzv3TCFcfM1LEk
+async function sendEMail(name, to, invoiceId, invoiceMonth, filepath) {
+    let auth = app.oAuth2Client;
+    const gmail = google.gmail({version: 'v1', auth});
+    const subject = '[ Factura - El Ducado ]';
+    const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`
+    const messageParts = [
+        `From: Rogelio Feliciano <r13.com@gmail.com>`,
+        `To: ${name} <${to}>`,
+        'Content-Type: text\html; charset=utf-8',
+        'MIME-Version: 1.0',
+        `Subject: ${utf8Subject}`,
+        '',
+        `Adjunta esta su factura para el mes de ${invoiceMonth}`,
+        'Gracias',
+    ];
+    const message = messageParts.join('\n');
+    const encodedMessage = Buffer.from(message)
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+
+    const res = await gmail.users.messages.send({
+        userId: 'me',
+        requestBody: {
+            raw: encodedMessage,
+        },
+    });
+    console.log(res.data)
+    return res.data
+}
+
 //Gmail API Setup <<<
 
+var app = new Vue({
+    el: '#app',
+    data: {
+        authUrl: '',
+        code: '',
+        oAuth2Client: {},
+        callback: null,
+    },
+    methods: {
+        openLink() {
+            let gui = require('nw.gui');
+            gui.Shell.openExternal(this.authUrl)
+        },
+        getToken() {
+            this.oAuth2Client.getToken(this.code, (err, token) => {
+                if (err) return console.error('Error obteniendo token', err)
+                this.oAuth2Client.setCredentials(token);
+                fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+                    if(err) return console.error(err);
+                    console.log('Token guardado en', TOKEN_PATH)
+                })
+                this.callback(this.oAuth2Client)
+            })
+        }
+    }
+})
 
 Storage.prototype.setObj = function(key, obj) {
     return this.setItem(key, JSON.stringify(obj));
@@ -124,7 +189,7 @@ Storage.prototype.getObj = function(key) {
 var invoiceForEmail = [];
 var printToPrinter = false;
 
-// $('.invoice-body').html("");
+$('.invoice-body').html("");
 var tempArray = localStorage.getObj('tempInvoices').tempArray;
 _.forEach(tempArray, (item, index) => {
     if (item.email !== '') {
@@ -246,14 +311,12 @@ _.forEach(tempArray, (item, index) => {
                         pdf.create(fs.readFileSync(path.join(tempDir, item.invoice.id + '.html'), 'utf8'), pdfOptions).toFile(`${tempDir}/pdfs/${item.invoice.id}.pdf`, (err, res) => {
                             if (err) return console.log(err)
                             console.log(res)
-                            $('#exampleModal').modal({show: true})
-                            /*transporter.sendMail(mailOptions, (err, info) => {
-                                if (err) {
-                                    console.log(err)
-                                } else {
-                                    console.log(info)
-                                }
-                            })*/
+                            console.log(item)
+                            sendEMail(item.fullName, item.email, item.invoice.id, item.invoice.month, filepath)
+                            .then(() => {
+                                console.log('Mensaje enviado con exito');
+                            })
+                            .catch((err) => { console.error(err) })
                         })
                     })
                 }) 
