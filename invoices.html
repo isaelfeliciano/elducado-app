@@ -28,7 +28,23 @@ moment.locale('es-do');
 var fs = require('fs');
 const path = require('path')
 var pdf = require('html-pdf');
-var html = win.window.location.href;
+const nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'jv.elducado@gmail.com',
+        pass: 'elducado'
+    }
+});
+
+var mailOptions = {
+    from: 'jv.elducado@gmail.com',
+    to: 'rogelioisael@hotmail.com',
+    subject: '[Factura] El Ducado',
+    html: '<p>Adjunta esta tu factura</p>'
+}
+
 var pdfOptions = { 
     // format: 'Letter',
     height: "11in",
@@ -175,6 +191,13 @@ _.forEach(tempArray, (item, index) => {
                         pdf.create(fs.readFileSync(path.join(tempDir, item.invoice.id + '.html'), 'utf8'), pdfOptions).toFile(`${tempDir}/pdfs/${item.invoice.id}.pdf`, (err, res) => {
                             if (err) return console.log(err)
                             console.log(res)
+                            transporter.sendMail(mailOptions, (err, info) => {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    console.log(info)
+                                }
+                            })
                         })
                     })
                 }) 
