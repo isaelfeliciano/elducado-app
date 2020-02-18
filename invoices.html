@@ -59,7 +59,9 @@ const uniqueTempDir = require('unique-temp-dir');
 const tempDirPath = uniqueTempDir({create: true, thunk : true})
 const tempDir = tempDirPath()
 moment.locale('es-do');
+const util = require('util')
 const fs = require('fs');
+const readFile = util.promisify(fs.readFile)
 const path = require('path')
 var pdf = require('html-pdf');
 const readline = require('readline');
@@ -119,6 +121,7 @@ function getNewToken(oAuth2Client, callback) {
 }
 
 async function sendEMail(name, to, invoiceId, invoiceMonth, filepath) {
+    console.log(filepath)
     console.log('Start sendEMail');
     let auth = app.oAuth2Client;
     const gmail = google.gmail({version: 'v1', auth});
@@ -150,14 +153,23 @@ async function sendEMail(name, to, invoiceId, invoiceMonth, filepath) {
     .replace(/\//g, '_')
     .replace(/=+$/, '');
 
-    const res = await gmail.users.messages.send({
-        userId: 'me',
-        requestBody: {
-            raw: encodedMessage,
-        },
-    });
-    console.log(res.data)
-    return res.data
+    readFile(filepath)
+    .then(file => {
+        const res = gmail.users.messages.send({
+            userId: 'me',
+            requestBody: {
+                raw: encodedMessage,
+            },
+            uploadType: 'multipart',
+            media: {
+                body: fs.createReadStream(filepath),
+                mimeType: 'application/pdf'
+            }
+        });
+        console.log(res.data)
+        return res.data
+    })
+    .catch(err => { console.error(err) })
 }
 
 //Gmail API Setup <<<
@@ -322,7 +334,7 @@ _.forEach(tempArray, (item, index) => {
                             if (err) return console.log(err)
                             console.log(res)
                             console.log(item)
-                            let filepath = path.join(tempDir, item.invoice.id + '.html')
+                            let filepath = `${tempDir}/pdfs/${item.invoice.id}.pdf`
                             sendEMail(item.fullName, item.email, item.invoice.id, item.invoice.month, filepath)
                             .then(() => {
                                 console.log('Mensaje enviado con exito');
