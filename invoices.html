@@ -80,7 +80,7 @@ var pdfOptions = {
 };
 
 //Gmail API Setup >>>
-const SCOPES  = ['https://www.googleapis.com/auth/gmail.send'];
+const SCOPES  = ['https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'];
 const TOKEN_PATH = 'token.json';
 fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file: ', err);
@@ -119,13 +119,23 @@ function getNewToken(oAuth2Client, callback) {
 }
 
 async function sendEMail(name, to, invoiceId, invoiceMonth, filepath) {
+    console.log('Start sendEMail');
     let auth = app.oAuth2Client;
     const gmail = google.gmail({version: 'v1', auth});
+    const people = google.people({version: 'v1', auth});
+
+    const peopleRes = await people.people.get({
+        resourceName: 'people/me',
+        personFields: 'emailAddresses,names'
+    });
+    console.log(peopleRes);
+
     const subject = '[ Factura - El Ducado ]';
     const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`
     const messageParts = [
-        `From: Rogelio Feliciano <r13.com@gmail.com>`,
-        `To: ${name} <${to}>`,
+        `From: ${peopleRes.data.names[0].displayName} <${peopleRes.data.emailAddresses[0].value}>`,
+        // `To: ${name} <${to}>`,
+        `To: Rogelio Feliciano <rogelioisael@hotmail.com>`,
         'Content-Type: text\html; charset=utf-8',
         'MIME-Version: 1.0',
         `Subject: ${utf8Subject}`,
@@ -312,6 +322,7 @@ _.forEach(tempArray, (item, index) => {
                             if (err) return console.log(err)
                             console.log(res)
                             console.log(item)
+                            let filepath = path.join(tempDir, item.invoice.id + '.html')
                             sendEMail(item.fullName, item.email, item.invoice.id, item.invoice.month, filepath)
                             .then(() => {
                                 console.log('Mensaje enviado con exito');
