@@ -59,6 +59,7 @@ const uniqueTempDir = require('unique-temp-dir');
 const tempDirPath = uniqueTempDir({create: true, thunk : true})
 const tempDir = tempDirPath()
 moment.locale('es-do');
+const MailComposer = require('nodemailer/lib/mail-composer');
 const util = require('util')
 const fs = require('fs');
 const readFile = util.promisify(fs.readFile)
@@ -139,37 +140,57 @@ async function sendEMail(name, to, invoiceId, invoiceMonth, filepath) {
         `From: ${peopleRes.data.names[0].displayName} <${peopleRes.data.emailAddresses[0].value}>`,
         // `To: ${name} <${to}>`,
         `To: Rogelio Feliciano <rogelioisael@hotmail.com>`,
-        'Content-Type: text\html; charset=utf-8',
+        // 'Content-Type: text\html; charset=utf-8',
+        'Content-Type: multipart/mixed; boundary="foo_bar_baz"',
         'MIME-Version: 1.0',
         `Subject: ${utf8Subject}`,
         '',
         `Adjunta esta su factura para el mes de ${invoiceMonth}`,
         'Gracias',
     ];
+    let mail = new MailComposer({
+        to: 'rogelioisael@hotmail.com',
+        from: 'r13.com@gmail.com',
+        text: '[Factura El Ducado]',
+        html: '<strong>Rogelio Feliciano</strong>',
+        subject: '[Factura El Ducado]',
+        textEncoding: 'base64',
+        attachments: [
+            {
+                filename: `${invoiceId}.pdf`,
+                path: filepath,
+                contentType: 'application/pdf'
+            }
+        ]
+    })
     const message = messageParts.join('\n');
-    const encodedMessage = Buffer.from(message)
+    /*const encodedMessage = Buffer.from(message)
     .toString('base64')
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
-    .replace(/=+$/, '');
+    .replace(/=+$/, '');*/
 
-    readFile(filepath)
-    .then(file => {
+    mail.compile().build( (error, msg) => {
+        if(error) return console.error(`Error compiling email ${error}`);
+        const encodedMessage = Buffer.from(msg)
+        .toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
         const res = gmail.users.messages.send({
             userId: 'me',
-            requestBody: {
+            resource: {
                 raw: encodedMessage,
-            },
-            uploadType: 'multipart',
-            media: {
-                body: fs.createReadStream(filepath),
-                mimeType: 'application/pdf'
             }
+        }, (err, result) => {
+            if(err) return console.error(`Nodemailer error ${err}`)
+            console.log(`Sending email, reply from server: ${result.data}`)
         });
         console.log(res.data)
         return res.data
     })
-    .catch(err => { console.error(err) })
+
 }
 
 //Gmail API Setup <<<
