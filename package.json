@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "googleapis": "^39.2.0",
-    "html-pdf": "^2.2.0",
+    "html-pdf": "^3.0.1",
     "log4js": "^0.6.38",
     "mongodb": "latest",
     "node-printer": "latest",
